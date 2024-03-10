@@ -38,10 +38,12 @@ body {
 }
 
 
+
 h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
+
 
 
 .form {
@@ -50,11 +52,13 @@ h1, h2 {
 }
 
 
+
 .btns-group {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
+
 
 
 .upload-section {
@@ -65,10 +69,13 @@ h1, h2 {
     gap: 20px;
 }
 
+
+
 .btn-confirm {
     display: block;
     margin: 20px auto;
 }
+
 
 
 .form-step {
@@ -81,14 +88,15 @@ h1, h2 {
     max-height: 90vh;
   height: auto;
   overflow-y: auto; /* Aggiungi overflow-y: auto per consentire lo scrolling verticale se necessario */
-
-
 }
+
 
 
 .form-step:first-child {
     display: block;
 }
+
+
 
 .active {
     background-color: #007bff;
@@ -96,11 +104,14 @@ h1, h2 {
 }
 
 
+
 /* Stile per il container dell'anteprima del CSV */
 .anteprima_csv1,.anteprima_csv1 {
     display: flex; /* Mostra gli elementi in linea */
     flex-direction: column; /* Imposta la direzione dei figli in colonna */
 }
+
+
 
 /* Stile per ogni riga nel container */
 .row-container {
@@ -112,11 +123,15 @@ h1, h2 {
     gap: 2rem;
 }
 
+
+
 /* Stile per ogni cella di testo */
 .cell {
     font-size: 1.5rem; /* Dimensione del testo */
     padding: 10px; /* Spazio interno */
 }
+
+
 
 /* Stile per l'immagine */
 .row-container img {
@@ -126,6 +141,8 @@ h1, h2 {
 
 }
 
+
+
 .conteggio_p {
     font-weight: 500;
     word-spacing: 10px;
@@ -134,9 +151,12 @@ h1, h2 {
 }
 
 
+
 #counter {
     color: red;
 }
+
+
 
 /* Stile per le caselle delle categorie in alto */
 .categorie-container {
@@ -144,6 +164,8 @@ h1, h2 {
     justify-content: space-between; /* Allinea le caselle alla massima distanza possibile */
     margin-bottom: 20px; /* Aggiungi margine inferiore per separare le categorie dalle righe del CSV */
 }
+
+
 
 /* Stile per ogni casella delle categorie */
 .categoria {
@@ -153,10 +175,14 @@ h1, h2 {
     font-size: 1.2rem;
 }
 
+
+
 /* Nascondi il contenitore delle categorie all'inizio */
 .tendina {
     display: none;
 }
+
+
 
 /* Stile per la riga selezionata */
 .active {
