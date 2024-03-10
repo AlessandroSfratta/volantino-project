@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>  
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+    
+    <script src="elementc.js" type="module"></script>
+    <script src="app.js" type="module"></script>    
+
+    <link rel="stylesheet" href="style_admin.css">
+
+    <title>Supermercato MM admin</title>
+</head>
+<body>
+
+    <form action="" class="form">
+
+     
+
+        <div class="form-step sec0" data-type="start" style="display: block;">
+            <div class="input-group">
+                <h1 class="text-center">Scelta Tipo Volantino</h1>
+                
+                <div class="cont-btn"> 
+                    <div>
+                        <p>Volantino A4</p>
+                        <button type="button" class="btn btn-show-form" id="volantinoA4" data-next-type="volantinoA4" data-type="volantinoA4">Scegli</button>
+                    </div>
+                    <div>
+                        <p>Volantino Digitale</p>
+                        <button type="button" class="btn btn-show-form" id="volantinoWeb" data-next-type="volantinoWeb" data-type="volantinoWeb">Scegli</button>
+                    </div>
+                </div>
+                <div class="btns-group">        
+                    <button type="button" class="btn btn-next">Avanti</button>
+                </div>
+            </div>
+        </div>
+    
+
+        
+<!-- Sezione Volantino A4 -->
+<div class="form-step sec1" data-type="volantinoA4" style="display: none;">
+    <h2>Creazione Volantino A4</h2>
+    <!-- Caselle delle categorie -->
+
+    <div class="upload-section">
+        <p>Carica il file CSV:</p>
+        <input type="file" id="csvFileA4" accept=".csv">
+    </div>
+
+        <div class="btns-group">        
+            <button type="button" class="btn btn-pre">Indietro</button>
+            <button type="button" class="btn btn-next anteprima">Anteprima</button>
+        </div>
+
+    <div class="tendina">
+
+        <div><p class="conteggio_p">Conteggio <span id="counter">0</span></p></div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cerca...">
+        </div>
+
+        <div class="container">
+            <div class="categorie-container">
+                <div class="categoria">NOME PRODOTTO</div>
+                <div class="categoria">DESCRIZIONE</div>
+                <div class="categoria">PREZZO</div>
+                <div class="categoria">IMMAGINE</div>
+            </div>
+        </div>
+
+
+    <div class="anteprima_csv1">
+
+    </div>
+    
+     </div>
+</div>
+
+
+
+<!-- Sezione Volantino Web -->
+<div class="form-step sec2" data-type="volantinoWeb" style="display: none;">
+    <h2>Creazione Volantino Web</h2>
+    <!-- Caselle delle categorie -->
+    
+    <div class="upload-section">
+        <p>Carica il file CSV:</p>
+        <input type="file" id="csvFileWeb" accept=".csv">
+    </div>
+
+        <!-- Pulsanti Avanti e Indietro -->
+        <div class="btns-group">        
+            <button type="button" class="btn btn-pre">Indietro</button>
+            <button type="button" class="btn btn-next anteprima">Anteprima</button>
+        </div>
+
+    <div class="tendina">
+
+        <div><p class="conteggio_p">Conteggio <span id="counter">0</span></p></div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cerca...">
+        </div>
+
+        <div class="container">
+            <div class="categorie-container">
+                <div class="categoria">NOME PRODOTTO</div>
+                <div class="categoria">DESCRIZIONE</div>
+                <div class="categoria">PREZZO</div>
+                <div class="categoria">IMMAGINE</div>
+            </div>
+        </div>
+   
+
+    <div class="anteprima_csv2">
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- Sezione Anteprima A4 -->
+<div class="form-step sec3" data-type="volantinoA4" style="display: none;">
+    <h2>Anteprima Volantino A4</h2>
+
+    <div id="pdf-content">
+
+    </div>
+
+    <button type="button" class="btn btn-confirm" id="confirmButton">Conferma</button>
+</div>
+
+
+<!-- Sezione Anteprima Volantino Web -->
+<div class="form-step sec4" data-type="volantinoWeb" style="display: none;">
+    <h2>Anteprima Volantino Web</h2>
+
+    <div id="pdf-content2">
+
+    </div>
+
+
+    <button type="button" class="btn btn-confirm" id="confirmButton">Conferma</button>
+    
+</div>
+
+
+
+</form>
+
+
+
+    
+</body>
+</html>

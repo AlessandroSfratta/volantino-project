@@ -1,0 +1,194 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; 
+}
+
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.cont-btn {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.form {
+    max-width: 85vw;
+    margin: 0 auto;
+}
+
+
+.btns-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.upload-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-confirm {
+    display: block;
+    margin: 20px auto;
+}
+
+
+.form-step {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    max-height: 90vh;
+  height: auto;
+  overflow-y: auto; /* Aggiungi overflow-y: auto per consentire lo scrolling verticale se necessario */
+
+
+}
+
+
+.form-step:first-child {
+    display: block;
+}
+
+.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/* Stile per il container dell'anteprima del CSV */
+.anteprima_csv1,.anteprima_csv1 {
+    display: flex; /* Mostra gli elementi in linea */
+    flex-direction: column; /* Imposta la direzione dei figli in colonna */
+}
+
+/* Stile per ogni riga nel container */
+.row-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    gap: 2rem;
+}
+
+/* Stile per ogni cella di testo */
+.cell {
+    font-size: 1.5rem; /* Dimensione del testo */
+    padding: 10px; /* Spazio interno */
+}
+
+/* Stile per l'immagine */
+.row-container img {
+    width: 200px; /* Larghezza immagine */
+    height: 200px; /* Altezza immagine */
+    display: block; /* Mostra l'immagine su una riga separata */
+
+}
+
+.conteggio_p {
+    font-weight: 500;
+    word-spacing: 10px;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+
+#counter {
+    color: red;
+}
+
+/* Stile per le caselle delle categorie in alto */
+.categorie-container {
+    display: flex; /* Mostra gli elementi in linea */
+    justify-content: space-between; /* Allinea le caselle alla massima distanza possibile */
+    margin-bottom: 20px; /* Aggiungi margine inferiore per separare le categorie dalle righe del CSV */
+}
+
+/* Stile per ogni casella delle categorie */
+.categoria {
+    border: 1px solid #ccc;
+    font-weight: 700;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+/* Nascondi il contenitore delle categorie all'inizio */
+.tendina {
+    display: none;
+}
+
+/* Stile per la riga selezionata */
+.active {
+    background-color: #ffa500; /* Sfondo arancione */
+    border: 2px solid #ffa500; /* Bordo arancione */
+    border-radius: 5px; /* Bordi arrotondati */
+    cursor: pointer; /* Cambia il cursore quando si passa sopra la riga */
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+#container {
+    display: flex; /* Usa un layout flessibile */
+    flex-direction: column; /* Imposta la direzione del layout a colonna */
+    align-items: center; /* Centra gli elementi lungo l'asse principale (verticale nel caso di flex-direction: column) */
+    justify-content: center; /* Centra gli elementi lungo l'asse trasversale (orizzontale nel caso di flex-direction: column) */ /* Altezza automatica basata sull'altezza del contenuto */
+}
+
+.content-cont {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#pdf-content {
+
+    height: auto;
+
+}

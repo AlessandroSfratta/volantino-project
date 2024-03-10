@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizzazione PDF con pulsanti di navigazione</title>
+    <!-- Includi lo script di PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.13.207/pdf.min.js"></script>
+</head>
+<body>
+    <!-- Aggiungi un div per contenere il canvas del PDF -->
+    <div id="pdf-container">
+        <canvas id="pdf-canvas"></canvas>
+    </div>
+
+    <!-- Aggiungi pulsanti per navigare tra le pagine -->
+    <button id="prev-page">Pagina precedente</button>
+    <button id="next-page">Pagina successiva</button>
+
+    <script>
+
+        // Variabile per memorizzare il documento PDF
+        let pdfDoc = null;
+        let pageNum = 1;
+        const scale = 1.5;
+
+        // Funzione per caricare e visualizzare il PDF
+        async function loadPDF(pdfUrl) {
+            // Carica il documento PDF
+            const loadingTask = pdfjsLib.getDocument(pdfUrl);
+            pdfDoc = await loadingTask.promise;
+            renderPage(pageNum);
+        }
+
+        // Funzione per renderizzare una specifica pagina del PDF
+        function renderPage(num) {
+            pdfDoc.getPage(num).then(function(page) {
+                // Ottieni le dimensioni della pagina
+                const viewport = page.getViewport({ scale: scale });
+
+                // Ottieni il canvas HTML
+                const canvas = document.getElementById('pdf-canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                // Renderizza la pagina PDF sul canvas
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+            });
+
+            // Aggiorna il numero di pagina corrente
+            pageNum = num;
+        }
+
+        // Gestione del click sul pulsante "Pagina precedente"
+        document.getElementById('prev-page').addEventListener('click', function() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            renderPage(pageNum);
+        });
+
+        // Gestione del click sul pulsante "Pagina successiva"
+        document.getElementById('next-page').addEventListener('click', function() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            renderPage(pageNum);
+        });
+
+        // Chiamata alla funzione per caricare il PDF
+        const pdfUrl = 'my-document.pdf'; // URL del documento PDF
+        loadPDF(pdfUrl);
+
+    </script>
+</body>
+</html>
