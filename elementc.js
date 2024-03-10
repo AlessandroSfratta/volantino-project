@@ -9,7 +9,9 @@ async function convertToDataURL(url) {
 }
 
 
-async function generaElementi() {
+let content;
+
+async function generaElementi(cont) {
     try {
         const prodottiJSON = jsonData;
 
@@ -31,17 +33,16 @@ async function generaElementi() {
             `;
         }
 
-         content = document.getElementById('pdf-content');
+     content = document.querySelector(cont);
 
         // Visualizza il contenuto HTML nella pagina
         content.innerHTML = htmlContent;
+
     } catch (error) {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
 }
 
-
-let content;
 
 
 // const optionss = {
@@ -63,7 +64,6 @@ let content;
 //     background: true,
 //     autoPaging: true // Imposta autoPaging su false per evitare la suddivisione del contenuto su più pagine
 // };
-
 
 
 
@@ -89,14 +89,23 @@ const options = {
     enableLinks: true,
     background: true,
     autoPaging: true 
+
 };
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector(".anteprima").addEventListener("click", generaElementi);
-    document.querySelector(".btn-confirm").addEventListener("click", convertiInPDF);
-});
+
+const pdfCont1 = ".pdf-content1";
+const anteprimaPdf1 = document.querySelector(".anteprima1");
+anteprimaPdf1.addEventListener("click", () => { generaElementi(pdfCont1) });
+
+const pdfCont2 = ".pdf-content2";
+const anteprimaPdf2 = document.querySelector(".anteprima2");
+anteprimaPdf2.addEventListener("click", () => { generaElementi(pdfCont2) });
+
+
+
+document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", convertiInPDF); });
 
 
 
@@ -106,11 +115,9 @@ function convertiInPDF() {
 
     html2pdf().from(content).set(options).outputPdf('blob').then(pdfBlob => {
         
-        // Crea un oggetto FormData e aggiungi il file PDF
         const formData = new FormData();
         formData.append('pdf_content', pdfBlob, 'my-document.pdf');
 
-        // Invia il contenuto PDF al server PHP tramite una richiesta AJAX
         fetch('save-pdf.php', {
             method: 'POST',
             body: formData
@@ -122,10 +129,11 @@ function convertiInPDF() {
             return response.text();
         })
         .then(data => {
-            console.log(data); // Visualizza eventuali messaggi di successo o errore dal server
+            console.log(data); 
         })
         .catch(error => {
             console.error('Errore durante il salvataggio del PDF:', error);
+
         });
     });
 }

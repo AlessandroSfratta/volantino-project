@@ -31,14 +31,14 @@
         button.addEventListener("click", () => {
  
             if (sections[1].style.display !== "none") {
-                if (scelta == "a4" && Object.keys(jsonData).length !== 15) {
+                if (scelta == "a4" && Object.keys(jsonData).length !== 1) {
                     alert("Seleziona tutti e 15 gli elementi prima di proseguire.");
                     return;
                 }
             }
 
             if (sections[2].style.display !== "none") {
-                if (scelta == "volantino_digitale" && Object.keys(jsonData).length !== 147) {
+                if (scelta == "volantino_digitale" && Object.keys(jsonData).length !== 1  ) {
                     alert("Seleziona tutti e 147 gli elementi prima di proseguire.");
                     return;
                 }
@@ -313,9 +313,9 @@ function handleClick(event) {
 
     // Verifica se la variabile scelta è "a4" o "volantino_digitale" e imposta il limite massimo di conseguenza
     if (scelta === "a4") {
-        limiteMassimoElementi = 15;
+        limiteMassimoElementi = 1;
     } else if (scelta === "volantino_digitale") {
-        limiteMassimoElementi = 142;
+        limiteMassimoElementi = 1;
     } else {
         console.log("Devi selezionare un tipo di volantino prima di aggiungere elementi.");
         return;
@@ -346,9 +346,9 @@ function addRowToJson(row) {
     let numeroElementiRichiesti = 0;
 
     if (scelta === "a4") {
-        numeroElementiRichiesti = 15;
+        numeroElementiRichiesti = 1 ;//15;
     } else if (scelta === "volantino_digitale") {
-        numeroElementiRichiesti = 142;
+        numeroElementiRichiesti = 1 ;//142;
     } else {
         console.log("Devi selezionare un tipo di volantino prima di aggiungere elementi.");
         return;
@@ -383,6 +383,7 @@ function addRowToJson(row) {
 }
 
 
+
 // Funzione per rimuovere l'elemento dal JSON
 function removeRowFromJson(row) {
     const productName = row.querySelector('.cell:nth-child(1)').textContent;
@@ -408,6 +409,7 @@ function removeRowFromJson(row) {
         console.log("Elemento non trovato nel JSON.");
     }
 }
+
 
 
 // Funzione per aggiornare il contatore
