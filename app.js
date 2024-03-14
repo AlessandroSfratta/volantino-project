@@ -3,6 +3,7 @@
     const btnVolantinoA4 = document.getElementById("volantinoA4");
     const btnVolantinoWeb = document.getElementById("volantinoWeb");
     const sections = document.querySelectorAll('.form-step');
+   export let jsonData = {};
 
     let scelta;
 
@@ -30,19 +31,19 @@
     btnNext.forEach(button => {
         button.addEventListener("click", () => {
  
-            if (sections[1].style.display !== "none") {
-                if (scelta == "a4" && Object.keys(jsonData).length !== 1) {
-                    alert("Seleziona tutti e 15 gli elementi prima di proseguire.");
-                    return;
-                }
-            }
+            // if (sections[1].style.display !== "none") {
+            //     if (scelta == "a4" && Object.keys(jsonData).length !== 0) {
+            //         alert("Seleziona tutti e 15 gli elementi prima di proseguire.");
+            //         return;
+            //     }
+            // }
 
-            if (sections[2].style.display !== "none") {
-                if (scelta == "volantino_digitale" && Object.keys(jsonData).length !== 1  ) {
-                    alert("Seleziona tutti e 147 gli elementi prima di proseguire.");
-                    return;
-                }
-            }
+            // if (sections[2].style.display !== "none") {
+            //     if (scelta == "volantino_digitale" && Object.keys(jsonData).length !== 1  ) {
+            //         alert("Seleziona tutti e 147 gli elementi prima di proseguire.");
+            //         return;
+            //     }
+            // }
             
 
             navigaSezione("avanti");
@@ -175,289 +176,263 @@
     }
     
 
-    
-    function hideElement(element) {
-        if (element) {
-          element.style.display = 'none';
-        } else {
-            console.log("Elemento non trovato")
-        }
-      }
-    
-    
-    
-    function showElement(element) {
-      if (element) {
-        element.style.display = "block";
-      } else {
-        console.log("Elemento non trovato");
-      }
-    }
-    
-
-    const anteprimaCsvDiv1 = document.querySelector('.anteprima_csv1');
-    const anteprimaCsvDiv2 = document.querySelector('.anteprima_csv2');
-    
-    document.getElementById('csvFileA4').addEventListener('change', handleFileSelect);
-    document.getElementById('csvFileWeb').addEventListener('change', handleFileSelect);
 
     
+// Seleziona tutti gli input-nome-prodotto
+const inputsNomeProdotto = document.querySelectorAll('.input-nome-prodotto');
 
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    jsonData = {};
-    clearPreview();
+// Aggiungi un listener per l'evento input a tutti gli input con classe .input-nome-prodotto
+inputsNomeProdotto.forEach(input => {
+    input.addEventListener('input', function(event) {
+        const searchText = event.target.value.trim().toLowerCase();
+        
+        const dataType = this.dataset.type; // Ottieni il dataType dall'elemento specifico
+        
+        prelevaProdotto(searchText, dataType, this); // Passa il dataType e l'input corrente alla funzione prelevaProdotto
+    });
+});
 
 
-    Papa.parse(file, {
-        encoding: "UTF-8",
-        skipEmptyLines: true,
+
+// Aggiungi un listener per l'evento mouseleave sul container .input-row
+const inputRows = document.querySelectorAll('.input-row');
+inputRows.forEach(function(inputRow) {
+    inputRow.addEventListener('mouseleave', function() {
+        const productList = this.querySelectorAll(".suggerimenti-nome-prodotto select");
+        
+        productList.forEach(function(select) {
+            select.style.display = "none";
+        });
+    });
+});
+
+
+
+
+function prelevaProdotto(searchText, dataType, input) {
+
+    const filePath = 'archivioUTF8.csv';
+
+    Papa.parse(filePath, {
+        download: true,
+        header: true,
         complete: function(results) {
-            console.log(results);
-            if (scelta === "a4") {
-                showCsvContent(results.data, anteprimaCsvDiv1);
-            } else if (scelta === "volantino_digitale") {
-                showCsvContent(results.data, anteprimaCsvDiv2);
-            } else {
-                console.log("Devi selezionare un tipo di volantino prima di aggiungere elementi.");
-            }
+            const productListContainer = input.parentElement.querySelector('.suggerimenti-nome-prodotto select');
+            productListContainer.innerHTML = '';
+
+            let hasMatches = false;
+
+            results.data.forEach(row => {
+
+                const prodotto = row["Nome prodotto"];
+
+                if (prodotto.toLowerCase().includes(searchText)) {
+
+                    const option = document.createElement('option');
+                    option.value = prodotto;
+                    option.textContent = prodotto;
+                    productListContainer.appendChild(option);
+                    hasMatches = true;
+
+                    option.addEventListener('click', function() {
+                        input.value = this.value;
+                        productListContainer.style.display = "none";
+                        const immagine = input.closest('.input-row').querySelector('.cont-scelta-img img');
+                        if (immagine) {
+                            const linkImmagine = row["immagine"];
+                            immagine.src = linkImmagine;
+                        } else {
+                            console.error('Elemento immagine non trovato.');
+                        }
+                    });
+                }
+            });
+
+            productListContainer.style.display = dataType === input.dataset.type && hasMatches ? 'block' : 'none';
+        },
+        error: function(error) {
+            console.error('Errore durante il recupero del file:', error);
         }
     });
 }
 
 
-function clearPreview() {
-    const anteprimaCsvDiv1 = document.querySelector('.anteprima_csv1');
-    const anteprimaCsvDiv2 = document.querySelector('.anteprima_csv2');
 
-    while (anteprimaCsvDiv1.firstChild) {
-        anteprimaCsvDiv1.removeChild(anteprimaCsvDiv1.firstChild);
-    }
 
-    while (anteprimaCsvDiv2.firstChild) {
-        anteprimaCsvDiv2.removeChild(anteprimaCsvDiv2.firstChild);
-    }
+// Seleziona tutti gli elementi <label> associati ai toggle
+const toggleLabels = document.querySelectorAll('.switch label');
+
+// Itera su ciascun elemento label
+toggleLabels.forEach(function(label) {
+    label.addEventListener("click", function() {
+
+        const input = this.previousElementSibling;
+
+        let container = this.closest('.input-row');
+
+        // Verifica se l'elemento input non è selezionato
+        if (!input.checked) {
+            // Se non è selezionato, seleziona tutti gli input richiesti e le immagini nello stesso contenitore
+            const requiredInputs = container.querySelectorAll('input[required]');
+            const imgs = container.querySelectorAll('img');
+            const contImgs = container.querySelectorAll('.cont-scelta-img');
+
+            // Variabile per verificare se tutti gli elementi sono presenti
+            let allElementsPresent = true;
+
+            // Itera su ciascuna immagine nello stesso contenitore
+            imgs.forEach(function(img) {
+                // Verifica se l'immagine ha un attributo src
+                if (!img.getAttribute('src')) {
+                    // Se l'attributo src è assente, imposta lo stile di sfondo sul contenitore dell'immagine
+                    console.log('L\'attributo src dell\'immagine è vuoto.');
+                    contImgs.forEach(function(contImg) {
+                        contImg.style.border = " 1px solid red";
+                    });
+                    allElementsPresent = false;
+                } else {
+                    contImgs.forEach(function(contImg) {
+                        contImg.style.border = "1px solid green";
+                    });
+                }
+            });
+
+            // Itera su ciascun input richiesto
+            requiredInputs.forEach(function(requiredInput) {
+                // Verifica se l'input ha del contenuto
+                if (!requiredInput.value.trim()) {
+                    requiredInput.style.border = '1px solid red';
+                    allElementsPresent = false;
+                } else {
+                    requiredInput.style.border = '';
+                }
+            });
+
+
+      // Se tutti gli elementi sono presenti, contrassegna il bordo come verde
+if (allElementsPresent) {
+    requiredInputs.forEach(function(requiredInput) {
+        requiredInput.style.border = '1px solid green';
+    });
+
+    // Seleziona tutti i container modal
+    const modalContainers = container.querySelectorAll('.modal');
+
+    // Aggiungi la classe 'active' a ciascun container modal
+    modalContainers.forEach( (modal) => {
+        modal.classList.add('active-modal');
+    })
+
+    addToJson(container);
+
 }
-
-
-
-
-function showCsvContent(data) {
-
-    const columnIndexFotoProdotto = data[0].indexOf("FOTO PRODOTTO");
-
-    for (let i = 1; i < data.length; i++) {
-        const rowContainer = document.createElement('div');
-        rowContainer.classList.add('row-container');
-
-        data[i].forEach((cell, index) => {
-            if (index === columnIndexFotoProdotto) {
-                return;
+            // Se ci sono elementi mancanti, applica il click dopo 500 millisecondi
+            if (!allElementsPresent) {
+                setTimeout(function() {
+                    label.click(); // Simula un click sul pulsante
+                }, 500);
             }
 
-            const cellElement = document.createElement('div');
-            cellElement.classList.add('cell');
-            cellElement.textContent = cell;
-            rowContainer.appendChild(cellElement);
-        });
-
-        const imgUrl = data[i][columnIndexFotoProdotto];
-        const imgElement = document.createElement('img');
-        imgElement.src = imgUrl;
-        imgElement.style.width = '200px';
-        imgElement.style.height = '200px';
-        imgElement.style.display = 'block';
-        imgElement.alt = 'Immagine prodotto';
-
-        rowContainer.appendChild(imgElement);
-
-        // Determina quale anteprima mostrare in base al contenuto di scelta
-        const anteprimaContainer = scelta === "a4" ? document.querySelector('.anteprima_csv1') : document.querySelector('.anteprima_csv2');
-        if (anteprimaContainer) {
-            anteprimaContainer.appendChild(rowContainer);
         } else {
-            console.error("Elemento anteprima non trovato:", scelta);
+
+            const modalContainers = container.querySelectorAll('.modal');
+                // Aggiungi la classe 'active' a ciascun container modal
+
+                modalContainers.forEach( (modal) => {
+                    modal.classList.remove('active-modal');
+                }) 
+
+                removeFromJson(container);
         }
-    }
 
-  // Modifica lo stile delle tendine in base alla scelta
-  const containerA4 = document.querySelector('.form-step.sec1 .tendina');
-  const containerWeb = document.querySelector('.form-step.sec2 .tendina');
-  if (scelta === "a4" && containerA4) {
-      containerA4.style.display = 'block';
-      containerA4.style.height = '300px'; // Modifica l'altezza per la tendina A4
-  } else if (scelta === "volantino_digitale" && containerWeb) {
-      containerWeb.style.display = 'block';
-      containerWeb.style.height = '500px'; // Modifica l'altezza per la tendina Web
-  } else {
-      console.error("Scelta non valida:", scelta);
-  }
-}
-
-
-// Dichiarazione globale della variabile jsonData
-export let jsonData = {};
-
-
-// Aggiungi il nuovo listener degli eventi per tutte le anteprime CSV
-const anteprimeCsvDivs = document.querySelectorAll('.anteprima_csv1, .anteprima_csv2');
-anteprimeCsvDivs.forEach(anteprimaCsvDiv => {
-    anteprimaCsvDiv.addEventListener('click', handleClick);
+    });
 });
 
 
 
-function handleClick(event) {
-    const target = event.target;
-    let limiteMassimoElementi; // Imposta il limite predefinito a 15
-
-    // Verifica se la variabile scelta è "a4" o "volantino_digitale" e imposta il limite massimo di conseguenza
-    if (scelta === "a4") {
-        limiteMassimoElementi = 1;
-    } else if (scelta === "volantino_digitale") {
-        limiteMassimoElementi = 1;
-    } else {
-        console.log("Devi selezionare un tipo di volantino prima di aggiungere elementi.");
-        return;
-    }
-
-    if (target.classList.contains('row-container')) {
-        const isActive = target.classList.contains('active');
-        if (isActive) {
-            target.classList.remove('active');
-            removeRowFromJson(target);
-        } else {
-            if (numeroProdotto <= limiteMassimoElementi) { // Utilizza il limite massimo dinamico
-                target.classList.add('active');
-            }
-            addRowToJson(target);
-        }
-        console.log(jsonData);
-    }
-}
 
 
+// Funzione per aggiungere i valori degli input al JSON
+function addToJson(container) {
+    const nomeProdotto = container.querySelector('.input-nome-prodotto').value;
+    const description = container.querySelector('.input-descrizione').value;
+    const price = container.querySelector('.input-prezzo').value;
+    const image = container.querySelector('.cont-scelta-img img').src;
 
-// Variabile per tener traccia del numero di prodotti aggiunti
-let numeroProdotto = 1;
-
-// Funzione per aggiungere l'elemento al JSON
-function addRowToJson(row) {
-    let numeroElementiRichiesti = 0;
-
-    if (scelta === "a4") {
-        numeroElementiRichiesti = 1 ;//15;
-    } else if (scelta === "volantino_digitale") {
-        numeroElementiRichiesti = 1 ;//142;
-    } else {
-        console.log("Devi selezionare un tipo di volantino prima di aggiungere elementi.");
-        return;
-    }
-
-    // Verifica se il limite massimo di elementi è stato raggiunto
-    if (Object.keys(jsonData).length >= numeroElementiRichiesti) {
-        console.log("Limite massimo di elementi raggiunto.");
-        return;
-    }
-
-    const rowData = {
-
-        "Nome_Prodotto": row.querySelector('.cell:nth-child(1)').textContent,
-        "Descrizione": row.querySelector('.cell:nth-child(2)').textContent,
-        "Prezzo": row.querySelector('.cell:nth-child(3)').textContent,
-        "Immagine": row.querySelector('img').src
-        
+    // Aggiungi i valori al JSON utilizzando il nome del prodotto come chiave
+    jsonData[nomeProdotto] = {
+        "nomeProdotto": nomeProdotto,
+        "Descrizione": description,
+        "Prezzo": price,
+        "Immagine": image
     };
 
-    // Costruisci la chiave utilizzando la stringa "Prodotto" seguita dal numero di prodotto
-    const key = "Prodotto" + numeroProdotto;
+    console.log(jsonData);
+}
 
-    // Aggiungi l'elemento al JSON utilizzando la chiave esterna "Prodotto" seguita dal numero di prodotto
-    jsonData[key] = rowData;
+// Funzione per rimuovere i valori degli input dal JSON
+function removeFromJson(container) {
+    const nomeProdotto = container.querySelector('.input-nome-prodotto').value;
 
-    // Incrementa il numero di prodotto per il prossimo elemento
-    numeroProdotto++;
+    // Rimuovi i valori dal JSON utilizzando il nome del prodotto come chiave
+    delete jsonData[nomeProdotto];
 
-    // Incrementa il contatore
-    updateCounter(1);
+    console.log(jsonData);
 }
 
 
 
-// Funzione per rimuovere l'elemento dal JSON
-function removeRowFromJson(row) {
-    const productName = row.querySelector('.cell:nth-child(1)').textContent;
-    let keyToRemove = null;
 
-    // Cerca la chiave corrispondente all'elemento da rimuovere nel JSON
-    Object.keys(jsonData).forEach(key => {
-        if (jsonData[key]["Nome_Prodotto"] === productName) {
-            keyToRemove = key;
-        }
-    });
 
-    // Se la chiave è stata trovata, rimuovi l'elemento corrispondente dal JSON
-    if (keyToRemove !== null) {
+// // Funzione per aggiornare il contatore
+// function updateCounter(change) {
+//     const counterElement = document.querySelectorAll('#counter');
+//     if (counterElement) {
         
-        delete jsonData[keyToRemove];
+//         counterElement.forEach((counter) => {
 
-        numeroProdotto--;
-        // Decrementa il contatore
-        updateCounter(-1);
+//             let currentCount = parseInt(counter.textContent) || 0;
+//             currentCount += change;
+//             counter.textContent = currentCount.toString();
 
-    } else {
-        console.log("Elemento non trovato nel JSON.");
-    }
-}
-
-
-
-// Funzione per aggiornare il contatore
-function updateCounter(change) {
-    const counterElement = document.querySelectorAll('#counter');
-    if (counterElement) {
-        
-        counterElement.forEach((counter) => {
-
-            let currentCount = parseInt(counter.textContent) || 0;
-            currentCount += change;
-            counter.textContent = currentCount.toString();
-
-        })
+//         })
 
  
-    }
-}
+//     }
+// }
 
 
 
-// Seleziona entrambi gli elementi di input per la ricerca
-const searchInputs = document.querySelectorAll('.search-input');
+// // Seleziona entrambi gli elementi di input per la ricerca
+// const searchInputs = document.querySelectorAll('.search-input');
 
-// Aggiungi un listener per gestire gli eventi di input della ricerca per ciascun input
-searchInputs.forEach(searchInput => {
-    searchInput.addEventListener('input', handleSearch);
-});
+// // Aggiungi un listener per gestire gli eventi di input della ricerca per ciascun input
+// searchInputs.forEach(searchInput => {
+//     searchInput.addEventListener('input', handleSearch);
+// });
 
-// Funzione per gestire la ricerca degli elementi
-function handleSearch(event) {
-    const searchText = event.target.value.toLowerCase(); // Ottieni il testo digitato e convertilo in minuscolo
-    const rows = document.querySelectorAll('.row-container'); // Seleziona tutte le righe
 
-    rows.forEach(row => {
-        // Ottieni il testo contenuto in ogni riga e convertilo in minuscolo
-        const rowText = row.textContent.toLowerCase();
 
-        // Verifica se il testo della riga contiene il testo digitato nella ricerca
-        if (rowText.includes(searchText)) {
-            // Se la riga corrisponde al testo di ricerca, mostra la riga
-            row.style.display = '';
-        } else {
-            // Altrimenti, nascondi la riga
-            row.style.display = 'none';
-        }
-    });
-}
+
+// // Funzione per gestire la ricerca degli elementi
+// function handleSearch(event) {
+//     const searchText = event.target.value.toLowerCase(); // Ottieni il testo digitato e convertilo in minuscolo
+//     const rows = document.querySelectorAll('.row-container'); // Seleziona tutte le righe
+
+//     rows.forEach(row => {
+//         // Ottieni il testo contenuto in ogni riga e convertilo in minuscolo
+//         const rowText = row.textContent.toLowerCase();
+
+//         // Verifica se il testo della riga contiene il testo digitato nella ricerca
+//         if (rowText.includes(searchText)) {
+//             // Se la riga corrisponde al testo di ricerca, mostra la riga
+//             row.style.display = '';
+//         } else {
+//             // Altrimenti, nascondi la riga
+//             row.style.display = 'none';
+//         }
+//     });
+// }
 
 
 

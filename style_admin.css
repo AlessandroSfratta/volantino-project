@@ -225,3 +225,50 @@ h1, h2 {
     height: auto;
 
 }
+
+
+.input-rows {
+    padding: 10px 10px 13px 10px;
+}
+
+.input-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+}
+
+.input-row input {
+    padding-left: 15px;
+}
+
+.cont-scelta-img {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #8888;
+    border: solid 1px #000;
+}
+
+.cont-scelta-img img {
+    width: 80%;
+}
+
+
+.input-row {
+    position: relative;
+}
+
+.input-row .modal.active-modal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Trasparenza per l'effetto sfocatura */
+    z-index: 1; /* Assicura che la patina sia sopra il contenuto modale */
+}

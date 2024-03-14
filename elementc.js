@@ -25,8 +25,8 @@ async function generaElementi(cont) {
             // Aggiungi il contenuto HTML con l'immagine
             htmlContent += `
                 <div class="content-cont">
-                    <p>Nome Prodotto: ${value.Nome_Prodotto}</p>
-                    <img src="${imageUrl}" alt="${value.Nome_Prodotto}">
+                    <p>Nome Prodotto: ${value.nomeProdotto}</p>
+                    <img src="${imageUrl}" alt="${value.nomeProdotto}">
                     <p>Descrizione: ${value.Descrizione}</p>
                     <p>Prezzo: ${value.Prezzo} €</p>
                 </div>
@@ -80,15 +80,15 @@ const options = {
 
      jsPDF: { 
         unit: 'in', 
-        format: 'letter', 
+        format: 'a4', 
         orientation: 'portrait',
         height: 1000
     }, 
 
-    pagebreak: { mode: ['css', 'legacy'] },
+    // pagebreak: { mode: ['css', 'legacy'] },
     enableLinks: true,
     background: true,
-    autoPaging: true 
+    autoPaging: false 
 
 };
 

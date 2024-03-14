@@ -11,6 +11,7 @@
     <script src="app.js" type="module"></script>    
 
     <link rel="stylesheet" href="style_admin.css">
+    <link rel="stylesheet" href="button.css">
 
     <title>Supermercato MM admin</title>
 </head>
@@ -44,87 +45,147 @@
         
 <!-- Sezione Volantino A4 -->
 <div class="form-step sec1" data-type="volantinoA4" style="display: none;">
-    <h2>Creazione Volantino A4</h2>
-    <!-- Caselle delle categorie -->
 
-    <div class="upload-section">
-        <p>Carica il file CSV:</p>
-        <input type="file" id="csvFileA4" accept=".csv">
+    <div class="title-center">
+        <h2>Scegli i prodotti</h2>
     </div>
 
-        <div class="btns-group">        
-            <button type="button" class="btn btn-pre">Indietro</button>
-            <button type="button" class="btn btn-next anteprima1">Anteprima</button>
-        </div>
+    <div class="cont-input">
 
-    <div class="tendina">
 
-        <div><p class="conteggio_p">Conteggio <span id="counter">0</span></p></div>
+        
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+        
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+        
+                <div class="cont-scelta-img" >
+                    <img src="" alt="">
+                </div>
+        
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required> <!-- Aggiunto required -->
 
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cerca...">
-        </div>
-
-        <div class="container">
-            <div class="categorie-container">
-                <div class="categoria">NOME PRODOTTO</div>
-                <div class="categoria">DESCRIZIONE</div>
-                <div class="categoria">PREZZO</div>
-                <div class="categoria">IMMAGINE</div>
+                <div class="switch">
+                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-1"></label>
+                </div>
+                
             </div>
         </div>
-
-
-    <div class="anteprima_csv1">
+        
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+        
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+        
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+        
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required> <!-- Aggiunto required -->
+        
+                <div class="switch">
+                    <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-2"></label>
+                </div>
+            </div>
+        </div>
+        
 
     </div>
     
-     </div>
+
+    <div class="btns-group">        
+        <button type="button" class="btn btn-pre">Indietro</button>
+        <button type="button" class="btn btn-next anteprima1">Anteprima</button>
+    </div>
 </div>
+
+
+
+
+
 
 
 
 <!-- Sezione Volantino Web -->
 <div class="form-step sec2" data-type="volantinoWeb" style="display: none;">
-    <h2>Creazione Volantino Web</h2>
-    <!-- Caselle delle categorie -->
-    
-    <div class="upload-section">
-        <p>Carica il file CSV:</p>
-        <input type="file" id="csvFileWeb" accept=".csv">
+    <div class="title-center">
+        <h2>Scegli i prodotti</h2>
     </div>
 
-        <!-- Pulsanti Avanti e Indietro -->
-        <div class="btns-group">        
-            <button type="button" class="btn btn-pre">Indietro</button>
-            <button type="button" class="btn btn-next anteprima2">Anteprima</button>
-        </div>
+    <div class="cont-input">
 
-    <div class="tendina">
-
-        <div><p class="conteggio_p">Conteggio <span id="counter">0</span></p></div>
-
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cerca...">
-        </div>
-
-        <div class="container">
-            <div class="categorie-container">
-                <div class="categoria">NOME PRODOTTO</div>
-                <div class="categoria">DESCRIZIONE</div>
-                <div class="categoria">PREZZO</div>
-                <div class="categoria">IMMAGINE</div>
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-3"></label>
+                </div>
             </div>
         </div>
-   
 
-    <div class="anteprima_csv2">
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-4"></label>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-</div>
+    <!-- Pulsanti Avanti e Indietro -->
+    <div class="btns-group">        
+        <button type="button" class="btn btn-pre">Indietro</button>
+        <button type="button" class="btn btn-next anteprima2">Anteprima</button>
+    </div>
+
 
 </div>
+
+
 
 
 
@@ -152,6 +213,8 @@
     <button type="button" class="btn btn-confirm" id="confirmButton">Conferma</button>
 
 </div>
+
+
 
 
 
