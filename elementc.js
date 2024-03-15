@@ -66,7 +66,6 @@ async function generaElementi(cont) {
 // };
 
 
-
 const options = {
     filename: 'my-document.pdf',
     margin: 1,
