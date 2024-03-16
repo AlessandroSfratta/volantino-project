@@ -19,7 +19,18 @@
 
     <form action="" class="form">
 
-     
+        <div class="tail-cont-a4" style="display: none;">
+            <div class="btn-step1 btn-step-tail"><h2>Prima pagina</h2></div>
+            <div class="btn-step2 btn-step-tail"><h2>Seconda pagina</h2></div>
+        </div>
+
+        <div class="tail-cont-web" style="display: none;">
+            <div class="btn-step1 btn-step-tail"><h2>Prima pagina</h2></div>
+            <div class="btn-step2 btn-step-tail"><h2>Reparto frutta</h2></div>
+        </div>
+
+
+
 
         <div class="form-step sec0" data-type="start" style="display: block;">
             <div class="input-group">
@@ -44,7 +55,80 @@
 
         
 <!-- Sezione Volantino A4 -->
-<div class="form-step sec1" data-type="volantinoA4" style="display: none;">
+<div class="form-step sec1 btn-cont-tail" data-type="volantinoA4" style="display: none;">
+
+    <div class="title-center">
+        <h2>Scegli i prodotti</h2>
+    </div>
+
+    <div class="cont-input">
+
+
+        
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+        
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+        
+                <div class="cont-scelta-img" >
+                    <img src="" alt="">
+                </div>
+        
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required> <!-- Aggiunto required -->
+
+                <div class="switch">
+                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-1"></label>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+        
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+        
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+        
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required> <!-- Aggiunto required -->
+        
+                <div class="switch">
+                    <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-2"></label>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    
+
+    <div class="btns-group">        
+        <button type="button" class="btn btn-pre">Indietro</button>
+        <button type="button" class="btn btn-next">Avanti</button>
+    </div>
+</div>
+
+<!-- Sezione Volantino A4 -->
+<div class="form-step sec2 btn-cont-tail" data-type="volantinoA4" style="display: none;">
+
 
     <div class="title-center">
         <h2>Scegli i prodotti</h2>
@@ -122,8 +206,11 @@
 
 
 
+
+
+
 <!-- Sezione Volantino Web -->
-<div class="form-step sec2" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec3" data-type="volantinoWeb" style="display: none;">
     <div class="title-center">
         <h2>Scegli i prodotti</h2>
     </div>

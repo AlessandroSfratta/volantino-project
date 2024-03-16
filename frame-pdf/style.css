@@ -1,0 +1,190 @@
+body {
+    display: flex;
+    font-family: 'Gotham Rounded Bold', sans-serif; 
+}
+@font-face {
+    font-family: 'Gotham Rounded Bold';
+    src: url('fonts/Gotham Rounded Bold.otf') format('truetype'); 
+}
+.sfondop1 {   
+    width: 216mm; 
+    height: 303mm; 
+    background-image: url('immagini/sfondo1.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
+
+.pagina1container1 {
+    display: flex;
+    width: 210mm;
+    margin-top: 85mm;
+}
+.pagina1container2 {
+    display: flex;
+    width: 210mm;
+}
+.np {
+    margin: 2mm;
+    text-align: left;
+    color: #00384e;
+    font-size: 14px;
+}
+.imgprodotto {
+    width: auto; 
+    height: 60mm;
+    background-size: cover; 
+    background-position: center; 
+    margin: 2mm;
+}
+.info {
+    margin: 2mm;
+    display: flex;
+    width: auto;
+}
+.descrizione {
+    width: 60%;
+    font-size: 2.8mm;
+    text-align: left;
+    color: #00384e;
+}
+.contenitoreprezzo {
+    display: flex;
+    width: 40%;
+}
+.prezzoa {
+    font-size: 12mm;
+    color: red;
+    margin-top: -2.5mm;
+    width: 70%;
+    text-align: right;
+}
+.prezzob {
+    font-size: 20;
+    color: red;
+    width: 30%;
+}
+.prezzob::after {
+    content: "€";
+    display: block;
+}
+.prezzob::before {
+    content: ",";
+}
+.textpag1 {
+    color: white;
+    margin-top: 9mm;
+}
+.infoCliente {
+    color: white;
+    margin-top: 4mm;
+    margin-bottom: 7mm;
+}
+.link {
+    color: white;
+}
+/* pagina 2*/
+
+.sfondop2 {   
+    width: 216mm; 
+    height: 303mm; 
+    background-image: url('immagini/sfondo2.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    padding-top: 18mm;
+    z-index: -2;
+}
+.pagina2container {
+
+    width: 210mm;
+    margin-top: 2mm;
+}
+.infoClientePag2 {
+    color: #00384e;
+    margin-top: 9mm;
+    margin-bottom: 7mm;
+}
+/*TEMPLATE ARTICOLO*/
+.templatearticolo {
+    position: relative;
+    height: 85mm;
+    width: 100%;
+    margin: 2mm;
+    background-color: white;
+}
+.templatearticolovuoto {
+    position: relative;
+    height: 85mm;
+    width: 100%;
+    margin: 2mm;
+    background-color: transparent;
+}
+
+/* Ombra effetto 2 */
+.templatearticolo::before,
+.templatearticolo::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 250px; /* Larghezza massima dell'ombra */
+    background: #777;
+    box-shadow: 0 15px 10px #777;
+    transform-origin: bottom;
+}
+
+.templatearticolo::after {
+    right: 10px;
+    left: auto;
+    transform: rotate(3deg); /* Ruota l'ombra di 3 gradi in senso orario */
+    z-index: -1;
+    mix-blend-mode: multiply;
+}
+
+.templatearticolo::before {
+    transform: rotate(-3deg); /* Ruota l'ombra di 3 gradi in senso antiorario */
+    z-index: -1;
+    mix-blend-mode: multiply;
+}
+
+/* DIGITALE */
+
+.sfondod1 {   
+    width: 216mm; 
+    height: 303mm; 
+    background-image: url('immagini/p1.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
+
+.sfondod2 {   
+    width: 216mm; 
+    height: 303mm; 
+    background-image: url('immagini/p2.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
+
+.sfondod3 {   
+    width: 216mm; 
+    height: 303mm; 
+    background-image: url('immagini/p3.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
