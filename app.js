@@ -58,68 +58,73 @@
     });
 
 
-const btnAnteprima1 = document.querySelector('#anteprima1');
-const btnAnteprima2 = document.querySelector('#anteprima2');
-// var btnAnteprima3 = document.querySelector('.anteprima3');
 
 
-// Funzione per la verifica degli input in una sezione
-function checkInputsInSection(section) {
-    // Ottieni tutti gli input con l'attributo required
-    const inputs = section.querySelectorAll('input[required]');
-  
-    // Crea un array di promesse per la convalida di ogni input
-    const validationPromises = inputs.map(async (input) => {
-      // Esegui la tua logica di convalida per l'input
-      // Esempio: verifica se il valore è vuoto
-      if (!input.value.trim()) {
-        return false;
-      }
-  
-      // Esempio: verifica se il valore è un numero
-      if (input.type === 'number' && isNaN(input.value)) {
-        return false;
-      }
-  
-      // ...
-  
-      return true;
-    });
-  
-    // Attendi che tutte le promesse vengano risolte
-    return Promise.all(validationPromises).then((results) => {
-      // Controlla se tutti i risultati sono true
-      return results.every((result) => result === true);
-    });
-  }
-  
-  // Funzione per abilitare/disabilitare il pulsante "Anteprima"
-  async function updatePreviewButton() {
+    const btnAnteprima1 = document.querySelector('#anteprima1');
+    const btnAnteprima2 = document.querySelector('#anteprima2');
+    // var btnAnteprima3 = document.querySelector('.anteprima3');
+    
 
-    const sections = document.querySelectorAll(`.form-step[data-type="${scelta}"]`);
-  
-    // Crea un array di promesse per la verifica di ogni sezione
-    const validationPromises = sections.map(checkInputsInSection(sections));
-  
-    // Attendi che tutte le promesse vengano risolte
-    const allInputsFilled = await Promise.all(validationPromises);
-  
-    if (allInputsFilled) {
-      document.getElementById('anteprima1').removeAttribute('disabled');
-      console.log("Pulsante 'Anteprima' abilitato.");
-    } else {
-      document.getElementById('anteprima1').setAttribute('disabled', 'disabled');
-      console.log("Pulsante 'Anteprima' disabilitato.");
+
+    
+    // Funzione per verificare il tipo di volantino e impostare il data-type corrispondente
+    function setDataType() {
+        let dataType;
+        if (scelta.includes('a4')) {
+            dataType = 'volantinoA4';
+        } else if (scelta.includes('volantino_digitale')) {
+            dataType = 'volantinoWeb';
+        } else {
+            // Imposta un valore predefinito o gestisci altri casi se necessario
+            dataType = 'defaultType';
+        }
+        return dataType;
     }
-  }
-  
-  // Aggiungi un listener per il cambiamento degli input in tutte le sezioni
-  document.querySelectorAll('.form-step input').forEach(function(input) {
-    input.addEventListener('change', updatePreviewButton);
-  });
-  
-  
+    
 
+
+    // Funzione per verificare se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
+    function checkInputsInSections() {
+        // Ottenere il tipo di volantino corretto
+        const dataType = setDataType();
+    
+        const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
+    
+        let totalInputs = 0; 
+        let filledInputs = 0; 
+    
+        sections.forEach(function(section) {
+            // console.log(`Sezione: ${section.id}`);
+            let inputsInSection = section.querySelectorAll('input[required]');
+    
+            totalInputs += inputsInSection.length;
+    
+            console.log(totalInputs)
+    
+ 
+            inputsInSection.forEach(function(input) {
+                if (input.value.trim() !== '') { 
+                    filledInputs++;
+                }
+            });
+        });
+    
+        if (filledInputs === totalInputs) { 
+            btnAnteprima1.removeAttribute('disabled'); 
+            btnAnteprima2.removeAttribute('disabled'); 
+            // console.log("Pulsante 'Anteprima' abilitato.");
+        } else {
+            
+            btnAnteprima1.setAttribute('disabled', 'disabled'); 
+            btnAnteprima2.setAttribute('disabled', 'disabled');
+            // console.log("Pulsante 'Anteprima' disabilitato.");
+        }
+    }
+    
+    // Aggiungi un listener per il cambiamento degli input in tutte le sezioni con lo stesso data-type
+    document.querySelectorAll('.form-step input').forEach(function(input) {
+        input.addEventListener('change', checkInputsInSections);
+    });
   
 
 
