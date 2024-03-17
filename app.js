@@ -57,7 +57,7 @@
     });
 
 
-    
+
 // button reparti 
     const sectionHeaders = document.querySelectorAll('.tail-cont-a4 h2, .tail-cont-web h2');
     sectionHeaders.forEach(function(section) {
@@ -193,6 +193,40 @@
 
 
 
+    function pagesButtonBlock () { 
+
+        if (sections[1].style.display === "block") {
+            if (scelta === "a4") {  
+                document.querySelector(".tail-cont-a4").style.display = "flex";
+                document.querySelector(".tail-cont-web").style.display = "none";
+            }
+        }
+
+        if (sections[3].style.display === "block") {
+            if (scelta === "volantino_digitale") {
+                document.querySelector(".tail-cont-web").style.display = "flex";
+                document.querySelector(".tail-cont-a4").style.display = "none";
+            }
+        }
+
+
+        if (sections[11].style.display === "block") {
+            if (scelta === "a4") {
+                document.querySelector(".tail-cont-web").style.display = "none";
+                document.querySelector(".tail-cont-a4").style.display = "none";
+            }
+        }
+
+        if (sections[12].style.display === "block") {
+            if (scelta === "volantino_digitale") {
+                document.querySelector(".tail-cont-web").style.display = "none";
+                document.querySelector(".tail-cont-a4").style.display = "none";
+            }
+        }
+
+    }
+
+
     
     function navigaSezione(direzione) {
         
@@ -227,20 +261,8 @@
                 }
             }
     
+            pagesButtonBlock();
 
-            if (sections[1].style.display === "block") {
-                if (scelta == "a4") {  
-                    document.querySelector(".tail-cont-a4").style.display = "flex";
-                    document.querySelector(".tail-cont-web").style.display = "none";
-                }
-            }
-
-            if (sections[3].style.display === "block") {
-                if (scelta == "volantino_digitale") {
-                    document.querySelector(".tail-cont-web").style.display = "flex";
-                    document.querySelector(".tail-cont-a4").style.display = "none";
-                }
-            }
             
             // //prima section && section anteprime
             // if(sections[0].style.display === "block" || sections[4].style.display === "block" || sections[5].style.display === "block"  ) {
@@ -252,6 +274,8 @@
     
     } else if (direzione === "indietro") {
 
+   
+
         if (indiceAttuale === 0) {
             resetAll();
             return;
@@ -262,7 +286,7 @@
         if (sezioneAttualmenteVisibile ) {
             sezioneAttualmenteVisibile.style.display = 'none';
         }
-    
+
             if (sezioniPassate.length > 1) {
                 sezioniPassate.pop();
                 const sezioneDaMostrare = sezioniPassate[sezioniPassate.length - 1];
@@ -275,6 +299,8 @@
                 currentDataType = ['start'];
                 sezioniPassate = [sezioneIniziale]; 
             }
+
+            pagesButtonBlock();
         
         }
     }

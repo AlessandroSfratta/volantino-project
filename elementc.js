@@ -12,25 +12,31 @@ async function convertToDataURL(url) {
 let content;
 
 async function generaElementi(cont) {
+    
     try {
+
         const prodottiJSON = jsonData;
 
-        let htmlContent = '<h1>Prodotti</h1>';
+        let htmlContent = ` <div class="templatearticolo">
+            <div class="np">${value.nomeProdotto}</div>
+            <div class="imgprodotto"><img src="${imageUrl}" alt="${value.nomeProdotto}"></div>
+            <div class="info">
+                <div class="descrizione">${value.Descrizione}</div>
+                <div class="contenitoreprezzo">
+                    <div class="prezzoa">${value.Prezzo}</div>
+                    <div class="prezzob"></div>
+                </div>
+            </div>
+        </div>`;;
+
+
         for (const [key, value] of Object.entries(prodottiJSON)) {
 
             const imageData = await convertToDataURL(value.Immagine);
             // Converti il blob dell'immagine in un URL per includerlo nell'HTML
             const imageUrl = URL.createObjectURL(imageData);
 
-            // Aggiungi il contenuto HTML con l'immagine
-            htmlContent += `
-                <div class="content-cont">
-                    <p>Nome Prodotto: ${value.nomeProdotto}</p>
-                    <img src="${imageUrl}" alt="${value.nomeProdotto}">
-                    <p>Descrizione: ${value.Descrizione}</p>
-                    <p>Prezzo: ${value.Prezzo} €</p>
-                </div>
-            `;
+        
         }
 
      content = document.querySelector(cont);
@@ -41,6 +47,7 @@ async function generaElementi(cont) {
     } catch (error) {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
+
 }
 
 

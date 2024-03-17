@@ -7,72 +7,26 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
+
+<div class="pagina1_a4">
+
     <div class="sfondop1">
-        <div class="textpag1">validità da <span class="validità-da"> </span> a <span class="validità-a"></span></div>
+        <div class="textpag1">validità da <span class="validità-da"> </span> a <span class="validità-a"> </span></div>
         <div class="pagina1container1"></div>
         <div class="pagina1container2"></div>
         <div class="infoCliente">TELEFONO 0827/39075 - CORSO EUROPA 4 - CONZA DELLA CAMPANIA (AV)</div>
         <div class="link">Guarda il volantino completo su www.volantino.biz/mm</div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            function updateHTML() {
-                $.ajax({
-                    url: 'archivio.csv',
-                    dataType: 'text',
-                    success: function(data) {
-                        var lines = data.split(/\r?\n/);
-                        
-                        // Contenitori per articoli
-                        var container1 = $('.pagina1container1');
-                        var container2 = $('.pagina1container2');
+<div class="pagina1container1">
 
-                        // Loop attraverso le righe del CSV dalla riga 1 alla riga 6
-                        for (var i = 1; i <= 6; i++) {
-                            var row = lines[i].split(';');
-                            var nome_prodotto = row[0];
-                            var descrizione = row[1];
-                            var prezzo = row[2]; // Prezzo senza centesimi
-                            var centesimi = row[3]; // Centesimi
-                            var img_url = row[4];
+    
+</div>
 
-                            if (img_url && img_url.trim() !== '') {
-                                // Creazione dinamica del contenitore articolo
-                                var article = $('<div class="templatearticolo">' +
-                                    '<div class="np"></div>' +
-                                    '<div class="imgprodotto"></div>' +
-                                    '<div class="info">' +
-                                    '<div class="descrizione"></div>' +
-                                    '<div class="contenitoreprezzo">' +
-                                    '<div class="prezzoa"></div>' +
-                                    '<div class="prezzob"></div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</div>');
 
-                                // Inserimento dei dati nell'HTML
-                                article.find('.np').text(nome_prodotto);
-                                article.find('.descrizione').text(descrizione);
-                                article.find('.prezzoa').text(prezzo);
-                                article.find('.prezzob').text(centesimi);
-                                article.find('.imgprodotto').css('background-image', 'url("' + img_url + '")');
+</div>
 
-                                // Inserimento del contenitore articolo nel giusto container
-                                if (i <= 3) {
-                                    container1.append(article);
-                                } else {
-                                    container2.append(article);
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            updateHTML();
-        });
-    </script>
 </body>
 </html>
