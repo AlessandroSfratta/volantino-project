@@ -20,15 +20,20 @@
     <form action="" class="form">
 
         <div class="tail-cont-a4" style="display: none;">
-            <div class="btn-step1 btn-step-tail"><h2>Prima pagina</h2></div>
-            <div class="btn-step2 btn-step-tail"><h2>Seconda pagina</h2></div>
+            <div class="btn-step1 btn-step-tail"><h2 id="sec1">Prima pagina</h2></div>
+            <div class="btn-step2 btn-step-tail"><h2 id="sec2">Seconda pagina</h2></div>
         </div>
-
+        
         <div class="tail-cont-web" style="display: none;">
-            <div class="btn-step1 btn-step-tail"><h2>Prima pagina</h2></div>
-            <div class="btn-step2 btn-step-tail"><h2>Reparto frutta</h2></div>
+            <div class="btn-step1 btn-step-tail"><h2 id="sec3">Prima pagina web</h2></div>
+            <div class="btn-step2 btn-step-tail"><h2 id="sec4">Salumeria</h2></div>
+            <div class="btn-step3 btn-step-tail"><h2 id="sec5">Freschi</h2></div>
+            <div class="btn-step4 btn-step-tail"><h2 id="sec6">Surgelati</h2></div>
+            <div class="btn-step5 btn-step-tail"><h2 id="sec7">Dispensa</h2></div>
+            <div class="btn-step6 btn-step-tail"><h2 id="sec8">Bevande</h2></div>
+            <div class="btn-step7 btn-step-tail"><h2 id="sec9">Igiene</h2></div>
+            <div class="btn-step8 btn-step-tail"><h2 id="sec10">Pulizia casa</h2></div>
         </div>
-
 
 
 
@@ -58,13 +63,12 @@
 <div class="form-step sec1 btn-cont-tail" data-type="volantinoA4" style="display: none;">
 
     <div class="title-center">
-        <h2>Scegli i prodotti</h2>
+        <h2>Prima pagina</h2>
     </div>
 
     <div class="cont-input">
 
 
-        
         <div class="input-rows">
             <div class="input-row">
                 <div class="modal"></div>
@@ -121,8 +125,7 @@
     
 
     <div class="btns-group">        
-        <button type="button" class="btn btn-pre">Indietro</button>
-        <button type="button" class="btn btn-next">Avanti</button>
+        <button type="button" class="btn btn-pre">Home</button>
     </div>
 </div>
 
@@ -131,7 +134,7 @@
 
 
     <div class="title-center">
-        <h2>Scegli i prodotti</h2>
+        <h2>Seconda pagina</h2>
     </div>
 
     <div class="cont-input">
@@ -157,8 +160,8 @@
                 <input type="text" class="input-prezzo" placeholder="Prezzo" required> <!-- Aggiunto required -->
 
                 <div class="switch">
-                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                    <label for="cmn-toggle-1"></label>
+                    <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-3"></label>
                 </div>
                 
             </div>
@@ -183,8 +186,8 @@
                 <input type="text" class="input-prezzo" placeholder="Prezzo" required> <!-- Aggiunto required -->
         
                 <div class="switch">
-                    <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                    <label for="cmn-toggle-2"></label>
+                    <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-4"></label>
                 </div>
             </div>
         </div>
@@ -193,15 +196,10 @@
     </div>
     
 
-    <div class="btns-group">        
-        <button type="button" class="btn btn-pre">Indietro</button>
-        <button type="button" class="btn btn-next anteprima1">Anteprima</button>
+    <div class="btns-group">
+        <button type="button" class="btn btn-next" id="anteprima1" disabled>Anteprima</button>
     </div>
 </div>
-
-
-
-
 
 
 
@@ -212,7 +210,7 @@
 <!-- Sezione Volantino Web -->
 <div class="form-step sec3" data-type="volantinoWeb" style="display: none;">
     <div class="title-center">
-        <h2>Scegli i prodotti</h2>
+        <h2>Prima pagina</h2>
     </div>
 
     <div class="cont-input">
@@ -233,8 +231,8 @@
                 </div>
                 <input type="text" class="input-prezzo" placeholder="Prezzo" required>
                 <div class="switch">
-                    <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                    <label for="cmn-toggle-3"></label>
+                    <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-5"></label>
                 </div>
             </div>
         </div>
@@ -255,8 +253,8 @@
                 </div>
                 <input type="text" class="input-prezzo" placeholder="Prezzo" required>
                 <div class="switch">
-                    <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                    <label for="cmn-toggle-4"></label>
+                    <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-6"></label>
                 </div>
             </div>
         </div>
@@ -265,8 +263,415 @@
 
     <!-- Pulsanti Avanti e Indietro -->
     <div class="btns-group">        
-        <button type="button" class="btn btn-pre">Indietro</button>
-        <button type="button" class="btn btn-next anteprima2">Anteprima</button>
+        <button type="button" class="btn btn-pre">Home</button>
+    </div>
+
+
+</div>
+
+<div class="form-step sec4" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Salumeria</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-7"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-8" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-8"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="form-step sec5" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Freschi</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-10" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-10"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-11" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-11"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="form-step sec6" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Surgelati</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-12" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-12"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-13" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-13"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="form-step sec7" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Dispensa</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-14" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-14"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-15" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-15"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+<div class="form-step sec8" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Bevande</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-16" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-16"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-17" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-17"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="form-step sec9" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Igiene</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-18" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-18"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-19" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-19"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="form-step sec10" data-type="volantinoWeb" style="display: none;">
+    <div class="title-center">
+        <h2>Pulizia casa</h2>
+    </div>
+
+    <div class="cont-input">
+
+        <!-- Input per inserire i dati del prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-20" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-20"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input per inserire i dati del secondo prodotto -->
+        <div class="input-rows">
+            <div class="input-row">
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="2" placeholder="Nome Prodotto" required>
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="2" style="display: none;"></select>
+                    </div>
+                </div>
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required>
+                <div class="cont-scelta-img">
+                    <img src="" alt="">
+                </div>
+                <input type="text" class="input-prezzo" placeholder="Prezzo" required>
+                <div class="switch">
+                    <input id="cmn-toggle-21" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-21"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pulsanti Avanti e Indietro -->
+    <div class="btns-group">        
+        <button type="button" class="btn btn-next" id="anteprima2" disabled>Anteprima</button>
     </div>
 
 
@@ -276,8 +681,12 @@
 
 
 
+
+
+
+
 <!-- Sezione Anteprima A4 -->
-<div class="form-step sec3" data-type="volantinoA4" style="display: none;">
+<div class="form-step sec11" data-type="volantinoA4" style="display: none;">
     <h2>Anteprima Volantino A4</h2>
 
     <div class="pdf-content1">
@@ -289,7 +698,7 @@
 
 
 <!-- Sezione Anteprima Volantino Web -->
-<div class="form-step sec4" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec12" data-type="volantinoWeb" style="display: none;">
     <h2>Anteprima Volantino Web</h2>
 
     <div class="pdf-content2">

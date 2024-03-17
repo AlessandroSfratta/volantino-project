@@ -3,9 +3,12 @@
     const btnVolantinoA4 = document.getElementById("volantinoA4");
     const btnVolantinoWeb = document.getElementById("volantinoWeb");
     const sections = document.querySelectorAll('.form-step');
-   export let jsonData = {};
+
+    export let jsonData = {};
 
     let scelta;
+
+
 
     btnVolantinoA4.addEventListener("click", () => {
         scelta = "a4";
@@ -30,21 +33,6 @@
 
     btnNext.forEach(button => {
         button.addEventListener("click", () => {
- 
-            // if (sections[1].style.display !== "none") {
-            //     if (scelta == "a4" && Object.keys(jsonData).length !== 0) {
-            //         alert("Seleziona tutti e 15 gli elementi prima di proseguire.");
-            //         return;
-            //     }
-            // }
-
-            // if (sections[2].style.display !== "none") {
-            //     if (scelta == "volantino_digitale" && Object.keys(jsonData).length !== 1  ) {
-            //         alert("Seleziona tutti e 147 gli elementi prima di proseguire.");
-            //         return;
-            //     }
-            // }
-            
 
             navigaSezione("avanti");
             console.log(scelta);
@@ -59,9 +47,140 @@
             navigaSezione("indietro");
         }); 
     });
+
+
+// button reparti 
+    const sectionHeaders = document.querySelectorAll('.tail-cont-a4 h2, .tail-cont-web h2');
+    sectionHeaders.forEach(function(section) {
+        section.addEventListener('click', function() {
+            toggleSection(this.id);
+        });
+    });
+
+
+const btnAnteprima1 = document.querySelector('#anteprima1');
+const btnAnteprima2 = document.querySelector('#anteprima2');
+// var btnAnteprima3 = document.querySelector('.anteprima3');
+
+
+// Funzione per la verifica degli input in una sezione
+function checkInputsInSection(section) {
+    // Ottieni tutti gli input con l'attributo required
+    const inputs = section.querySelectorAll('input[required]');
+  
+    // Crea un array di promesse per la convalida di ogni input
+    const validationPromises = inputs.map(async (input) => {
+      // Esegui la tua logica di convalida per l'input
+      // Esempio: verifica se il valore è vuoto
+      if (!input.value.trim()) {
+        return false;
+      }
+  
+      // Esempio: verifica se il valore è un numero
+      if (input.type === 'number' && isNaN(input.value)) {
+        return false;
+      }
+  
+      // ...
+  
+      return true;
+    });
+  
+    // Attendi che tutte le promesse vengano risolte
+    return Promise.all(validationPromises).then((results) => {
+      // Controlla se tutti i risultati sono true
+      return results.every((result) => result === true);
+    });
+  }
+  
+  // Funzione per abilitare/disabilitare il pulsante "Anteprima"
+  async function updatePreviewButton() {
+
+    const sections = document.querySelectorAll(`.form-step[data-type="${scelta}"]`);
+  
+    // Crea un array di promesse per la verifica di ogni sezione
+    const validationPromises = sections.map(checkInputsInSection(sections));
+  
+    // Attendi che tutte le promesse vengano risolte
+    const allInputsFilled = await Promise.all(validationPromises);
+  
+    if (allInputsFilled) {
+      document.getElementById('anteprima1').removeAttribute('disabled');
+      console.log("Pulsante 'Anteprima' abilitato.");
+    } else {
+      document.getElementById('anteprima1').setAttribute('disabled', 'disabled');
+      console.log("Pulsante 'Anteprima' disabilitato.");
+    }
+  }
+  
+  // Aggiungi un listener per il cambiamento degli input in tutte le sezioni
+  document.querySelectorAll('.form-step input').forEach(function(input) {
+    input.addEventListener('change', updatePreviewButton);
+  });
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+    function toggleSection(sectionId) {
+        // Trova la sezione attualmente visibile
+        const currentSection = document.querySelector('.form-step[style="display: block;"]');
+    
+        if (currentSection) {
+            // Nascondi la sezione attualmente visibile
+            currentSection.style.display = 'none';
+    
+            // Ottieni la classe 'sec' dalla sezione attualmente nascosta
+            const secClass = Array.from(currentSection.classList).find(className => className.startsWith('sec'));
+    
+            if (secClass) {
+                // Se è stata trovata la classe 'sec', seleziona il pulsante corrispondente
+                const button = document.getElementById(secClass);
+    
+                // Verifica gli input required nella sezione corrente
+                const requiredInputs = currentSection.querySelectorAll('input[required]');
+    
+                // Variabile per verificare se tutti gli input required sono compilati
+                let allInputsValid = true;
+    
+                // Itera su ciascun input required
+                requiredInputs.forEach(function(input) {
+                    // Verifica se l'input ha del contenuto
+                    if (!input.value.trim()) {
+                        allInputsValid = false;
+                    }
+                });
+    
+                // Aggiorna lo stile del pulsante in base alla validità degli input
+                if (!allInputsValid) {
+                    button.style.backgroundColor = '#FF8C00'; // Imposta il colore di sfondo del pulsante su arancione
+                } else {
+                    button.style.backgroundColor = '#7cfc00'; // Reimposta il colore di sfondo del pulsante
+                }
+            }
+        }
+    
+        // Mostra la sezione target
+        const targetSection = document.querySelector(`.${sectionId}`);
+        if (targetSection) {
+            targetSection.style.display = 'block';
+        }
+    }
     
     
     
+    
+    
+
+
     let sezioniPassate = [];
     let currentDataType = [];
     
@@ -93,6 +212,7 @@
             
     
         if (direzione === "avanti") {
+
     
             
             if (sezioniFiltrate.length === 0) {
@@ -114,6 +234,26 @@
                 }
             }
     
+
+            if (sections[1].style.display === "block") {
+                if (scelta == "a4") {  
+                    document.querySelector(".tail-cont-a4").style.display = "flex";
+                    document.querySelector(".tail-cont-web").style.display = "none";
+                }
+            }
+
+            if (sections[3].style.display === "block") {
+                if (scelta == "volantino_digitale") {
+                    document.querySelector(".tail-cont-web").style.display = "flex";
+                    document.querySelector(".tail-cont-a4").style.display = "none";
+                }
+            }
+            
+            // //prima section && section anteprime
+            // if(sections[0].style.display === "block" || sections[4].style.display === "block" || sections[5].style.display === "block"  ) {
+            //     document.querySelector(".tail-cont-web").style.display = "none";
+            //     document.querySelector(".tail-cont-a4").style.display = "none";
+            // }
      
     
     
@@ -157,12 +297,9 @@
         sezioniPassate = [];
         currentDataType = [];
         jsonData = {};
-    
-        // Rimuovi l'anteprima CSV
-        clearPreview();
-    
-        const container = document.querySelector('.tendina');
-        container.style.display = 'none';
+
+        document.querySelector(".tail-cont-web").style.display = "none";
+        document.querySelector(".tail-cont-a4").style.display = "none";
     
         // Mostra solo la prima sezione
         const tutteLeSezioni = Array.from(document.querySelectorAll('.form-step'));
@@ -313,6 +450,7 @@ toggleLabels.forEach(function(label) {
 if (allElementsPresent) {
     requiredInputs.forEach(function(requiredInput) {
         requiredInput.style.border = '1px solid green';
+
     });
 
     // Seleziona tutti i container modal

@@ -40,6 +40,7 @@
     transition: background 0.4s;
   }
 
+  
   input.cmn-toggle-round + label:after {
     height: 20px;
     width: 30px;

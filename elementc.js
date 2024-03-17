@@ -95,11 +95,11 @@ const options = {
 
 
 const pdfCont1 = ".pdf-content1";
-const anteprimaPdf1 = document.querySelector(".anteprima1");
+const anteprimaPdf1 = document.querySelector("#anteprima1");
 anteprimaPdf1.addEventListener("click", () => { generaElementi(pdfCont1) });
 
 const pdfCont2 = ".pdf-content2";
-const anteprimaPdf2 = document.querySelector(".anteprima2");
+const anteprimaPdf2 = document.querySelector("#anteprima2");
 anteprimaPdf2.addEventListener("click", () => { generaElementi(pdfCont2) });
 
 
