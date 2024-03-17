@@ -59,34 +59,25 @@
 
 
 
-
     const btnAnteprima1 = document.querySelector('#anteprima1');
     const btnAnteprima2 = document.querySelector('#anteprima2');
     // var btnAnteprima3 = document.querySelector('.anteprima3');
     
 
-
-    
-    // Funzione per verificare il tipo di volantino e impostare il data-type corrispondente
-    function setDataType() {
+    function FoundDataType() {
         let dataType;
-        if (scelta.includes('a4')) {
-            dataType = 'volantinoA4';
-        } else if (scelta.includes('volantino_digitale')) {
-            dataType = 'volantinoWeb';
-        } else {
-            // Imposta un valore predefinito o gestisci altri casi se necessario
-            dataType = 'defaultType';
-        }
+        if (scelta.includes('a4')) { dataType = 'volantinoA4'; } 
+        else if (scelta.includes('volantino_digitale')) { dataType = 'volantinoWeb'; } 
+        else { dataType = 'defaultType'; }
         return dataType;
     }
     
 
 
-    // Funzione per verificare se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
+// Funzione per verificare se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
     function checkInputsInSections() {
-        // Ottenere il tipo di volantino corretto
-        const dataType = setDataType();
+
+        const dataType = FoundDataType();
     
         const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
     
@@ -99,7 +90,7 @@
     
             totalInputs += inputsInSection.length;
     
-            console.log(totalInputs)
+            // console.log(totalInputs)
     
  
             inputsInSection.forEach(function(input) {
@@ -121,7 +112,6 @@
         }
     }
     
-    // Aggiungi un listener per il cambiamento degli input in tutte le sezioni con lo stesso data-type
     document.querySelectorAll('.form-step input').forEach(function(input) {
         input.addEventListener('change', checkInputsInSections);
     });
@@ -130,45 +120,34 @@
 
 
 
-
-
-
-
-
     function toggleSection(sectionId) {
-        // Trova la sezione attualmente visibile
+
         const currentSection = document.querySelector('.form-step[style="display: block;"]');
     
         if (currentSection) {
-            // Nascondi la sezione attualmente visibile
+
             currentSection.style.display = 'none';
     
-            // Ottieni la classe 'sec' dalla sezione attualmente nascosta
             const secClass = Array.from(currentSection.classList).find(className => className.startsWith('sec'));
     
             if (secClass) {
-                // Se è stata trovata la classe 'sec', seleziona il pulsante corrispondente
+
                 const button = document.getElementById(secClass);
     
-                // Verifica gli input required nella sezione corrente
                 const requiredInputs = currentSection.querySelectorAll('input[required]');
     
-                // Variabile per verificare se tutti gli input required sono compilati
                 let allInputsValid = true;
     
-                // Itera su ciascun input required
                 requiredInputs.forEach(function(input) {
-                    // Verifica se l'input ha del contenuto
                     if (!input.value.trim()) {
                         allInputsValid = false;
                     }
                 });
     
-                // Aggiorna lo stile del pulsante in base alla validità degli input
                 if (!allInputsValid) {
-                    button.style.backgroundColor = '#FF8C00'; // Imposta il colore di sfondo del pulsante su arancione
+                    button.style.backgroundColor = '#FF8C00';
                 } else {
-                    button.style.backgroundColor = '#7cfc00'; // Reimposta il colore di sfondo del pulsante
+                    button.style.backgroundColor = '#7cfc00';
                 }
             }
         }
@@ -494,35 +473,48 @@ if (allElementsPresent) {
 
 
 
-
+// Contatore per tenere traccia del numero di prodotti
+let productCounter = 1;
 // Funzione per aggiungere i valori degli input al JSON
 function addToJson(container) {
-    const nomeProdotto = container.querySelector('.input-nome-prodotto').value;
+    const nomeProdottoInput = container.querySelector('.input-nome-prodotto');
+    const nomeProdotto = nomeProdottoInput.value;
     const description = container.querySelector('.input-descrizione').value;
     const price = container.querySelector('.input-prezzo').value;
     const image = container.querySelector('.cont-scelta-img img').src;
 
+    // Costruisci la chiave del prodotto
+    const productKey = `prodotto${productCounter}`;
+
     // Aggiungi i valori al JSON utilizzando il nome del prodotto come chiave
-    jsonData[nomeProdotto] = {
+    jsonData[productKey] = {
         "nomeProdotto": nomeProdotto,
         "Descrizione": description,
         "Prezzo": price,
-        "Immagine": image
+        "Immagine": image,
+        "productKey": productKey // Salva la chiave del prodotto come attributo data-
     };
 
+    // Salva la chiave del prodotto come attributo data-nome-prodotto
+    nomeProdottoInput.dataset.productKey = productKey;
+
     console.log(jsonData);
+
+    // Incrementa il contatore dei prodotti
+    productCounter++;
 }
 
 // Funzione per rimuovere i valori degli input dal JSON
 function removeFromJson(container) {
-    const nomeProdotto = container.querySelector('.input-nome-prodotto').value;
+    const nomeProdottoInput = container.querySelector('.input-nome-prodotto');
+    const nomeProdotto = nomeProdottoInput.value;
+    const productKey = nomeProdottoInput.dataset.productKey; // Ottieni la chiave del prodotto dal dataset
 
-    // Rimuovi i valori dal JSON utilizzando il nome del prodotto come chiave
-    delete jsonData[nomeProdotto];
+    // Rimuovi i valori dal JSON utilizzando la chiave del prodotto
+    delete jsonData[productKey];
 
     console.log(jsonData);
 }
-
 
 
 
