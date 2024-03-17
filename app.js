@@ -49,6 +49,15 @@
     });
 
 
+// ricarica premendo home
+    document.querySelectorAll(".home").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            location.reload();
+        });
+    });
+
+
+    
 // button reparti 
     const sectionHeaders = document.querySelectorAll('.tail-cont-a4 h2, .tail-cont-web h2');
     sectionHeaders.forEach(function(section) {

@@ -274,3 +274,11 @@ h1, h2 {
 }
 
 
+.input-prezzo::-webkit-inner-spin-button,
+.input-prezzo::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.input-prezzo {
+    -moz-appearance: textfield;
+}
