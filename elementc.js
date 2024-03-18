@@ -12,44 +12,37 @@ async function convertToDataURL(url) {
 let content;
 
 async function generaElementi(cont) {
-    
     try {
-
         const prodottiJSON = jsonData;
-
-        let htmlContent = ` <div class="templatearticolo">
-            <div class="np">${value.nomeProdotto}</div>
-            <div class="imgprodotto"><img src="${imageUrl}" alt="${value.nomeProdotto}"></div>
-            <div class="info">
-                <div class="descrizione">${value.Descrizione}</div>
-                <div class="contenitoreprezzo">
-                    <div class="prezzoa">${value.Prezzo}</div>
-                    <div class="prezzob"></div>
-                </div>
-            </div>
-        </div>`;;
-
+        let htmlContent = '';
 
         for (const [key, value] of Object.entries(prodottiJSON)) {
-
             const imageData = await convertToDataURL(value.Immagine);
-            // Converti il blob dell'immagine in un URL per includerlo nell'HTML
             const imageUrl = URL.createObjectURL(imageData);
 
-        
+            htmlContent += `
+                <div class="templatearticolo">
+                    <div class="np">${value.nomeProdotto}</div>
+                    <div class="imgprodotto"><img src="${imageUrl}" alt="${value.nomeProdotto}"></div>
+                    <div class="info">
+                        <div class="descrizione">${value.Descrizione}</div>
+                        <div class="contenitoreprezzo">
+                            <div class="prezzoa">${value.Prezzo}</div>
+                            <div class="prezzob"></div>
+                        </div>
+                    </div>
+                </div>`;
         }
 
-     content = document.querySelector(cont);
+        const iframe = document.querySelector('.pdf-content1 iframe');
+        const iframeDocument = iframe.contentWindow.document;
+        const content = iframeDocument.querySelector(cont);
 
-        // Visualizza il contenuto HTML nella pagina
         content.innerHTML = htmlContent;
-
     } catch (error) {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
-
 }
-
 
 
 // const optionss = {
@@ -71,6 +64,18 @@ async function generaElementi(cont) {
 //     background: true,
 //     autoPaging: true // Imposta autoPaging su false per evitare la suddivisione del contenuto su più pagine
 // };
+
+
+
+const pdfCont1 = ".pagina1container1";
+const anteprimaPdf1 = document.querySelector("#anteprima1");
+anteprimaPdf1.addEventListener("click", () => { generaElementi(pdfCont1) });
+
+const pdfCont2 = "pagina2container1";
+const anteprimaPdf2 = document.querySelector("#anteprima2");
+anteprimaPdf2.addEventListener("click", () => { generaElementi(pdfCont2) });
+
+
 
 
 const options = {
@@ -97,17 +102,6 @@ const options = {
     autoPaging: false 
 
 };
-
-
-
-
-const pdfCont1 = ".pdf-content1";
-const anteprimaPdf1 = document.querySelector("#anteprima1");
-anteprimaPdf1.addEventListener("click", () => { generaElementi(pdfCont1) });
-
-const pdfCont2 = ".pdf-content2";
-const anteprimaPdf2 = document.querySelector("#anteprima2");
-anteprimaPdf2.addEventListener("click", () => { generaElementi(pdfCont2) });
 
 
 
