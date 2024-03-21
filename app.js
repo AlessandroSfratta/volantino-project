@@ -49,6 +49,7 @@
     });
 
 
+
 // ricarica premendo home
     document.querySelectorAll(".home").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -68,9 +69,8 @@
 
 
 
-    const btnAnteprima1 = document.querySelector('#anteprima1');
-    const btnAnteprima2 = document.querySelector('#anteprima2');
-    // var btnAnteprima3 = document.querySelector('.anteprima3');
+    const btnAnteprima = document.querySelectorAll('.anteprima');
+
     
 
     function FoundDataType() {
@@ -109,16 +109,12 @@
             });
         });
     
-        if (filledInputs === totalInputs) { 
-            btnAnteprima1.removeAttribute('disabled'); 
-            btnAnteprima2.removeAttribute('disabled'); 
-            // console.log("Pulsante 'Anteprima' abilitato.");
+        if (filledInputs === totalInputs) {
+            btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
         } else {
-            
-            btnAnteprima1.setAttribute('disabled', 'disabled'); 
-            btnAnteprima2.setAttribute('disabled', 'disabled');
-            // console.log("Pulsante 'Anteprima' disabilitato.");
+            btnAnteprima.forEach(btn => { btn.setAttribute('disabled', 'disabled'); });
         }
+        
     }
     
     document.querySelectorAll('.form-step input').forEach(function(input) {
@@ -426,6 +422,12 @@ toggleLabels.forEach(function(label) {
 
         let container = this.closest('.input-row');
 
+        const formStepContainer = label.closest('.form-step');
+
+         const pagina = formStepContainer.getAttribute('data-pagina');
+
+         console.log(pagina)
+
         // Verifica se l'elemento input non è selezionato
         if (!input.checked) {
             // Se non è selezionato, seleziona tutti gli input richiesti e le immagini nello stesso contenitore
@@ -480,20 +482,18 @@ if (allElementsPresent) {
         modal.classList.add('active-modal');
     })
 
-    addToJson(container);
-
 }
-            // Se ci sono elementi mancanti, applica il click dopo 500 millisecondi
             if (!allElementsPresent) {
                 setTimeout(function() {
-                    label.click(); // Simula un click sul pulsante
+                    label.click();
                 }, 500);
+            } else {
+                addToJson(container,pagina);
             }
 
         } else {
 
             const modalContainers = container.querySelectorAll('.modal');
-                // Aggiungi la classe 'active' a ciascun container modal
 
                 modalContainers.forEach( (modal) => {
                     modal.classList.remove('active-modal');
@@ -508,36 +508,37 @@ if (allElementsPresent) {
 
 
 
-// Contatore per tenere traccia del numero di prodotti
 let productCounter = 1;
-// Funzione per aggiungere i valori degli input al JSON
-function addToJson(container) {
+
+function addToJson(container,pagina) {
     const nomeProdottoInput = container.querySelector('.input-nome-prodotto');
     const nomeProdotto = nomeProdottoInput.value;
     const description = container.querySelector('.input-descrizione').value;
     const price = container.querySelector('.input-prezzo').value;
     const image = container.querySelector('.cont-scelta-img img').src;
 
-    // Costruisci la chiave del prodotto
     const productKey = `prodotto${productCounter}`;
 
-    // Aggiungi i valori al JSON utilizzando il nome del prodotto come chiave
+    console.log(pagina);
+
     jsonData[productKey] = {
         "nomeProdotto": nomeProdotto,
         "Descrizione": description,
         "Prezzo": price,
         "Immagine": image,
-        "productKey": productKey // Salva la chiave del prodotto come attributo data-
-    };
+        "productKey": productKey,
+        "Pagina": pagina
 
-    // Salva la chiave del prodotto come attributo data-nome-prodotto
+    }
+
     nomeProdottoInput.dataset.productKey = productKey;
 
     console.log(jsonData);
 
-    // Incrementa il contatore dei prodotti
-    productCounter++;
+productCounter++;
+
 }
+
 
 // Funzione per rimuovere i valori degli input dal JSON
 function removeFromJson(container) {

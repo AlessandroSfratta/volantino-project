@@ -11,16 +11,22 @@ async function convertToDataURL(url) {
 
 let content;
 
-async function generaElementi(cont) {
+
+
+async function generaElementi() {
     try {
         const prodottiJSON = jsonData;
-        let htmlContent = '';
 
+        // Inizializza un oggetto per tenere traccia del contenuto HTML per ciascun frame
+        const htmlContentFrames = {};
+
+        // Itera attraverso gli elementi del JSON
         for (const [key, value] of Object.entries(prodottiJSON)) {
             const imageData = await convertToDataURL(value.Immagine);
             const imageUrl = URL.createObjectURL(imageData);
 
-            htmlContent += `
+            // Costruisci l'HTML per l'elemento
+            const elementoHTML = `
                 <div class="templatearticolo">
                     <div class="np">${value.nomeProdotto}</div>
                     <div class="imgprodotto"><img src="${imageUrl}" alt="${value.nomeProdotto}"></div>
@@ -32,17 +38,72 @@ async function generaElementi(cont) {
                         </div>
                     </div>
                 </div>`;
+
+            // Determina la classe della pagina e aggiungi l'elemento HTML al contenuto del frame corrispondente
+            let iframeClass = '';
+            switch (value.Pagina) {
+                case 'primaA4':
+                    iframeClass = '.pagina_1_a4 iframe';
+                    break;
+                case 'secondaA4':
+                    iframeClass = '.pagina_2_a4 iframe';
+                    break;
+                case 'pagina1_web':
+                    iframeClass = '.pagina_1_web iframe';
+                    break;
+                case 'salumeria_web':
+                    iframeClass = '.pagina_salumeria_web iframe';
+                    break;
+                case 'freschi_web':
+                    iframeClass = '.pagina_freschi_web iframe';
+                    break;
+                case 'surgelati_web':
+                    iframeClass = '.pagina_surgelati_web iframe';
+                    break;
+                case 'dispensa_web':
+                    iframeClass = '.pagina_dispensa_web iframe';
+                    break;
+                case 'bevande_web':
+                    iframeClass = '.pagina_bevande_web iframe';
+                    break;
+                case 'igiene_web':
+                    iframeClass = '.pagina_igiene_web iframe';
+                    break;
+                case 'puliziacasa_web':
+                    iframeClass = '.pagina_puliziacasa_web iframe';
+                    break;
+                default:
+                    console.error('Pagina non riconosciuta:', value.Pagina);
+                    continue; // Passa al prossimo elemento
+            }
+            
+            // Aggiungi l'elemento HTML al contenuto del frame corrispondente
+            if (!htmlContentFrames[iframeClass]) {
+                htmlContentFrames[iframeClass] = '';
+            }
+            htmlContentFrames[iframeClass] += elementoHTML;
         }
 
-        const iframe = document.querySelector('.pdf-content1 iframe');
-        const iframeDocument = iframe.contentWindow.document;
-        const content = iframeDocument.querySelector(cont);
-
-        content.innerHTML = htmlContent;
+        // Inserisci il contenuto HTML nei rispettivi frame
+        for (const iframeClass in htmlContentFrames) {
+            const iframe = document.querySelector(iframeClass);
+            if (iframe) {
+                const iframeDocument = iframe.contentWindow.document;
+                const contentContainer = iframeDocument.querySelector('.paginaContainer');
+                if (contentContainer) {
+                    contentContainer.innerHTML = htmlContentFrames[iframeClass];
+                } else {
+                    console.error(`Contenitore della pagina non trovato nell'iframe con classe ${iframeClass}`);
+                }
+            } else {
+                console.error(`Frame non trovato con la classe ${iframeClass}`);
+            }
+        }
     } catch (error) {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
 }
+
 
 
 // const optionss = {
@@ -67,13 +128,10 @@ async function generaElementi(cont) {
 
 
 
-const pdfCont1 = ".pagina1container1";
-const anteprimaPdf1 = document.querySelector("#anteprima1");
-anteprimaPdf1.addEventListener("click", () => { generaElementi(pdfCont1) });
-
-const pdfCont2 = "pagina2container1";
-const anteprimaPdf2 = document.querySelector("#anteprima2");
-anteprimaPdf2.addEventListener("click", () => { generaElementi(pdfCont2) });
+const anteprimaPdf = document.querySelectorAll(".anteprima");
+anteprimaPdf.forEach(btnAnteprima => {
+    btnAnteprima.addEventListener("click", () => { generaElementi() });
+})
 
 
 

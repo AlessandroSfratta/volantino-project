@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>stampato 2</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylePdfs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -14,73 +14,11 @@
         <div class="textpag1">validità da ---- a ----</div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            function updateHTML() {
-                $.ajax({
-                    url: 'archivio.csv',
-                    dataType: 'text',
-                    success: function(data) {
-                        var lines = data.split(/\r?\n/);
-                        var templateArticles = $('.pagina2container');
+    
+    <div class="paginaContainer">
 
-                        var rowCount = 0; // Contatore per tenere traccia delle righe
-                        var currentRow; // Riferimento all'attuale riga
 
-                        // Loop attraverso le righe del CSV dalla riga 7 alla riga 15
-                        for (var i = 7; i <= 15; i++) {
-                            var row = lines[i].split(';');
-                            var nome_prodotto = row[0];
-                            var descrizione = row[1];
-                            var prezzo = row[2]; // Prezzo senza centesimi
-                            var centesimi = row[3]; // Centesimi
-                            var img_url = row[4];
+    </div>
 
-                            if (img_url && img_url.trim() !== '') {
-                                // Se è il primo elemento della riga, crea una nuova riga
-                                if (rowCount % 3 === 0) {
-                                    currentRow = $('<div class="pagina1container2"></div>');
-                                    templateArticles.append(currentRow);
-                                }
-
-                                // Creazione dinamica del contenitore articolo
-                                var article = $('<div class="templatearticolo">' +
-                                    '<div class="np"></div>' +
-                                    '<div class="imgprodotto"></div>' +
-                                    '<div class="info">' +
-                                    '<div class="descrizione"></div>' +
-                                    '<div class="contenitoreprezzo">' +
-                                    '<div class="prezzoa"></div>' +
-                                    '<div class="prezzob"></div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</div>');
-
-                                // Inserimento dei dati nell'HTML
-                                article.find('.np').text(nome_prodotto);
-                                article.find('.descrizione').text(descrizione);
-                                article.find('.prezzoa').text(prezzo);
-                                article.find('.prezzob').text(centesimi);
-                                article.find('.imgprodotto').css('background-image', 'url("' + img_url + '")');
-
-                                // Inserimento del contenitore articolo nella riga corrente
-                                currentRow.append(article);
-
-                                rowCount++;
-                            }
-                        }
-
-                        // Aggiungi colonne vuote per completare fino a tre colonne
-                        while (rowCount % 3 !== 0) {
-                            currentRow.append('<div class="templatearticolo"></div>');
-                            rowCount++;
-                        }
-                    }
-                });
-            }
-
-            updateHTML();
-        });
-    </script>
 </body>
 </html>

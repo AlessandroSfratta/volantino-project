@@ -8,7 +8,8 @@
 
     
     <script src="elementc.js" type="module"></script>
-    <script src="app.js" type="module"></script>    
+    <script src="app.js" type="module"></script>
+    <script src="inputManager.js" type="module"></script>
 
     <link rel="stylesheet" href="style_admin.css">
     <link rel="stylesheet" href="button.css">
@@ -60,7 +61,7 @@
 
         
 <!-- Sezione Volantino A4 -->
-<div class="form-step sec1 btn-cont-tail" data-type="volantinoA4" style="display: none;">
+<div class="form-step sec1 btn-cont-tail" data-type="volantinoA4" data-pagina="primaA4" style="display: none;">
 
     <div class="title-center">
         <h2>Prima pagina</h2>
@@ -129,8 +130,10 @@
     </div>
 </div>
 
+
+
 <!-- Sezione Volantino A4 -->
-<div class="form-step sec2 btn-cont-tail" data-type="volantinoA4" style="display: none;">
+<div class="form-step sec2 btn-cont-tail" data-type="volantinoA4" data-pagina="secondaA4" style="display: none;">
 
 
     <div class="title-center">
@@ -197,7 +200,7 @@
     
 
     <div class="btns-group">
-        <button type="button" class="btn btn-next" id="anteprima1" disabled>Anteprima</button>
+        <button type="button" class="btn btn-next anteprima" disabled>Anteprima</button>
     </div>
 </div>
 
@@ -208,7 +211,7 @@
 
 
 <!-- Sezione Volantino Web -->
-<div class="form-step sec3" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec3" data-type="volantinoWeb" data-pagina="primaWeb" style="display: none;">
     <div class="title-center">
         <h2>Prima pagina</h2>
     </div>
@@ -269,7 +272,7 @@
 
 </div>
 
-<div class="form-step sec4" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec4" data-type="volantinoWeb" data-pagina="salumeriaWeb" style="display: none;">
     <div class="title-center">
         <h2>Salumeria</h2>
     </div>
@@ -326,7 +329,7 @@
 
 
 
-<div class="form-step sec5" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec5" data-type="volantinoWeb" data-pagina="freschiWeb"  style="display: none;">
     <div class="title-center">
         <h2>Freschi</h2>
     </div>
@@ -384,7 +387,7 @@
 
 
 
-<div class="form-step sec6" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec6" data-type="volantinoWeb" data-pagina="surgelatiWeb" style="display: none;">
     <div class="title-center">
         <h2>Surgelati</h2>
     </div>
@@ -442,7 +445,7 @@
 
 
 
-<div class="form-step sec7" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec7" data-type="volantinoWeb" data-pagina="dispensaWeb" style="display: none;">
     <div class="title-center">
         <h2>Dispensa</h2>
     </div>
@@ -501,7 +504,7 @@
 
 
 
-<div class="form-step sec8" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec8" data-type="volantinoWeb" data-pagina="bevandeWeb" style="display: none;">
     <div class="title-center">
         <h2>Bevande</h2>
     </div>
@@ -558,7 +561,7 @@
 </div>
 
 
-<div class="form-step sec9" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec9" data-type="volantinoWeb" data-pagina="igieneWeb" style="display: none;">
     <div class="title-center">
         <h2>Igiene</h2>
     </div>
@@ -616,7 +619,7 @@
 
 
 
-<div class="form-step sec10" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec10" data-type="volantinoWeb" data-pagina="puliziacasaWeb" style="display: none;">
     <div class="title-center">
         <h2>Pulizia casa</h2>
     </div>
@@ -671,7 +674,7 @@
 
     <!-- Pulsanti Avanti e Indietro -->
     <div class="btns-group">        
-        <button type="button" class="btn btn-next" id="anteprima2" disabled>Anteprima</button>
+        <button type="button" class="btn btn-next anteprima" disabled>Anteprima</button>
     </div>
 
 
@@ -690,11 +693,20 @@
     <h2>Anteprima Volantino A4</h2>
 
     <div class="pdf-content1">
-
-        <iframe src="frame-pdf/1.html" frameborder="0"></iframe>
+        
+        <div class="pagina_1_a4">
+            <iframe src="frame-pdf/1.html" frameborder="0"></iframe>
+        </div>
+    
+        <div class="pagina_2_a4">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
 
     </div>
+
+
     
+
     <div class="btns-group">        
         <button type="button" class="btn btn-pre">Indietro</button>
         <button type="button" class="btn btn-confirm" id="confirmButton">Conferma</button>
@@ -707,6 +719,38 @@
     <h2>Anteprima Volantino Web</h2>
 
     <div class="pdf-content2">
+
+        <div class="pagina_1_web">
+            <iframe src="frame-pdf/1.html" frameborder="0"></iframe>
+        </div>
+    
+        <div class="pagina_salumeria_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="pagina_freschi_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="pagina_surgelati_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="pagina_dispensa_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="pagina_bevande_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="pagina_igiene_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="pagina_puliziacasa_web">
+            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+        </div>
 
 
     </div>

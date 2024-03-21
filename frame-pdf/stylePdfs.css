@@ -1,12 +1,23 @@
+
+
 body {
     display: flex;
-    font-family: 'Gotham Rounded Bold', sans-serif; 
+    font-family: 'Gotham Rounded Bold', sans-serif;
+    justify-content: center;
+    align-items: center;
 }
+
+
 @font-face {
     font-family: 'Gotham Rounded Bold';
     src: url('fonts/Gotham Rounded Bold.otf') format('truetype'); 
 }
-.sfondop1 {   
+
+
+.sfondop1 {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 216mm; 
     height: 303mm; 
     background-image: url('immagini/sfondo1.jpg');
@@ -15,45 +26,54 @@ body {
     background-repeat: no-repeat;
     text-align: -webkit-center;
     z-index: -2;
+
 }
 
-.pagina1container1 {
+.paginaContainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 210mm;
-    margin-top: 85mm;
+    margin-top: 23rem;
 }
-.pagina1container2 {
-    display: flex;
-    width: 210mm;
-}
+
+
 .np {
     margin: 2mm;
     text-align: left;
     color: #00384e;
     font-size: 14px;
 }
+
 .imgprodotto {
     width: auto; 
     height: 60mm;
-    background-size: cover; 
-    background-position: center; 
-    margin: 2mm;
+    align-content: center;
 }
+
+
+.imgprodotto img {
+    width: 95%;
+}
+
 .info {
     margin: 2mm;
     display: flex;
     width: auto;
 }
+
 .descrizione {
     width: 60%;
     font-size: 2.8mm;
     text-align: left;
     color: #00384e;
 }
+
 .contenitoreprezzo {
     display: flex;
     width: 40%;
 }
+
 .prezzoa {
     font-size: 12mm;
     color: red;
@@ -61,30 +81,41 @@ body {
     width: 70%;
     text-align: right;
 }
+
 .prezzob {
     font-size: 20;
     color: red;
     width: 30%;
 }
+
 .prezzob::after {
     content: "€";
     display: block;
 }
+
 .prezzob::before {
     content: ",";
 }
+
+
 .textpag1 {
     color: white;
     margin-top: 9mm;
 }
+
+
 .infoCliente {
     color: white;
-    margin-top: 4mm;
+    margin-top: 34rem;
     margin-bottom: 7mm;
 }
+
+
 .link {
     color: white;
 }
+
+
 /* pagina 2*/
 
 .sfondop2 {   
@@ -98,24 +129,31 @@ body {
     padding-top: 18mm;
     z-index: -2;
 }
-.pagina2container {
 
+
+.pagina2container {
     width: 210mm;
     margin-top: 2mm;
 }
+
+
 .infoClientePag2 {
     color: #00384e;
     margin-top: 9mm;
     margin-bottom: 7mm;
 }
+
+
 /*TEMPLATE ARTICOLO*/
 .templatearticolo {
     position: relative;
     height: 85mm;
-    width: 100%;
+    width: 64mm;
     margin: 2mm;
     background-color: white;
 }
+
+
 .templatearticolovuoto {
     position: relative;
     height: 85mm;
@@ -123,6 +161,7 @@ body {
     margin: 2mm;
     background-color: transparent;
 }
+
 
 /* Ombra effetto 2 */
 .templatearticolo::before,
@@ -140,6 +179,7 @@ body {
     transform-origin: bottom;
 }
 
+
 .templatearticolo::after {
     right: 10px;
     left: auto;
@@ -147,6 +187,7 @@ body {
     z-index: -1;
     mix-blend-mode: multiply;
 }
+
 
 .templatearticolo::before {
     transform: rotate(-3deg); /* Ruota l'ombra di 3 gradi in senso antiorario */
@@ -167,6 +208,7 @@ body {
     z-index: -2;
 }
 
+
 .sfondod2 {   
     width: 216mm; 
     height: 303mm; 
@@ -177,6 +219,7 @@ body {
     text-align: -webkit-center;
     z-index: -2;
 }
+
 
 .sfondod3 {   
     width: 216mm; 

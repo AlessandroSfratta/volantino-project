@@ -282,3 +282,15 @@ h1, h2 {
 .input-prezzo {
     -moz-appearance: textfield;
 }
+
+
+.pdf-content1, .pdf-content2 {
+    height: 100vh;
+}
+
+
+
+.pdf-content1 iframe, .pdf-content2 iframe {
+    height: 100vh;
+    width: 200mm;
+}
