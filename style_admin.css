@@ -226,6 +226,10 @@ h1, h2 {
 
 }
 
+.cont-input {
+    margin-top: 4rem;
+}
+
 
 .input-rows {
     padding: 10px 10px 13px 10px;
@@ -294,3 +298,20 @@ h1, h2 {
     height: 100vh;
     width: 200mm;
 }
+
+.cont-manegament {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.cont-manegament i {
+font-size: 20px;
+font-weight: 700;
+cursor: pointer;
+}
+
+.ri-close-large-line {
+    color: rgb(160, 19, 19);
+}
+

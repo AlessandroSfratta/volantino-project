@@ -106,7 +106,7 @@ body {
 
 .infoCliente {
     color: white;
-    margin-top: 34rem;
+    margin-top: 57rem;
     margin-bottom: 7mm;
 }
 
@@ -118,7 +118,10 @@ body {
 
 /* pagina 2*/
 
-.sfondop2 {   
+.sfondop2 { 
+    position: absolute;
+    top: 0;
+    right: 0;  
     width: 216mm; 
     height: 303mm; 
     background-image: url('immagini/sfondo2.jpg');

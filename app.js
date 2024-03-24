@@ -117,10 +117,18 @@
         
     }
     
-    document.querySelectorAll('.form-step input').forEach(function(input) {
+
+    // Nel file principale
+function addEventListenersToInputs() {
+    // Seleziona tutti gli input all'interno di .form-step e aggiungi un event listener per il cambiamento
+    var inputs = document.querySelectorAll('.form-step input');
+    inputs.forEach(function(input) {
         input.addEventListener('change', checkInputsInSections);
     });
-  
+}
+
+// Chiama la funzione per aggiungere gli event listener agli input
+addEventListenersToInputs();
 
 
 
@@ -330,33 +338,38 @@
 
 
     
-// Seleziona tutti gli input-nome-prodotto
-const inputsNomeProdotto = document.querySelectorAll('.input-nome-prodotto');
+// Funzione per gestire l'evento input sugli input-nome-prodotto
+function handleInputNomeProdotto(event) {
+    const searchText = event.target.value.trim().toLowerCase();
+    const dataType = event.target.dataset.type;
+    prelevaProdotto(searchText, dataType, event.target);
+}
 
-// Aggiungi un listener per l'evento input a tutti gli input con classe .input-nome-prodotto
-inputsNomeProdotto.forEach(input => {
-    input.addEventListener('input', function(event) {
-        const searchText = event.target.value.trim().toLowerCase();
-        
-        const dataType = this.dataset.type; // Ottieni il dataType dall'elemento specifico
-        
-        prelevaProdotto(searchText, dataType, this); // Passa il dataType e l'input corrente alla funzione prelevaProdotto
-    });
+document.addEventListener('input', function(event) {
+    if (event.target.classList.contains('input-nome-prodotto')) {
+        handleInputNomeProdotto(event);
+    }
 });
 
 
 
-// Aggiungi un listener per l'evento mouseleave sul container .input-row
-const inputRows = document.querySelectorAll('.input-row');
-inputRows.forEach(function(inputRow) {
-    inputRow.addEventListener('mouseleave', function() {
-        const productList = this.querySelectorAll(".suggerimenti-nome-prodotto select");
-        
-        productList.forEach(function(select) {
-            select.style.display = "none";
+// Funzione per aggiungere un event listener mouseleave agli elementi .input-row
+function addEventListenerMouseLeave() {
+    // Seleziona tutti gli elementi .input-row
+    const inputRows = document.querySelectorAll('.input-row');
+    
+    // Aggiungi un listener per l'evento mouseleave a tutti gli elementi .input-row
+    inputRows.forEach(function(inputRow) {
+        inputRow.addEventListener('mouseleave', function() {
+            const productList = this.querySelectorAll(".suggerimenti-nome-prodotto select");
+            productList.forEach(function(select) {
+                select.style.display = "none";
+            });
         });
     });
-});
+}
+
+addEventListenerMouseLeave();
 
 
 
@@ -371,6 +384,8 @@ function prelevaProdotto(searchText, dataType, input) {
         complete: function(results) {
             const productListContainer = input.parentElement.querySelector('.suggerimenti-nome-prodotto select');
             productListContainer.innerHTML = '';
+            
+            console.log("Test click")
 
             let hasMatches = false;
 
@@ -411,99 +426,94 @@ function prelevaProdotto(searchText, dataType, input) {
 
 
 
-// Seleziona tutti gli elementi <label> associati ai toggle
-const toggleLabels = document.querySelectorAll('.switch label');
+export function repeatLabelInteraction() {
+    // Seleziona un genitore comune a tutti gli elementi .switch label (oppure il document)
+    const parentElement = document; // Puoi impostare il genitore appropriato qui
 
-// Itera su ciascun elemento label
-toggleLabels.forEach(function(label) {
-    label.addEventListener("click", function() {
+    // Aggiungi un event listener al genitore per gestire gli eventi dei pulsanti switch
+    parentElement.addEventListener("click", function(event) {
+        // Verifica se l'elemento cliccato è un pulsante switch
+        if (event.target.matches('.switch label')) {
+            const label = event.target;
+            const input = label.previousElementSibling;
+            let container = label.closest('.input-row');
+            const formStepContainer = label.closest('.form-step');
+            const pagina = formStepContainer.getAttribute('data-pagina');
 
-        const input = this.previousElementSibling;
+            // Verifica se l'elemento input non è selezionato
+            if (!input.checked) {
+                // Se non è selezionato, seleziona tutti gli input richiesti e le immagini nello stesso contenitore
+                const requiredInputs = container.querySelectorAll('input[required]');
+                const imgs = container.querySelectorAll('img');
+                const contImgs = container.querySelectorAll('.cont-scelta-img');
 
-        let container = this.closest('.input-row');
+                // Variabile per verificare se tutti gli elementi sono presenti
+                let allElementsPresent = true;
 
-        const formStepContainer = label.closest('.form-step');
+                // Itera su ciascuna immagine nello stesso contenitore
+                imgs.forEach(function(img) {
+                    // Verifica se l'immagine ha un attributo src
+                    if (!img.getAttribute('src')) {
+                        // Se l'attributo src è assente, imposta lo stile di sfondo sul contenitore dell'immagine
+                        console.log('L\'attributo src dell\'immagine è vuoto.');
+                        contImgs.forEach(function(contImg) {
+                            contImg.style.border = " 1px solid red";
+                        });
+                        allElementsPresent = false;
+                    } else {
+                        contImgs.forEach(function(contImg) {
+                            contImg.style.border = "1px solid green";
+                        });
+                    }
+                });
 
-         const pagina = formStepContainer.getAttribute('data-pagina');
+                // Itera su ciascun input richiesto
+                requiredInputs.forEach(function(requiredInput) {
+                    // Verifica se l'input ha del contenuto
+                    if (!requiredInput.value.trim()) {
+                        requiredInput.style.border = '1px solid red';
+                        allElementsPresent = false;
+                    } else {
+                        requiredInput.style.border = '';
+                    }
+                });
 
-         console.log(pagina)
-
-        // Verifica se l'elemento input non è selezionato
-        if (!input.checked) {
-            // Se non è selezionato, seleziona tutti gli input richiesti e le immagini nello stesso contenitore
-            const requiredInputs = container.querySelectorAll('input[required]');
-            const imgs = container.querySelectorAll('img');
-            const contImgs = container.querySelectorAll('.cont-scelta-img');
-
-            // Variabile per verificare se tutti gli elementi sono presenti
-            let allElementsPresent = true;
-
-            // Itera su ciascuna immagine nello stesso contenitore
-            imgs.forEach(function(img) {
-                // Verifica se l'immagine ha un attributo src
-                if (!img.getAttribute('src')) {
-                    // Se l'attributo src è assente, imposta lo stile di sfondo sul contenitore dell'immagine
-                    console.log('L\'attributo src dell\'immagine è vuoto.');
-                    contImgs.forEach(function(contImg) {
-                        contImg.style.border = " 1px solid red";
+                // Se tutti gli elementi sono presenti, contrassegna il bordo come verde
+                if (allElementsPresent) {
+                    requiredInputs.forEach(function(requiredInput) {
+                        requiredInput.style.border = '1px solid green';
                     });
-                    allElementsPresent = false;
-                } else {
-                    contImgs.forEach(function(contImg) {
-                        contImg.style.border = "1px solid green";
+
+                    // Seleziona tutti i container modal
+                    const modalContainers = container.querySelectorAll('.modal');
+
+                    // Aggiungi la classe 'active' a ciascun container modal
+                    modalContainers.forEach((modal) => {
+                        modal.classList.add('active-modal');
                     });
                 }
-            });
 
-            // Itera su ciascun input richiesto
-            requiredInputs.forEach(function(requiredInput) {
-                // Verifica se l'input ha del contenuto
-                if (!requiredInput.value.trim()) {
-                    requiredInput.style.border = '1px solid red';
-                    allElementsPresent = false;
+                if (!allElementsPresent) {
+                    setTimeout(function() {
+                        label.click();
+                    }, 500);
                 } else {
-                    requiredInput.style.border = '';
+                    addToJson(container, pagina);
                 }
-            });
-
-
-      // Se tutti gli elementi sono presenti, contrassegna il bordo come verde
-if (allElementsPresent) {
-    requiredInputs.forEach(function(requiredInput) {
-        requiredInput.style.border = '1px solid green';
-
-    });
-
-    // Seleziona tutti i container modal
-    const modalContainers = container.querySelectorAll('.modal');
-
-    // Aggiungi la classe 'active' a ciascun container modal
-    modalContainers.forEach( (modal) => {
-        modal.classList.add('active-modal');
-    })
-
-}
-            if (!allElementsPresent) {
-                setTimeout(function() {
-                    label.click();
-                }, 500);
             } else {
-                addToJson(container,pagina);
-            }
-
-        } else {
-
-            const modalContainers = container.querySelectorAll('.modal');
-
-                modalContainers.forEach( (modal) => {
+                const modalContainers = container.querySelectorAll('.modal');
+                modalContainers.forEach((modal) => {
                     modal.classList.remove('active-modal');
-                }) 
-
+                });
                 removeFromJson(container);
+            }
         }
-
     });
-});
+}
+
+repeatLabelInteraction();
+
+
 
 
 
