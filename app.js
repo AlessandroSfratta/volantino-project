@@ -84,44 +84,46 @@
 
 
 // Funzione per verificare se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
-    function checkInputsInSections() {
+function checkInputsInSections() {
+    const dataType = FoundDataType();
 
-        const dataType = FoundDataType();
-    
-        const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
-    
-        let totalInputs = 0; 
-        let filledInputs = 0; 
-    
-        sections.forEach(function(section) {
-            // console.log(`Sezione: ${section.id}`);
-            let inputsInSection = section.querySelectorAll('input[required]');
-    
-            totalInputs += inputsInSection.length;
-    
-            // console.log(totalInputs)
-    
- 
-            inputsInSection.forEach(function(input) {
-                if (input.value.trim() !== '') { 
-                    filledInputs++;
-                }
-            });
+    const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
+
+    let totalInputs = 0;
+    let filledInputs = 0;
+    let allModalsActive = true;
+
+
+    sections.forEach(function(section) {
+        let inputsInSection = section.querySelectorAll('input[required]');
+        let modalsInSection = section.querySelectorAll('.modal');
+
+        totalInputs += inputsInSection.length;
+
+        inputsInSection.forEach(function(input) {
+            if (input.value.trim() !== '') {
+                filledInputs++;
+            }
         });
-    
-        if (filledInputs === totalInputs) {
-            btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
-        } else {
-            btnAnteprima.forEach(btn => { btn.setAttribute('disabled', 'disabled'); });
-        }
-        
+
+        modalsInSection.forEach(function(modal) {
+            if (!modal.classList.contains('active-modal')) {
+                allModalsActive = false;
+            }
+        });
+    });
+
+    if (filledInputs === totalInputs && allModalsActive) {
+        btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
+    } else {
+        btnAnteprima.forEach(btn => { btn.setAttribute('disabled', 'disabled'); });
     }
+}
+
     
 
-    // Nel file principale
 function addEventListenersToInputs() {
-    // Seleziona tutti gli input all'interno di .form-step e aggiungi un event listener per il cambiamento
-    var inputs = document.querySelectorAll('.form-step input');
+    let inputs = document.querySelectorAll('.form-step input');
     inputs.forEach(function(input) {
         input.addEventListener('change', checkInputsInSections);
     });
@@ -148,20 +150,29 @@ addEventListenersToInputs();
                 const button = document.getElementById(secClass);
     
                 const requiredInputs = currentSection.querySelectorAll('input[required]');
-    
-                let allInputsValid = true;
-    
-                requiredInputs.forEach(function(input) {
-                    if (!input.value.trim()) {
-                        allInputsValid = false;
+                    const modals = currentSection.querySelectorAll('.modal');
+                    
+                    let allInputsValid = true;
+                    let allModalsActive = true;
+                    
+                    requiredInputs.forEach(function(input) {
+                        if (!input.value.trim()) {
+                            allInputsValid = false;
+                        }
+                    });
+                    
+                    modals.forEach(function(modal) {
+                        if (!modal.classList.contains('active-modal')) {
+                            allModalsActive = false;
+                        }
+                    });
+                    
+                    if (!allInputsValid || !allModalsActive) {
+                        button.style.backgroundColor = '#FF8C00'; // Arancione se gli input non sono validi o i modali non sono attivi
+                    } else {
+                        button.style.backgroundColor = '#7cfc00'; // Verde se tutti gli input sono validi e i modali sono attivi
                     }
-                });
-    
-                if (!allInputsValid) {
-                    button.style.backgroundColor = '#FF8C00';
-                } else {
-                    button.style.backgroundColor = '#7cfc00';
-                }
+                    
             }
         }
     
