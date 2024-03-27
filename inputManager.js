@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
       
-
                     // Incrementiamo il contatore per i cmn-toggle-
                     cmnToggleCounter++;
                     var newToggleId = 'cmn-toggle-' + cmnToggleCounter;
