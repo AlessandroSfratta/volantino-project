@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             icon.addEventListener("click", clickHandler);
         });
 
+
     }
 
 
@@ -73,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 updateCounter(target.closest('.cont-input'));
                 
-                addEventListenersToNewElements();
+               
 
             } else {
 
@@ -83,6 +84,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 alert("Limite massimo di elementi raggiunto per questa pagina.");
             }
+
+            addEventListenersToNewElements();
+        } else if (target.classList.contains("up")) {
+
+            var currentRow = target.closest(".input-rows");
+            var previousRow = currentRow.previousElementSibling;
+            if (previousRow) {
+                currentRow.parentNode.insertBefore(currentRow, previousRow); }
+
+            } else if (target.classList.contains("down")) {
+
+            var currentRow = target.closest(".input-rows");
+            var nextRow = currentRow.nextElementSibling;
+            if (nextRow) {
+                currentRow.parentNode.insertBefore(nextRow, currentRow);
+            } 
         }
     }
 
