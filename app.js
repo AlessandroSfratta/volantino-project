@@ -83,7 +83,7 @@
     
 
 
-// Funzione per verificare se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
+//verifica se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
 function checkInputsInSections() {
     const dataType = FoundDataType();
 
@@ -129,7 +129,6 @@ function addEventListenersToInputs() {
     });
 }
 
-// Chiama la funzione per aggiungere gli event listener agli input
 addEventListenersToInputs();
 
 
@@ -349,7 +348,7 @@ addEventListenersToInputs();
 
 
     
-// Funzione per gestire l'evento input sugli input-nome-prodotto
+// funzione evento input sugli input-nome-prodotto
 function handleInputNomeProdotto(event) {
     const searchText = event.target.value.trim().toLowerCase();
     const dataType = event.target.dataset.type;
@@ -364,7 +363,7 @@ document.addEventListener('input', function(event) {
 
 
 
-// Funzione per aggiungere un event listener mouseleave agli elementi .input-row
+// funzione mouseleave 
 function addEventListenerMouseLeave() {
     // Seleziona tutti gli elementi .input-row
     const inputRows = document.querySelectorAll('.input-row');
@@ -438,12 +437,10 @@ function prelevaProdotto(searchText, dataType, input) {
 
 
 export function repeatLabelInteraction() {
-    // Seleziona un genitore comune a tutti gli elementi .switch label (oppure il document)
-    const parentElement = document; // Puoi impostare il genitore appropriato qui
+    const parentElement = document; 
 
-    // Aggiungi un event listener al genitore per gestire gli eventi dei pulsanti switch
     parentElement.addEventListener("click", function(event) {
-        // Verifica se l'elemento cliccato è un pulsante switch
+
         if (event.target.matches('.switch label')) {
             const label = event.target;
             const input = label.previousElementSibling;
@@ -451,21 +448,16 @@ export function repeatLabelInteraction() {
             const formStepContainer = label.closest('.form-step');
             const pagina = formStepContainer.getAttribute('data-pagina');
 
-            // Verifica se l'elemento input non è selezionato
             if (!input.checked) {
-                // Se non è selezionato, seleziona tutti gli input richiesti e le immagini nello stesso contenitore
                 const requiredInputs = container.querySelectorAll('input[required]');
                 const imgs = container.querySelectorAll('img');
                 const contImgs = container.querySelectorAll('.cont-scelta-img');
 
-                // Variabile per verificare se tutti gli elementi sono presenti
+
                 let allElementsPresent = true;
 
-                // Itera su ciascuna immagine nello stesso contenitore
                 imgs.forEach(function(img) {
-                    // Verifica se l'immagine ha un attributo src
                     if (!img.getAttribute('src')) {
-                        // Se l'attributo src è assente, imposta lo stile di sfondo sul contenitore dell'immagine
                         console.log('L\'attributo src dell\'immagine è vuoto.');
                         contImgs.forEach(function(contImg) {
                             contImg.style.border = " 1px solid red";
@@ -478,9 +470,7 @@ export function repeatLabelInteraction() {
                     }
                 });
 
-                // Itera su ciascun input richiesto
                 requiredInputs.forEach(function(requiredInput) {
-                    // Verifica se l'input ha del contenuto
                     if (!requiredInput.value.trim()) {
                         requiredInput.style.border = '1px solid red';
                         allElementsPresent = false;
@@ -489,16 +479,13 @@ export function repeatLabelInteraction() {
                     }
                 });
 
-                // Se tutti gli elementi sono presenti, contrassegna il bordo come verde
                 if (allElementsPresent) {
                     requiredInputs.forEach(function(requiredInput) {
                         requiredInput.style.border = '1px solid green';
                     });
 
-                    // Seleziona tutti i container modal
                     const modalContainers = container.querySelectorAll('.modal');
 
-                    // Aggiungi la classe 'active' a ciascun container modal
                     modalContainers.forEach((modal) => {
                         modal.classList.add('active-modal');
                     });
@@ -576,7 +563,6 @@ function addToJson(container, pagina) {
     };
 
 
-    // Se il JSON è vuoto, aggiungi il nuovo prodotto direttamente
     if (Object.keys(jsonData).length === 0) {
         jsonData[productKey] = newProduct;
     } else {
@@ -587,13 +573,11 @@ function addToJson(container, pagina) {
         let inserted = false;
         let currentPosition = 1;
 
-        // Itera attraverso gli elementi di jsonData
+        // Itera elementi di jsonData
         for (let key in jsonData) {
             const product = jsonData[key];
             
-            // Controlla se il prodotto appartiene alla pagina corrente
             if (product.Pagina === pagina) {
-                // Inserisci il nuovo prodotto nella posizione desiderata
                 if (currentPosition === visualPosition) {
                     newData[productKey] = newProduct;
                     inserted = true;
@@ -601,26 +585,21 @@ function addToJson(container, pagina) {
                 newData[key] = product;
                 currentPosition++;
             } else {
-                // Se il prodotto non appartiene alla pagina corrente, mantienilo in newData
                 newData[key] = product;
             }
         }
 
-        // Se non è stato ancora inserito, aggiungi il nuovo prodotto alla fine
         if (!inserted) {
             newData[productKey] = newProduct;
         }
 
-        // Sovrascrivi jsonData con la nuova struttura dati
         jsonData = { ...newData };
     }
 
-    // Aggiorna il dataset con la chiave del prodotto
     nomeProdottoInput.dataset.productKey = productKey;
 
     console.log("jsonData after insertion:", jsonData);
 
-    // Incrementa il contatore dei prodotti
     productCounter++;
 }
 

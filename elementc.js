@@ -17,37 +17,42 @@ async function generaElementi() {
     try {
         const prodottiJSON = jsonData;
 
+        // Preleva gli input delle date per la pagina A4 e per la pagina web
+        const inputDataInizioA4 = document.querySelector('#inizio-a4');
+        const inputDataFineA4 = document.querySelector('#fine-a4');
+        const inputDataInizioWeb = document.querySelector('#inizio-web');
+        const inputDataFineWeb = document.querySelector('#fine-web');
 
-   // Seleziona gli iframe
-   const firstPageA4 = document.querySelector('.pagina_1_a4 iframe');
-   const firstPageWeb = document.querySelector('.pagina_1_web iframe');
+        // Funzione per convertire il formato della data
+        function convertDateFormat(inputDate) {
+            const parts = inputDate.split('-');
+            return parts[2] + '/' + parts[1] + '/' + parts[0];
+        }
 
-   // Accesso ai documenti all'interno degli iframe
-   const iframeDocumentA4 = firstPageA4.contentWindow.document;
-   const iframeDocumentWeb = firstPageWeb.contentWindow.document;
+        // Seleziona gli iframe per la prima e la seconda pagina A4, e per la pagina web
+        const firstPageA4_page1 = document.querySelector('.pagina_1_a4 iframe');
+        const firstPageA4_page2 = document.querySelector('.pagina_2_a4 iframe');
+        const firstPageWeb = document.querySelector('.pagina_1_web iframe');
 
-   // Seleziona gli span con le classi "validità-da" e "validità-a" all'interno dei documenti iframe
-   const spanValiditaDa_A4 = iframeDocumentA4.querySelector('.pagina1_a4 .validità-da');
-   const spanValiditaA_A4 = iframeDocumentA4.querySelector('.pagina1_a4 .validità-a');
+        // Accesso ai documenti all'interno degli iframe per la prima pagina A4 e per la pagina web
+        const iframeDocumentA4_page1 = firstPageA4_page1.contentWindow.document;
+        const iframeDocumentA4_page2 = firstPageA4_page2.contentWindow.document
 
-   const spanValiditaDa_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-da');
-   const spanValiditaA_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-a');
+        const iframeDocumentWeb = firstPageWeb.contentWindow.document;
 
-   // Preleva i valori degli input
-   const inputDataInizioA4 = document.querySelector('#inizio-a4');
-   const inputDataFineA4 = document.querySelector('#fine-a4');
+        // Seleziona gli span con le classi "validità-da" e "validità-a" all'interno dei documenti iframe
+        const spanValiditaDa_A4_pagina1 = iframeDocumentA4_page1.querySelector('.pagina1_a4 .validità-da');
+        const spanValiditaA_A4_pagina1 = iframeDocumentA4_page1.querySelector('.pagina1_a4 .validità-a');
 
-   const inputDataInizioWeb = document.querySelector('#inizio-web');
-   const inputDataFineWeb = document.querySelector('#fine-web');
+        const spanValiditaDa_A4_pagina2 = iframeDocumentA4_page2.querySelector('.pagina2_a4 .validità-da');
+        const spanValiditaA_A4_pagina2 = iframeDocumentA4_page2.querySelector('.pagina2_a4 .validità-a');
+        
 
+        const spanValiditaDa_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-da');
+        const spanValiditaA_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-a');
 
-   function convertDateFormat(inputDate) {
-    const parts = inputDate.split('-');
-    return parts[2] + '/' + parts[1] + '/' + parts[0];
-
-}
-
-
+        // Assegna i valori delle date agli span nei documenti iframe
+   
         // Inizializza un oggetto per tenere traccia del contenuto HTML per ciascun frame
         const htmlContentFrames = {};
 
@@ -70,22 +75,25 @@ async function generaElementi() {
                     </div>
                 </div>`;
 
-            // Determina la classe della pagina e aggiungi l'elemento HTML al contenuto del frame corrispondente
             let iframeClass = '';
             
             switch (value.Pagina) {
                 case 'primaA4':
                     iframeClass = '.pagina_1_a4 iframe';
-                    spanValiditaDa_A4.textContent = convertDateFormat(inputDataInizioA4.value);
-                    spanValiditaA_A4.textContent = convertDateFormat(inputDataFineA4.value);
+                    spanValiditaDa_A4_pagina1.textContent = convertDateFormat(inputDataInizioA4.value);
+                    spanValiditaA_A4_pagina1.textContent = convertDateFormat(inputDataFineA4.value);
                     break;
                 case 'secondaA4':
                     iframeClass = '.pagina_2_a4 iframe';
+                    spanValiditaDa_A4_pagina2.textContent = convertDateFormat(inputDataInizioA4.value);
+                    spanValiditaA_A4_pagina2.textContent = convertDateFormat(inputDataFineA4.value);
                     break;
                 case 'pagina1_web':
                     iframeClass = '.pagina_1_web iframe';
-                spanValiditaDa_Web.textContent = convertDateFormat(inputDataInizioWeb.value);
-                spanValiditaA_Web.textContent = convertDateFormat(inputDataFineWeb.value);
+
+                    spanValiditaDa_Web.textContent = convertDateFormat(inputDataInizioWeb.value);
+                    spanValiditaA_Web.textContent = convertDateFormat(inputDataFineWeb.value);
+
                     break;
                 case 'salumeria_web':
                     iframeClass = '.pagina_salumeria_web iframe';
@@ -110,7 +118,6 @@ async function generaElementi() {
                     break;
                 default:
                     console.error('Pagina non riconosciuta:', value.Pagina);
-
                     continue; // Passa al prossimo elemento
             }
             
@@ -140,6 +147,7 @@ async function generaElementi() {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
 }
+
 
 
 
