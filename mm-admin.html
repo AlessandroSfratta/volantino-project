@@ -67,14 +67,23 @@
         <h2>Prima pagina</h2>
     </div>
 
+
     
-
-  
-
     <div class="cont-input">
 
     <div class="counter-cont">
     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6)</p>
+</div>
+
+
+<div class="cont-validity">
+
+    <label for="data-inizio1">Data inizio validità:</label>
+    <input type="date" class="data-input" id="inizio-a4" name="data-inizio1" required>
+
+    <label for="data-fine1">Data fine validità:</label>
+    <input type="date" class="data-input" id="fine-a4" name="data-fine1" required>
+
 </div>
 
         <div class="input-rows">
@@ -102,7 +111,13 @@
                     <img src="" alt="">
                 </div>
         
-                <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
+                <div class="prezzo">
+
+                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                <span>,</span>
+                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                
+            </div>
 
                 <div class="switch">
                     <input id="cmn-toggle-11" class="cmn-toggle cmn-toggle-round" type="checkbox">
@@ -164,8 +179,13 @@
                     <img src="" alt="">
                 </div>
         
-                <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-
+              <div class="prezzo">
+        
+                <input type="number" class="input-prezzo euro" placeholder="Euro" required step="any">
+                <span>,</span>
+                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                
+            </div>
                 <div class="switch">
                     <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
                     <label for="cmn-toggle-2"></label>
@@ -204,6 +224,17 @@
     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
 </div>
 
+
+<div class="cont-validity">
+
+    <label for="data-inizio2">Data inizio validità:</label>
+    <input type="date" class="data-input" id="inizio-web" name="data-inizio2" required>
+
+    <label for="data-fine2">Data fine validità:</label>
+    <input type="date" class="data-input" id="fine-web" name="data-fine2" required>
+
+</div>
+
         <div class="input-rows">
 
             <div class="input-row">
@@ -229,7 +260,13 @@
                     <img src="" alt="">
                 </div>
         
-                <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
+                <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>
 
                 <div class="switch">
                     <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
@@ -288,8 +325,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                 <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>  
+
                     <div class="switch">
                         <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-4"></label>
@@ -343,8 +386,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                    <div class="prezzo">
+
+                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <span>,</span>
+                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        
+                    </div>
+
                     <div class="switch">
                         <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-5"></label>
@@ -399,8 +448,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                 <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>  
+
                     <div class="switch">
                         <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-6"></label>
@@ -455,8 +510,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                 <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>  
+
                     <div class="switch">
                         <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-7"></label>
@@ -512,8 +573,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                 <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>  
+
                     <div class="switch">
                         <input id="cmn-toggle-8" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-8"></label>
@@ -567,8 +634,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                 <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>  
+
                     <div class="switch">
                         <input id="cmn-toggle-9" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-9"></label>
@@ -623,8 +696,14 @@
                         <img src="" alt="">
                     </div>
             
-                    <input type="number" class="input-prezzo" placeholder="Prezzo" required step="any">
-    
+                 <div class="prezzo">
+
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>  
+
                     <div class="switch">
                         <input id="cmn-toggle-10" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-10"></label>
@@ -658,11 +737,11 @@
     <div class="pdf-content1">
         
         <div class="pagina_1_a4">
-            <iframe src="frame-pdf/1.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/A4/1.html" frameborder="0"></iframe>
         </div>
     
         <div class="pagina_2_a4">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/A4/2.html" frameborder="0"></iframe>
         </div>
 
     </div>
@@ -684,35 +763,35 @@
     <div class="pdf-content2">
 
         <div class="pagina_1_web">
-            <iframe src="frame-pdf/1.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale_1.html" frameborder="0"></iframe>
         </div>
     
         <div class="pagina_salumeria_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
         <div class="pagina_freschi_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
         <div class="pagina_surgelati_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
         <div class="pagina_dispensa_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
         <div class="pagina_bevande_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
         <div class="pagina_igiene_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
         <div class="pagina_puliziacasa_web">
-            <iframe src="frame-pdf/2.html" frameborder="0"></iframe>
+            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
         </div>
 
 

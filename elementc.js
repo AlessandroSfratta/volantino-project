@@ -17,6 +17,37 @@ async function generaElementi() {
     try {
         const prodottiJSON = jsonData;
 
+
+   // Seleziona gli iframe
+   const firstPageA4 = document.querySelector('.pagina_1_a4 iframe');
+   const firstPageWeb = document.querySelector('.pagina_1_web iframe');
+
+   // Accesso ai documenti all'interno degli iframe
+   const iframeDocumentA4 = firstPageA4.contentWindow.document;
+   const iframeDocumentWeb = firstPageWeb.contentWindow.document;
+
+   // Seleziona gli span con le classi "validità-da" e "validità-a" all'interno dei documenti iframe
+   const spanValiditaDa_A4 = iframeDocumentA4.querySelector('.pagina1_a4 .validità-da');
+   const spanValiditaA_A4 = iframeDocumentA4.querySelector('.pagina1_a4 .validità-a');
+
+   const spanValiditaDa_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-da');
+   const spanValiditaA_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-a');
+
+   // Preleva i valori degli input
+   const inputDataInizioA4 = document.querySelector('#inizio-a4');
+   const inputDataFineA4 = document.querySelector('#fine-a4');
+
+   const inputDataInizioWeb = document.querySelector('#inizio-web');
+   const inputDataFineWeb = document.querySelector('#fine-web');
+
+
+   function convertDateFormat(inputDate) {
+    const parts = inputDate.split('-');
+    return parts[2] + '/' + parts[1] + '/' + parts[0];
+
+}
+
+
         // Inizializza un oggetto per tenere traccia del contenuto HTML per ciascun frame
         const htmlContentFrames = {};
 
@@ -33,23 +64,28 @@ async function generaElementi() {
                     <div class="info">
                         <div class="descrizione">${value.Descrizione}</div>
                         <div class="contenitoreprezzo">
-                            <div class="prezzoa">${value.Prezzo}</div>
-                            <div class="prezzob"></div>
+                            <div class="prezzoa">${value.Euro}</div>
+                            <div class="prezzob">${value.Centesimi}</div>
                         </div>
                     </div>
                 </div>`;
 
             // Determina la classe della pagina e aggiungi l'elemento HTML al contenuto del frame corrispondente
             let iframeClass = '';
+            
             switch (value.Pagina) {
                 case 'primaA4':
                     iframeClass = '.pagina_1_a4 iframe';
+                    spanValiditaDa_A4.textContent = convertDateFormat(inputDataInizioA4.value);
+                    spanValiditaA_A4.textContent = convertDateFormat(inputDataFineA4.value);
                     break;
                 case 'secondaA4':
                     iframeClass = '.pagina_2_a4 iframe';
                     break;
                 case 'pagina1_web':
                     iframeClass = '.pagina_1_web iframe';
+                spanValiditaDa_Web.textContent = convertDateFormat(inputDataInizioWeb.value);
+                spanValiditaA_Web.textContent = convertDateFormat(inputDataFineWeb.value);
                     break;
                 case 'salumeria_web':
                     iframeClass = '.pagina_salumeria_web iframe';
@@ -74,6 +110,7 @@ async function generaElementi() {
                     break;
                 default:
                     console.error('Pagina non riconosciuta:', value.Pagina);
+
                     continue; // Passa al prossimo elemento
             }
             
@@ -194,4 +231,5 @@ function convertiInPDF() {
 
         });
     });
+    
 }

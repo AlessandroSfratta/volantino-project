@@ -511,6 +511,7 @@ export function repeatLabelInteraction() {
                 } else {
                     addToJson(container, pagina);
                 }
+
             } else {
                 const modalContainers = container.querySelectorAll('.modal');
                 modalContainers.forEach((modal) => {
@@ -531,46 +532,121 @@ repeatLabelInteraction();
 
 let productCounter = 1;
 
-function addToJson(container,pagina) {
-    const nomeProdottoInput = container.querySelector('.input-nome-prodotto');
-    const nomeProdotto = nomeProdottoInput.value;
-    const description = container.querySelector('.input-descrizione').value;
-    const price = container.querySelector('.input-prezzo').value;
-    const image = container.querySelector('.cont-scelta-img img').src;
+function getVisualPosition(container) {
 
-    const productKey = `prodotto${productCounter}`;
+    const inputRows = document.querySelectorAll('.input-row');
+    let position = 1;
+    
+    inputRows.forEach((row, index) => {
+        if (row === container) {
+            position = index + 1;
+            return;
+        }
+    });
 
-    console.log(pagina);
-
-    jsonData[productKey] = {
-        "nomeProdotto": nomeProdotto,
-        "Descrizione": description,
-        "Prezzo": price,
-        "Immagine": image,
-        "productKey": productKey,
-        "Pagina": pagina
-
-    }
-
-    nomeProdottoInput.dataset.productKey = productKey;
-
-    console.log(jsonData);
-
-productCounter++;
+    return position;
 
 }
 
 
+
+
+
+function addToJson(container, pagina) {
+
+    const nomeProdottoInput = container.querySelector('.input-nome-prodotto');
+    const nomeProdotto = nomeProdottoInput.value;
+    const description = container.querySelector('.input-descrizione').value;
+    const euro = container.querySelector('.euro').value;
+    const cent = container.querySelector('.centesimi').value;
+   
+    const image = container.querySelector('.cont-scelta-img img').src;
+    const productKey = `prodotto${productCounter}`;
+
+    const newProduct = {
+
+        "nomeProdotto": nomeProdotto,
+        "Descrizione": description,
+        "Euro": euro,
+        "Centesimi": cent,
+        "Immagine": image,
+        "productKey": productKey,
+        "Pagina": pagina
+
+    };
+
+
+    // Se il JSON è vuoto, aggiungi il nuovo prodotto direttamente
+    if (Object.keys(jsonData).length === 0) {
+        jsonData[productKey] = newProduct;
+    } else {
+        const visualPosition = getVisualPosition(container);
+        console.log("Visual Position:", visualPosition);
+
+        let newData = {};
+        let inserted = false;
+        let currentPosition = 1;
+
+        // Itera attraverso gli elementi di jsonData
+        for (let key in jsonData) {
+            const product = jsonData[key];
+            
+            // Controlla se il prodotto appartiene alla pagina corrente
+            if (product.Pagina === pagina) {
+                // Inserisci il nuovo prodotto nella posizione desiderata
+                if (currentPosition === visualPosition) {
+                    newData[productKey] = newProduct;
+                    inserted = true;
+                }
+                newData[key] = product;
+                currentPosition++;
+            } else {
+                // Se il prodotto non appartiene alla pagina corrente, mantienilo in newData
+                newData[key] = product;
+            }
+        }
+
+        // Se non è stato ancora inserito, aggiungi il nuovo prodotto alla fine
+        if (!inserted) {
+            newData[productKey] = newProduct;
+        }
+
+        // Sovrascrivi jsonData con la nuova struttura dati
+        jsonData = { ...newData };
+    }
+
+    // Aggiorna il dataset con la chiave del prodotto
+    nomeProdottoInput.dataset.productKey = productKey;
+
+    console.log("jsonData after insertion:", jsonData);
+
+    // Incrementa il contatore dei prodotti
+    productCounter++;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Funzione per rimuovere i valori degli input dal JSON
 function removeFromJson(container) {
+
     const nomeProdottoInput = container.querySelector('.input-nome-prodotto');
     const nomeProdotto = nomeProdottoInput.value;
     const productKey = nomeProdottoInput.dataset.productKey; // Ottieni la chiave del prodotto dal dataset
 
-    // Rimuovi i valori dal JSON utilizzando la chiave del prodotto
     delete jsonData[productKey];
 
     console.log(jsonData);
+
 }
 
 

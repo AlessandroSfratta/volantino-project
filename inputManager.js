@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
      let target = event.target;
 
+
         if (target.classList.contains("close")) {
 
             let contInput = target.closest('.cont-input');
@@ -61,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     input.value = ''; 
                 });
 
+                newInputRows.querySelector('.centesimi').value = "00";
               
                 newInputRows.querySelectorAll('img').forEach(function(img) {
                     img.src = '';
@@ -89,9 +91,11 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (target.classList.contains("up")) {
 
             var currentRow = target.closest(".input-rows");
+            var formStepContainer = currentRow.closest('.form-step');
             var previousRow = currentRow.previousElementSibling;
             if (previousRow) {
-                currentRow.parentNode.insertBefore(currentRow, previousRow); }
+                currentRow.parentNode.insertBefore(currentRow, previousRow);
+             }
 
             } else if (target.classList.contains("down")) {
 
@@ -104,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-
     function getLimiteMassimo(tipoVolantino) {
         switch (tipoVolantino) {
             case "primaA4":
@@ -115,7 +118,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 return Infinity;
         }
     }
-    
+
+
     
     
     // data-pagina="primaWeb"

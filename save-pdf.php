@@ -1,7 +1,6 @@
 <?php
 
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $pdf_content = file_get_contents($_FILES['pdf_content']['tmp_name']);
