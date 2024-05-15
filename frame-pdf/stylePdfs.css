@@ -66,7 +66,7 @@ body {
     width: 60%;
     font-size: 2.8mm;
     text-align: left;
-    color: #00384e;
+    color: white;
 }
 
 .contenitoreprezzo {
@@ -98,7 +98,7 @@ body {
 }
 
 
-.textpag1 {
+.textpag {
     color: white;
     margin-top: 9mm;
 }
@@ -200,34 +200,10 @@ body {
 
 /* DIGITALE */
 
-.sfondod1 {   
+.sfondo { 
+    position: absolute;  
     width: 216mm; 
     height: 303mm; 
-    background-image: url('immagini/p1.jpg');
-    background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat;
-    text-align: -webkit-center;
-    z-index: -2;
-}
-
-
-.sfondod2 {   
-    width: 216mm; 
-    height: 303mm; 
-    background-image: url('immagini/p2.jpg');
-    background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat;
-    text-align: -webkit-center;
-    z-index: -2;
-}
-
-
-.sfondod3 {   
-    width: 216mm; 
-    height: 303mm; 
-    background-image: url('immagini/p3.jpg');
     background-size: cover;
     background-position: center; 
     background-repeat: no-repeat;

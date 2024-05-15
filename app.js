@@ -19,7 +19,7 @@
 
     btnVolantinoWeb.addEventListener("click", () => {
         scelta = "volantino_digitale";
-        console.log(scelta);
+        console.log("Ecco la scelta",scelta);
         aggiungiDataTypeToArray(btnVolantinoWeb.dataset.type);
         btnVolantinoWeb.classList.add("active");
         btnVolantinoA4.classList.remove("active");
@@ -85,24 +85,29 @@
 
 //verifica se tutti gli input sono stati compilati correttamente in tutte le sezioni con lo stesso data-type
 function checkInputsInSections() {
+
     const dataType = FoundDataType();
 
     const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
 
-    let totalInputs = 0;
-    let filledInputs = 0;
+    let totalInputs = 2;
+    let filledInputs = 2;
     let allModalsActive = true;
+
+
 
 
     sections.forEach(function(section) {
         let inputsInSection = section.querySelectorAll('input[required]');
         let modalsInSection = section.querySelectorAll('.modal');
 
-        totalInputs += inputsInSection.length;
+        // totalInputs += inputsInSection.length;
+//decommentare totalInputs per controllo input
+       
 
         inputsInSection.forEach(function(input) {
             if (input.value.trim() !== '') {
-                filledInputs++;
+                // filledInputs++;
             }
         });
 
@@ -113,7 +118,8 @@ function checkInputsInSections() {
         });
     });
 
-    if (filledInputs === totalInputs && allModalsActive) {
+    // if (filledInputs === totalInputs && allModalsActive) {
+        if (filledInputs === 2) {
         btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
     } else {
         btnAnteprima.forEach(btn => { btn.setAttribute('disabled', 'disabled'); });

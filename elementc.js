@@ -8,134 +8,145 @@ async function convertToDataURL(url) {
     return blob;
 }
 
-
 let content;
 
 
-
 async function generaElementi() {
-    try {
-        const prodottiJSON = jsonData;
 
-        // Preleva gli input delle date per la pagina A4 e per la pagina web
-        const inputDataInizioA4 = document.querySelector('#inizio-a4');
-        const inputDataFineA4 = document.querySelector('#fine-a4');
-        const inputDataInizioWeb = document.querySelector('#inizio-web');
-        const inputDataFineWeb = document.querySelector('#fine-web');
+    class ElementoHTML {
 
-        // Funzione per convertire il formato della data
-        function convertDateFormat(inputDate) {
-            const parts = inputDate.split('-');
-            return parts[2] + '/' + parts[1] + '/' + parts[0];
+        constructor(prodotto) {
+            this.imageData = prodotto.Immagine;
+            this.nomeProdotto = prodotto.nomeProdotto;
+            this.descrizione = prodotto.Descrizione;
+            this.euro = prodotto.Euro;
+            this.centesimi = prodotto.Centesimi;
         }
-
-        // Seleziona gli iframe per la prima e la seconda pagina A4, e per la pagina web
-        const firstPageA4_page1 = document.querySelector('.pagina_1_a4 iframe');
-        const firstPageA4_page2 = document.querySelector('.pagina_2_a4 iframe');
-        const firstPageWeb = document.querySelector('.pagina_1_web iframe');
-
-        // Accesso ai documenti all'interno degli iframe per la prima pagina A4 e per la pagina web
-        const iframeDocumentA4_page1 = firstPageA4_page1.contentWindow.document;
-        const iframeDocumentA4_page2 = firstPageA4_page2.contentWindow.document
-
-        const iframeDocumentWeb = firstPageWeb.contentWindow.document;
-
-        // Seleziona gli span con le classi "validità-da" e "validità-a" all'interno dei documenti iframe
-        const spanValiditaDa_A4_pagina1 = iframeDocumentA4_page1.querySelector('.pagina1_a4 .validità-da');
-        const spanValiditaA_A4_pagina1 = iframeDocumentA4_page1.querySelector('.pagina1_a4 .validità-a');
-
-        const spanValiditaDa_A4_pagina2 = iframeDocumentA4_page2.querySelector('.pagina2_a4 .validità-da');
-        const spanValiditaA_A4_pagina2 = iframeDocumentA4_page2.querySelector('.pagina2_a4 .validità-a');
-        
-
-        const spanValiditaDa_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-da');
-        const spanValiditaA_Web = iframeDocumentWeb.querySelector('.pagina1_web .validità-a');
-
-        // Assegna i valori delle date agli span nei documenti iframe
-   
-        // Inizializza un oggetto per tenere traccia del contenuto HTML per ciascun frame
-        const htmlContentFrames = {};
-
-        // Itera attraverso gli elementi del JSON
-        for (const [key, value] of Object.entries(prodottiJSON)) {
-            const imageData = await convertToDataURL(value.Immagine);
-            const imageUrl = URL.createObjectURL(imageData);
-
-            // Costruisci l'HTML per l'elemento
-            const elementoHTML = `
+    
+        async getHTML() {
+            const blob = await convertToDataURL(this.imageData);
+            const imageUrl = URL.createObjectURL(blob);
+            return `
                 <div class="templatearticolo">
-                    <div class="np">${value.nomeProdotto}</div>
-                    <div class="imgprodotto"><img src="${imageUrl}" alt="${value.nomeProdotto}"></div>
+                    <div class="np">${this.nomeProdotto}</div>
+                    <div class="imgprodotto"><img src="${imageUrl}" alt="${this.nomeProdotto}"></div>
                     <div class="info">
-                        <div class="descrizione">${value.Descrizione}</div>
+                        <div class="descrizione">${this.descrizione}</div>
                         <div class="contenitoreprezzo">
-                            <div class="prezzoa">${value.Euro}</div>
-                            <div class="prezzob">${value.Centesimi}</div>
+                            <div class="prezzoa">${this.euro}</div>
+                            <div class="prezzob">${this.centesimi}</div>
                         </div>
                     </div>
                 </div>`;
-
-            let iframeClass = '';
+        }
+    }
+    
+   
+    try {
+       
+      
+        const prodottiJSON = jsonData;
+        
+        let htmlContentFrames = {};
             
-            switch (value.Pagina) {
-                case 'primaA4':
-                    iframeClass = '.pagina_1_a4 iframe';
-                    spanValiditaDa_A4_pagina1.textContent = convertDateFormat(inputDataInizioA4.value);
-                    spanValiditaA_A4_pagina1.textContent = convertDateFormat(inputDataFineA4.value);
-                    break;
-                case 'secondaA4':
-                    iframeClass = '.pagina_2_a4 iframe';
-                    spanValiditaDa_A4_pagina2.textContent = convertDateFormat(inputDataInizioA4.value);
-                    spanValiditaA_A4_pagina2.textContent = convertDateFormat(inputDataFineA4.value);
-                    break;
-                case 'pagina1_web':
-                    iframeClass = '.pagina_1_web iframe';
+        let elementsInserted = {};
+    
+        // Itera elementi del JSON
+    for (const [key, value] of Object.entries(prodottiJSON)) {
+            
+        const elemento = new ElementoHTML(value);
+            const elementoHTML = await elemento.getHTML();
+    
+            // conta il numero di prodotti per questa categoria
+            const count = Object.values(prodottiJSON).filter(prodotto => prodotto.Pagina === value.Pagina).length;
+    
+            // rendi visibile l'iframe solo se ci sono prodotti per questo reparto
+            let iframe = `.pagina_${value.Pagina}`;
+            let iframeClass = `${iframe} iframe`;
 
-                    spanValiditaDa_Web.textContent = convertDateFormat(inputDataInizioWeb.value);
-                    spanValiditaA_Web.textContent = convertDateFormat(inputDataFineWeb.value);
-
-                    break;
-                case 'salumeria_web':
-                    iframeClass = '.pagina_salumeria_web iframe';
-                    break;
-                case 'freschi_web':
-                    iframeClass = '.pagina_freschi_web iframe';
-                    break;
-                case 'surgelati_web':
-                    iframeClass = '.pagina_surgelati_web iframe';
-                    break;
-                case 'dispensa_web':
-                    iframeClass = '.pagina_dispensa_web iframe';
-                    break;
-                case 'bevande_web':
-                    iframeClass = '.pagina_bevande_web iframe';
-                    break;
-                case 'igiene_web':
-                    iframeClass = '.pagina_igiene_web iframe';
-                    break;
-                case 'puliziacasa_web':
-                    iframeClass = '.pagina_puliziacasa_web iframe';
-                    break;
-                default:
-                    console.error('Pagina non riconosciuta:', value.Pagina);
-                    continue; // Passa al prossimo elemento
+            let maxElementsPerPage = parseInt(document.querySelector(iframeClass).getAttribute('data-max-elements'));
+    
+            console.log("Numero massimo elemento",maxElementsPerPage);
+    
+            if (count > 0) {
+                document.querySelector(iframeClass).classList.remove('none');
+                document.querySelector(iframeClass).classList.add('block');
+            } else {
+                console.error(`Frame non trovato con la classe ${iframeClass}`);
+                continue;
             }
-            
-            // Aggiungi l'elemento HTML al contenuto del frame corrispondente
+    
             if (!htmlContentFrames[iframeClass]) {
                 htmlContentFrames[iframeClass] = '';
             }
-            htmlContentFrames[iframeClass] += elementoHTML;
-        }
 
-        // Inserisci il contenuto HTML nei rispettivi frame
-        for (const iframeClass in htmlContentFrames) {
+         console.log("Elementi template primo frame:", document.querySelectorAll(`${iframeClass} .templatearticolo`).length < maxElementsPerPage ); 
+
+         //risolvere errore : ASSEGNA TUTTO AL PRIMO IFRAME
+    
+            // Se il numero di elementi inseriti nel primo iframe è inferiore al numero massimo consentito, inserisci l'elemento nel primo iframe
+            if (document.querySelectorAll(`${iframeClass} .templatearticolo`).length < maxElementsPerPage) {
+               
+                htmlContentFrames[iframeClass] += elementoHTML;
+
+
+            } else if (document.querySelectorAll(`${iframeClass}:nth-of-type(2) .templatearticolo`).length < maxElementsPerPage) {
+                htmlContentFrames[`${iframeClass}:nth-of-type(2)`] += elementoHTML;
+            } else {
+            
+            let i = 3;
+
+            if (!document.querySelector(`${iframeClass}:nth-of-type(${i})`) 
+                || document.querySelectorAll(`${iframeClass}:nth-of-type(${i}) .templatearticolo`).length < maxElementsPerPage) {
+
+                const secondFrame = document.querySelector(`${iframeClass}:nth-of-type(2)`);
+
+                let clonedIframe = secondFrame.cloneNode(true);
+                maxElementsPerPage = parseInt(clonedIframe.getAttribute('data-max-elements'));
+                //correggere controllare elemento creato e assegnare il suo maxElementsPerPage
+                    // per poi controllare se i è pieno 
+
+                document.querySelector(iframe).appendChild(clonedIframe);
+
+
+                clonedIframe.classList.remove('none');
+                clonedIframe.classList.add('block');
+                    
+                    
+                htmlContentFrames[`${iframeClass}:nth-of-type(${i})`] = '';
+                   
+                           
+                console.log("Numero massimo frame clonato:",maxElementsPerPage);
+                          
+                    const clonedIframeClass = `${iframeClass}:nth-of-type(${i})`;
+                           
+                    if (!htmlContentFrames[clonedIframeClass]) {
+                                htmlContentFrames[clonedIframeClass] = '';
+                            }
+                            
+                            htmlContentFrames[clonedIframeClass] += elementoHTML;
+
+                                clonedIframe.classList.remove('none');
+                                clonedIframe.classList.add('block');
+  
+                                i++;   
+                    }
+
+            }
+        
+    }
+          
+
+        // contenuto HTML nei rispettivi frame
+ for (let iframeClass in htmlContentFrames) {
             const iframe = document.querySelector(iframeClass);
             if (iframe) {
+
                 const iframeDocument = iframe.contentWindow.document;
-                const contentContainer = iframeDocument.querySelector('.paginaContainer');
+                const contentContainer = iframeDocument.querySelector('.pagina_container');
                 if (contentContainer) {
                     contentContainer.innerHTML = htmlContentFrames[iframeClass];
+                   
                 } else {
                     console.error(`Contenitore della pagina non trovato nell'iframe con classe ${iframeClass}`);
                 }
@@ -143,6 +154,7 @@ async function generaElementi() {
                 console.error(`Frame non trovato con la classe ${iframeClass}`);
             }
         }
+
     } catch (error) {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
@@ -151,31 +163,35 @@ async function generaElementi() {
 
 
 
-// const optionss = {
-//     filename: 'Test.pdf',
-//     margin: 1,
-//     image: { type: 'jpeg', quality: 0.98 },
 
-//     html2canvas:  { 
-//         dpi: 300,
-//         scale: 2, // Aumenta il valore di scale per una maggiore risoluzione
-//         useCORS: true, // Abilita l'uso di CORS per il caricamento delle immagini esterne 
-//         letterRendering: true,
-//      },
 
-//     jsPDF: { unit: '', format: 'letter', orientation: 'portrait' },
-//     pagebreak:    { mode: ['avoid-all', 'css'] },
-//     enableLinks: true,
 
-//     background: true,
-//     autoPaging: true // Imposta autoPaging su false per evitare la suddivisione del contenuto su più pagine
-// };
+
+const optionss = {
+    filename: 'Test.pdf',
+    margin: 1,
+    image: { type: 'jpeg', quality: 0.98 },
+
+    html2canvas:  { 
+        dpi: 300,
+        scale: 2, // Aumenta il valore di scale per una maggiore risoluzione
+        useCORS: true, // Abilita l'uso di CORS per il caricamento delle immagini esterne 
+        letterRendering: true,
+     },
+
+    jsPDF: { unit: '', format: 'letter', orientation: 'portrait' },
+    pagebreak:    { mode: ['avoid-all', 'css'] },
+    enableLinks: true,
+
+    background: true,
+    autoPaging: true // Imposta autoPaging su false per evitare la suddivisione del contenuto su più pagine
+};
 
 
 
 const anteprimaPdf = document.querySelectorAll(".anteprima");
 anteprimaPdf.forEach(btnAnteprima => {
-    btnAnteprima.addEventListener("click", () => { generaElementi() });
+    btnAnteprima.addEventListener("click", () => { generaElementi(btnAnteprima) });
 })
 
 

@@ -178,8 +178,12 @@ h1, h2 {
 
 
 /* Nascondi il contenitore delle categorie all'inizio */
-.tendina {
+.none {
     display: none;
+}
+
+.block {
+    display: block;
 }
 
 

@@ -37,7 +37,6 @@
         </div>
 
 
-
         <div class="form-step sec0" data-type="start" style="display: block;">
             <div class="input-group">
                 <h1 class="text-center">Scelta Tipo Volantino</h1>
@@ -85,6 +84,12 @@
     <input type="date" class="data-input" id="fine-a4" name="data-fine1" required>
 
 </div>
+
+<div class="cont_description">
+    <label for="descrizione1">Descrizione footer volantino A4:</label>
+    <input type="text" class="descrizione" id="descrizione1" name="descrizione1" required>
+</div>
+
 
         <div class="input-rows">
 
@@ -212,7 +217,7 @@
 
 
 <!-- Sezione Volantino Web -->
-<div class="form-step sec3" data-type="volantinoWeb" data-pagina="primaWeb" style="display: none;">
+<div class="form-step sec3" data-type="volantinoWeb" data-pagina="prima" style="display: none;">
 
     <div class="title-center">
         <h2>Prima pagina</h2>
@@ -233,6 +238,11 @@
     <label for="data-fine2">Data fine validità:</label>
     <input type="date" class="data-input" id="fine-web" name="data-fine2" required>
 
+</div>
+
+<div class="cont_description">
+    <label for="descrizione2">Descrizione footer volantino Web:</label>
+    <input type="text" class="descriscione" id="descrizione2" name="descrizione2" required>
 </div>
 
         <div class="input-rows">
@@ -289,7 +299,7 @@
 
 </div>
 
-<div class="form-step sec4" data-type="volantinoWeb" data-pagina="salumeriaWeb" style="display: none;">
+<div class="form-step sec4" data-type="volantinoWeb" data-pagina="salumeria" style="display: none;">
     <div class="title-center">
         <h2>Salumeria</h2>
     </div>
@@ -350,7 +360,7 @@
 
 
 
-<div class="form-step sec5" data-type="volantinoWeb" data-pagina="freschiWeb"  style="display: none;">
+<div class="form-step sec5" data-type="volantinoWeb" data-pagina="freschi"  style="display: none;">
     <div class="title-center">
         <h2>Freschi</h2>
     </div>
@@ -412,7 +422,7 @@
 
 
 
-<div class="form-step sec6" data-type="volantinoWeb" data-pagina="surgelatiWeb" style="display: none;">
+<div class="form-step sec6" data-type="volantinoWeb" data-pagina="surgelati" style="display: none;">
     <div class="title-center">
         <h2>Surgelati</h2>
     </div>
@@ -474,7 +484,7 @@
 
 
 
-<div class="form-step sec7" data-type="volantinoWeb" data-pagina="dispensaWeb" style="display: none;">
+<div class="form-step sec7" data-type="volantinoWeb" data-pagina="dispensa" style="display: none;">
     <div class="title-center">
         <h2>Dispensa</h2>
     </div>
@@ -537,7 +547,7 @@
 
 
 
-<div class="form-step sec8" data-type="volantinoWeb" data-pagina="bevandeWeb" style="display: none;">
+<div class="form-step sec8" data-type="volantinoWeb" data-pagina="bevande" style="display: none;">
     <div class="title-center">
         <h2>Bevande</h2>
     </div>
@@ -598,7 +608,7 @@
 </div>
 
 
-<div class="form-step sec9" data-type="volantinoWeb" data-pagina="igieneWeb" style="display: none;">
+<div class="form-step sec9" data-type="volantinoWeb" data-pagina="igiene" style="display: none;">
     <div class="title-center">
         <h2>Igiene</h2>
     </div>
@@ -660,7 +670,7 @@
 
 
 
-<div class="form-step sec10" data-type="volantinoWeb" data-pagina="puliziacasaWeb" style="display: none;">
+<div class="form-step sec10" data-type="volantinoWeb" data-pagina="puliziacasa" style="display: none;">
     <div class="title-center">
         <h2>Pulizia casa</h2>
     </div>
@@ -736,18 +746,16 @@
 
     <div class="pdf-content1">
         
-        <div class="pagina_1_a4">
-            <iframe src="frame-pdf/A4/1.html" frameborder="0"></iframe>
+        <div class="pagina_primaA4">
+            <iframe class="none" src="frame-pdf/A4/prima_pagina.html" data-max-elements="6" frameborder="0"></iframe>
         </div>
     
-        <div class="pagina_2_a4">
-            <iframe src="frame-pdf/A4/2.html" frameborder="0"></iframe>
+        <div class="pagina_secondaA4">
+            <iframe class="none"  src="frame-pdf/A4/seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
         </div>
 
     </div>
 
-
-    
 
     <div class="btns-group">        
         <button type="button" class="btn btn-pre">Indietro</button>
@@ -762,37 +770,44 @@
 
     <div class="pdf-content2">
 
-        <div class="pagina_1_web">
-            <iframe src="frame-pdf/Web/digitale_1.html" frameborder="0"></iframe>
-        </div>
-    
-        <div class="pagina_salumeria_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+ <div class="pagina_prima">
+    <iframe class="none" src="frame-pdf/Web/prima_pagina_web.html" data-max-elements="6" frameborder="0"></iframe>
+</div>
 
-        <div class="pagina_freschi_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+<div class="pagina_salumeria">
+    <iframe class="none" src="frame-pdf/Web/salumeria_prima_pagina.html" data-max-elements="1" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/salumeria_seconda_pagina.html" data-max-elements="2" frameborder="0"></iframe>
+</div>
 
-        <div class="pagina_surgelati_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+<div class="pagina_freschi">
+    <iframe class="none" src="frame-pdf/Web/freschi_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/freschi_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+</div>
 
-        <div class="pagina_dispensa_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+<div class="pagina_surgelati">
+    <iframe class="none" src="frame-pdf/Web/surgelati_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/surgelati_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+</div>
 
-        <div class="pagina_bevande_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+<div class="pagina_dispensa">
+    <iframe class="none" src="frame-pdf/Web/dispensa_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/dispensa_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+</div>
 
-        <div class="pagina_igiene_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+<div class="pagina_bevande">
+    <iframe class="none" src="frame-pdf/Web/bevande_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/bevande_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+</div>
 
-        <div class="pagina_puliziacasa_web">
-            <iframe src="frame-pdf/Web/digitale 2.html" frameborder="0"></iframe>
-        </div>
+<div class="pagina_igiene">
+    <iframe class="none" src="frame-pdf/Web/igiene_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/igiene_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+</div>
+
+<div class="pagina_puliziacasa">
+    <iframe class="none" src="frame-pdf/Web/puliziacasa_prima_pagina.html"  data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/puliziacasa_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+</div>
 
 
     </div>
