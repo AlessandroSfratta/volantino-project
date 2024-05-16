@@ -11,10 +11,10 @@ async function convertToDataURL(url) {
 let content;
 
 
+
 async function generaElementi() {
 
     class ElementoHTML {
-
         constructor(prodotto) {
             this.imageData = prodotto.Immagine;
             this.nomeProdotto = prodotto.nomeProdotto;
@@ -41,124 +41,129 @@ async function generaElementi() {
         }
     }
     
-   
     try {
-       
-      
         const prodottiJSON = jsonData;
-        
         let htmlContentFrames = {};
-            
+        
         let elementsInserted = {};
     
-        // Itera elementi del JSON
-    for (const [key, value] of Object.entries(prodottiJSON)) {
-            
-        const elemento = new ElementoHTML(value);
+        // Itera attraverso gli elementi del JSON
+        for (const [key, value] of Object.entries(prodottiJSON)) {
+        
+            const elemento = new ElementoHTML(value);
             const elementoHTML = await elemento.getHTML();
     
-            // conta il numero di prodotti per questa categoria
-            const count = Object.values(prodottiJSON).filter(prodotto => prodotto.Pagina === value.Pagina).length;
-    
-            // rendi visibile l'iframe solo se ci sono prodotti per questo reparto
+            // Rendi visibile l'iframe solo se ci sono prodotti per questo reparto
             let iframe = `.pagina_${value.Pagina}`;
             let iframeClass = `${iframe} iframe`;
+    
+            // Conta il numero di prodotti per questa categoria
+            const count = Object.values(prodottiJSON).filter(prodotto => prodotto.Pagina === value.Pagina).length;
+    
+    
+for (let i = 1; i <= count; i++) {
 
-            let maxElementsPerPage = parseInt(document.querySelector(iframeClass).getAttribute('data-max-elements'));
-    
-            console.log("Numero massimo elemento",maxElementsPerPage);
-    
-            if (count > 0) {
-                document.querySelector(iframeClass).classList.remove('none');
-                document.querySelector(iframeClass).classList.add('block');
-            } else {
-                console.error(`Frame non trovato con la classe ${iframeClass}`);
-                continue;
+            let currentIframeClass = `${iframeClass}:nth-of-type(${i})`;
+
+                if (!elementsInserted[currentIframeClass]) {
+                    elementsInserted[currentIframeClass] = 0;
+                }
+
+            if (!htmlContentFrames[currentIframeClass]) {
+                htmlContentFrames[currentIframeClass] = '';
             }
-    
-            if (!htmlContentFrames[iframeClass]) {
-                htmlContentFrames[iframeClass] = '';
-            }
+             
+            let currentIframe = document.querySelector(currentIframeClass);
 
-         console.log("Elementi template primo frame:", document.querySelectorAll(`${iframeClass} .templatearticolo`).length < maxElementsPerPage ); 
+        let maxElementsPerPage = currentIframe ? parseInt(currentIframe.getAttribute('data-max-elements')) : 0;
 
-         //risolvere errore : ASSEGNA TUTTO AL PRIMO IFRAME
-    
-            // Se il numero di elementi inseriti nel primo iframe è inferiore al numero massimo consentito, inserisci l'elemento nel primo iframe
-            if (document.querySelectorAll(`${iframeClass} .templatearticolo`).length < maxElementsPerPage) {
-               
-                htmlContentFrames[iframeClass] += elementoHTML;
+                if (currentIframe) {
 
+                    console.log("Numero massimo elemento per", currentIframeClass, ":", maxElementsPerPage);
+                
+                    // Controlla se l'iframe corrente ha ancora spazio
 
-            } else if (document.querySelectorAll(`${iframeClass}:nth-of-type(2) .templatearticolo`).length < maxElementsPerPage) {
-                htmlContentFrames[`${iframeClass}:nth-of-type(2)`] += elementoHTML;
-            } else {
-            
-            let i = 3;
+                    currentIframe.classList.remove("none")
+                    currentIframe.classList.add("block")
 
-            if (!document.querySelector(`${iframeClass}:nth-of-type(${i})`) 
-                || document.querySelectorAll(`${iframeClass}:nth-of-type(${i}) .templatearticolo`).length < maxElementsPerPage) {
-
-                const secondFrame = document.querySelector(`${iframeClass}:nth-of-type(2)`);
-
-                let clonedIframe = secondFrame.cloneNode(true);
-                maxElementsPerPage = parseInt(clonedIframe.getAttribute('data-max-elements'));
-                //correggere controllare elemento creato e assegnare il suo maxElementsPerPage
-                    // per poi controllare se i è pieno 
-
-                document.querySelector(iframe).appendChild(clonedIframe);
-
-
-                clonedIframe.classList.remove('none');
-                clonedIframe.classList.add('block');
-                    
-                    
-                htmlContentFrames[`${iframeClass}:nth-of-type(${i})`] = '';
-                   
-                           
-                console.log("Numero massimo frame clonato:",maxElementsPerPage);
-                          
-                    const clonedIframeClass = `${iframeClass}:nth-of-type(${i})`;
-                           
-                    if (!htmlContentFrames[clonedIframeClass]) {
-                                htmlContentFrames[clonedIframeClass] = '';
-                            }
-                            
-                            htmlContentFrames[clonedIframeClass] += elementoHTML;
-
-                                clonedIframe.classList.remove('none');
-                                clonedIframe.classList.add('block');
-  
-                                i++;   
+                    if (elementsInserted[currentIframeClass] < maxElementsPerPage) {
+                    htmlContentFrames[currentIframeClass] += elementoHTML;
+                        elementsInserted[currentIframeClass]++;
+                        console.log(`Inserito elemento in ${currentIframeClass}, totale elementi: ${elementsInserted[currentIframeClass]}`);
                     }
 
-            }
-        
-    }
-          
+                    console.log(`Spazio rimanente per ${currentIframeClass}: ${elementsInserted[currentIframeClass]} / ${maxElementsPerPage}`);
 
-        // contenuto HTML nei rispettivi frame
- for (let iframeClass in htmlContentFrames) {
-            const iframe = document.querySelector(iframeClass);
-            if (iframe) {
-
-                const iframeDocument = iframe.contentWindow.document;
-                const contentContainer = iframeDocument.querySelector('.pagina_container');
-                if (contentContainer) {
-                    contentContainer.innerHTML = htmlContentFrames[iframeClass];
-                   
                 } else {
-                    console.error(`Contenitore della pagina non trovato nell'iframe con classe ${iframeClass}`);
+
+                    
+                const lastFrame = document.querySelector(`${iframeClass}:nth-of-type(${i - 1})`);
+                   
+                    let clonedIframe = lastFrame.cloneNode(true);
+    
+
+                    // Inserisci il clone come ultimo figlio del container iframe
+                    lastFrame.parentNode.appendChild(clonedIframe);
+
+                clonedIframe.addEventListener("load", function () {
+
+                const clonedDocument = clonedIframe.contentDocument || clonedIframe.contentWindow.document;
+
+                    const containerDocumentIframeCloned = clonedDocument.querySelector('.pagina_container');
+    
+                    console.log(`Ecco il container clonato: ${clonedDocument}`);
+                    
+                    maxElementsPerPage = parseInt(clonedIframe.getAttribute('data-max-elements'));
+
+                    containerDocumentIframeCloned.innerHTML = " "; 
+    
+        
+                        htmlContentFrames[currentIframeClass] = elementoHTML;
+                        elementsInserted[currentIframeClass] = 1; // Inizializza elementsInserted per il nuovo iframe
+        
+                        clonedIframe.classList.remove('none');
+                        clonedIframe.classList.add('block');
+    
+                        console.log("Creato nuovo iframe con maxElementsPerPage:", maxElementsPerPage);
+                     console.log(`Inserito elemento in ${currentIframeClass}, totale elementi: ${elementsInserted[currentIframeClass]}`);
+
+
+                })
+
+              
                 }
-            } else {
-                console.error(`Frame non trovato con la classe ${iframeClass}`);
             }
         }
 
+    
+        for (let currentIframeClass in htmlContentFrames) {
+            const iframe = document.querySelector(currentIframeClass);
+            if (iframe) {
+                const iframeDocument = iframe.contentWindow.document;
+                const contentContainer = iframeDocument.querySelector('.pagina_container');
+    
+                if (contentContainer) {
+                    contentContainer.innerHTML = htmlContentFrames[currentIframeClass];
+                } else {
+                    console.error(`Contenitore della pagina non trovato nell'iframe con classe ${currentIframeClass}`);
+                }
+            } else {
+                console.error(`Frame non trovato con la classe ${currentIframeClass}`);
+            }
+        }
     } catch (error) {
         console.error('Errore nel caricamento dei dati JSON:', error);
     }
+    
+    
+    
 }
+
+
+
+
+
+
 
 
 
