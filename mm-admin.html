@@ -78,10 +78,10 @@
 <div class="cont-validity">
 
     <label for="data-inizio1">Data inizio validità:</label>
-    <input type="date" class="data-input" id="inizio-a4" name="data-inizio1" required>
+    <input type="date" class="inputValidityStart data-input" id="inizio-a4" name="data-inizio1" required>
 
     <label for="data-fine1">Data fine validità:</label>
-    <input type="date" class="data-input" id="fine-a4" name="data-fine1" required>
+    <input type="date" class="inputValidityEnd" id="fine-a4" name="data-fine1" required>
 
 </div>
 
@@ -233,10 +233,10 @@
 <div class="cont-validity">
 
     <label for="data-inizio2">Data inizio validità:</label>
-    <input type="date" class="data-input" id="inizio-web" name="data-inizio2" required>
+    <input type="date" class="inputValidityStart data-input" id="inizio-web" name="data-inizio2" required>
 
     <label for="data-fine2">Data fine validità:</label>
-    <input type="date" class="data-input" id="fine-web" name="data-fine2" required>
+    <input type="date" class="inputValidityEnd data-input" id="fine-web" name="data-fine2" required>
 
 </div>
 
@@ -742,9 +742,11 @@
 
 <!-- Sezione Anteprima A4 -->
 <div class="form-step sec11" data-type="volantinoA4" style="display: none;">
-    <h2>Anteprima Volantino A4</h2>
+
 
     <div class="pdf-content1">
+
+    <h2>Anteprima Volantino A4</h2>
         
         <div class="pagina_primaA4">
             <iframe class="none" src="frame-pdf/A4/prima_pagina.html" data-max-elements="6" frameborder="0"></iframe>
@@ -766,17 +768,18 @@
 
 <!-- Sezione Anteprima Volantino Web -->
 <div class="form-step sec12" data-type="volantinoWeb" style="display: none;">
-    <h2>Anteprima Volantino Web</h2>
 
     <div class="pdf-content2">
+    
+        <h2>Anteprima Volantino Web</h2>
 
  <div class="pagina_prima">
     <iframe class="none" src="frame-pdf/Web/prima_pagina_web.html" data-max-elements="6" frameborder="0"></iframe>
 </div>
 
 <div class="pagina_salumeria">
-    <iframe class="none" src="frame-pdf/Web/salumeria_prima_pagina.html" data-max-elements="1" frameborder="0"></iframe>
-    <iframe class="none" src="frame-pdf/Web/salumeria_seconda_pagina.html" data-max-elements="2" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/salumeria_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+    <iframe class="none" src="frame-pdf/Web/salumeria_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
 </div>
 
 <div class="pagina_freschi">

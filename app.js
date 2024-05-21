@@ -6,25 +6,28 @@
 
     export let jsonData = {};
 
-    let scelta;
+   
+    let scelta = null;
 
+export function getScelta() { return scelta; }
 
+export function setScelta(nuovaScelta) { scelta = nuovaScelta;}
 
-    btnVolantinoA4.addEventListener("click", () => {
-        scelta = "a4";
-        aggiungiDataTypeToArray(btnVolantinoA4.dataset.type); 
-        btnVolantinoA4.classList.add("active");
-        btnVolantinoWeb.classList.remove("active");
-    });
+btnVolantinoA4.addEventListener("click", () => {
+    setScelta("a4");
+    aggiungiDataTypeToArray(btnVolantinoA4.dataset.type);
+    btnVolantinoA4.classList.add("active");
+    btnVolantinoWeb.classList.remove("active");
+    console.log("Ecco la scelta", getScelta());
+});
 
-    btnVolantinoWeb.addEventListener("click", () => {
-        scelta = "volantino_digitale";
-        console.log("Ecco la scelta",scelta);
-        aggiungiDataTypeToArray(btnVolantinoWeb.dataset.type);
-        btnVolantinoWeb.classList.add("active");
-        btnVolantinoA4.classList.remove("active");
-    });
-    
+btnVolantinoWeb.addEventListener("click", () => {
+    setScelta("volantino_digitale");
+    aggiungiDataTypeToArray(btnVolantinoWeb.dataset.type);
+    btnVolantinoWeb.classList.add("active");
+    btnVolantinoA4.classList.remove("active");
+    console.log("Ecco la scelta", getScelta());
+});
     
  
     const btnNext = document.querySelectorAll(".btn-next");
