@@ -46,7 +46,7 @@ async function generaElementi() {
         let htmlContentFrames = {};
         let elementsInserted = {};
 
-        const InputDescrizione = document.querySelectorAll(".descrizione");
+        const InputDescrizione = document.querySelectorAll(".descrizione_start");
         
         const InputValidityStart = document.querySelectorAll(".inputValidityStart"); 
         const InputValidityEnd = document.querySelectorAll(".inputValidityEnd");
@@ -89,10 +89,26 @@ async function generaElementi() {
 
                     const CurrentDocument = currentIframe.contentDocument || currentIframe.contentWindow.document;
 
-                    const CurrentValidityStart = CurrentDocument.querySelector('.validità-da')
-                    const CurrentValidityEnd = CurrentDocument.querySelector('.validità-a')
+                    const CurrentValidityStart = CurrentDocument.querySelector('.validità-da');
+                    const CurrentValidityEnd = CurrentDocument.querySelector('.validità-a');
 
-                    if(CurrentValidityStart && CurrentValidityEnd) {
+                    const currentDescription = CurrentDocument.querySelector('.descrizione_Volantino');
+
+
+                    if(currentDescription) {
+                        console.log("Current description esiste");
+                        InputDescrizione.forEach( (input) => {
+
+                            if(input.value) {
+                                currentDescription.textContent = input.value
+                                console.log("description=", input.value);
+                            }
+             
+                        })
+                        console.log("fine ciclo description");
+                    }
+                    
+      if(CurrentValidityStart && CurrentValidityEnd) {
 
                         const ChangeFormateDate = function(date) {
                           
@@ -101,6 +117,8 @@ async function generaElementi() {
                             }
                             return null;
                         };
+
+
                      const iterOnStart = function () {
                         for (let input of InputValidityStart) {
                     if(input.value) { return  ChangeFormateDate(input.valueAsDate) } }
@@ -129,6 +147,7 @@ async function generaElementi() {
                         
                         console.log(`Inserito elemento in ${currentIframeClass}, totale elementi: ${elementsInserted[currentIframeClass]}`);
                         inserted = true;
+                        
                     } else {
                         i++;
                     }
@@ -267,22 +286,54 @@ const options = {
 };
 
 
-
 document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", convertiInPDF); });
 
 
-
 function convertiInPDF() {
+    // Seleziona tutti gli iframe con la classe 'block' nel documento
+    const iframes = document.querySelectorAll('iframe.block');
+    let combinedContent = document.createElement('div');
 
-    // funzione da aggiustare per diversi pdf prendere info da scelta 
+    // Itera attraverso ogni iframe e aggiungi il suo contenuto al combinedContent
+    iframes.forEach(iframe => {
+        try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const iframeBody = iframeDoc.body;
 
-    console.log("Valore iniziale di scelta:", getScelta());
+            // Aggiungi il contenuto dell'iframe al contenitore combinato
+            combinedContent.appendChild(iframeBody.cloneNode(true));
+        } catch (error) {
+            console.error('Errore nell\'accesso al contenuto dell\'iframe:', error);
+        }
+    });
 
-    
-    html2pdf().from(content).set(options).save();
+    // Opzioni per html2pdf
+    const options = {
+        filename: 'my-document.pdf',
+        margin: 1,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { 
+            dpi: 192,
+            scale: 2,
+            useCORS: true,  
+            letterRendering: true,
+        },
+        jsPDF: { 
+            unit: 'in', 
+            format: 'a4', 
+            orientation: 'portrait',
+            height: 1000
+        },
+        enableLinks: true,
+        background: true,
+        autoPaging: false 
+    };
 
-    html2pdf().from(content).set(options).outputPdf('blob').then(pdfBlob => {
-        
+    // Genera e salva il PDF utilizzando html2pdf
+    html2pdf().from(combinedContent).set(options).save();
+
+    // Genera il PDF come blob e invia al server
+    html2pdf().from(combinedContent).set(options).outputPdf('blob').then(pdfBlob => {
         const formData = new FormData();
         formData.append('pdf_content', pdfBlob, 'my-document.pdf');
 
@@ -301,8 +352,9 @@ function convertiInPDF() {
         })
         .catch(error => {
             console.error('Errore durante il salvataggio del PDF:', error);
-
         });
     });
-    
 }
+
+
+

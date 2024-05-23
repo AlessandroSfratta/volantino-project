@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function getLimiteMassimo(tipoVolantino) {
         switch (tipoVolantino) {
             case "primaA4":
+            case "prima":
                 return 6;
             case "secondaA4":
                 return 9;
