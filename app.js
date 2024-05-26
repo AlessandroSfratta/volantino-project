@@ -9,7 +9,7 @@
    
     let scelta = null;
 
-export function getScelta() { return scelta; }
+export function getScelta() {  return scelta;  }
 
 export function setScelta(nuovaScelta) { scelta = nuovaScelta;}
 
@@ -395,7 +395,7 @@ addEventListenerMouseLeave();
 
 function prelevaProdotto(searchText, dataType, input) {
 
-    const filePath = 'archivioUTF8.csv';
+    const filePath = 'archivio generale.csv';
 
     Papa.parse(filePath, {
         download: true,
@@ -637,6 +637,63 @@ function removeFromJson(container) {
 
 }
 
+
+
+export function alertFunction(message, type) {
+
+    const alertDiv = document.createElement('div');
+
+    alertDiv.classList.add('alertDiv');
+    
+    // Aggiunta delle classi in base al tipo di avviso
+    switch (type) {
+        case 'success':
+            alertDiv.classList.add('alert-success');
+            break;
+        case 'error':
+            alertDiv.classList.add('alert-danger');
+            break;
+        default:
+            alertDiv.classList.add('alert-primary');
+    }
+
+
+    // Creazione del pulsante di chiusura
+    const closeButton = document.createElement('button');
+
+    closeButton.type = 'button';
+
+    closeButton.classList.add('closeAlertBtn');
+    closeButton.innerHTML = 'Chiudi'; 
+
+    closeButton.addEventListener('click', function() {
+
+        document.body.removeChild(alertDiv);
+    });
+
+    // Creazione del contenuto del messaggio di avviso
+    const messageElement = document.createElement('span');
+    messageElement.classList.add('AlertSpan');
+    messageElement.textContent = message;
+
+        alertDiv.appendChild(messageElement);
+
+        alertDiv.appendChild(closeButton);
+  
+        document.body.appendChild(alertDiv);
+
+
+    setTimeout(function() {
+        document.body.removeChild(alertDiv);
+    }, 7000);
+    
+}
+
+// Esempio di utilizzo
+
+// alertFunction('Questo è un messaggio di conferma!', 'confirm');
+// alertFunction('Si è verificato un errore durante l\'operazione.', 'error');
+// alertFunction('Questo è un messaggio di default.');
 
 
 

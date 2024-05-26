@@ -5,6 +5,8 @@ body {
     font-family: 'Gotham Rounded Bold', sans-serif;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    border: 0;
 }
 
 
@@ -131,7 +133,7 @@ body {
 .templatearticolo {
     position: relative;
     height: 85mm;
-    width: 64mm;
+    width: 62mm;
     margin: 2mm;
     background-color: white;
 }
@@ -201,7 +203,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     width: 210mm;
-    margin-top: 9mm;
+    margin-top: 10mm;
 }
 
 .pagina_container > * { 
@@ -220,8 +222,8 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    gap: 7px;
-    bottom: 7px;
+    /* gap: 3px; */
+    bottom: 8mm;
     right: 0;
     position: absolute;
     color: white;

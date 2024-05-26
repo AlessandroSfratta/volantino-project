@@ -1,5 +1,5 @@
 
-import { jsonData, getScelta } from './app.js';
+import { jsonData, getScelta, alertFunction } from './app.js';
 
 
 async function convertToDataURL(url) {
@@ -8,7 +8,9 @@ async function convertToDataURL(url) {
     return blob;
 }
 
-let content;
+
+
+
 
 
 
@@ -262,99 +264,212 @@ const optionss = {
 
 const options = {
     filename: 'my-document.pdf',
-    margin: 1,
-    image: { type: 'jpeg', quality: 0.98 },
+    margin: 0,
+    border: 0,
+    image: { type: 'jpeg', quality: 1 },
     html2canvas:  { 
-        dpi: 192,
+        dpi: 1200,
         scale: 2,
         useCORS: true,  
         letterRendering: true,
      },
 
-     jsPDF: { 
-        unit: 'in', 
-        format: 'a4', 
-        orientation: 'portrait',
-        height: 1000
-    }, 
-
-    // pagebreak: { mode: ['css', 'legacy'] },
+     jsPDF: {
+        unit: 'mm', 
+        format: [216, 303], // Larghezza e altezza personalizzate
+        orientation: 'portrait'
+    },
+     // Genera una nuova pagina per ogni iframe
+    avoidPageSplit: true, // Impedisce a un iframe di essere suddiviso su più pagine
+    pagebreak: { mode: 'always' },
     enableLinks: true,
-    background: true,
-    autoPaging: false 
+    background: false,
+    autoPaging: true
 
 };
+
 
 
 document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", convertiInPDF); });
 
 
+
 function convertiInPDF() {
-    // Seleziona tutti gli iframe con la classe 'block' nel documento
-    const iframes = document.querySelectorAll('iframe.block');
-    let combinedContent = document.createElement('div');
 
-    // Itera attraverso ogni iframe e aggiungi il suo contenuto al combinedContent
-    iframes.forEach(iframe => {
-        try {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const iframeBody = iframeDoc.body;
+        // Seleziona tutti gli iframe con la classe 'block' nel documento
+        const iframes = document.querySelectorAll('iframe.block');
+    
+        // Crea un contenitore per tutti i frame combinati
+        const combinedContent = document.createElement('div');
 
-            // Aggiungi il contenuto dell'iframe al contenitore combinato
-            combinedContent.appendChild(iframeBody.cloneNode(true));
-        } catch (error) {
-            console.error('Errore nell\'accesso al contenuto dell\'iframe:', error);
-        }
-    });
 
-    // Opzioni per html2pdf
-    const options = {
-        filename: 'my-document.pdf',
-        margin: 1,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
-            dpi: 192,
-            scale: 2,
-            useCORS: true,  
-            letterRendering: true,
-        },
-        jsPDF: { 
-            unit: 'in', 
-            format: 'a4', 
-            orientation: 'portrait',
-            height: 1000
-        },
-        enableLinks: true,
-        background: true,
-        autoPaging: false 
-    };
+        combinedContent.style.display = 'flex';
+        combinedContent.style.flexDirection = 'column';
+        combinedContent.style.flexDirection = 'column';
+       
+        combinedContent.style.alignItems = 'center';
+        combinedContent.style.justifyContent = 'center';
+        combinedContent.style.margin = '0'; // Rimuovi margini
+        combinedContent.style.padding = '0'; // Rimuovi padding
+        combinedContent.style.border = '0'; // Rimuovi padding
+        combinedContent.style.boxSizing = 'border-box'; // Assicura che non ci siano aggiustamenti di dimensioni dovuti al box model
+       
+     
 
-    // Genera e salva il PDF utilizzando html2pdf
-    html2pdf().from(combinedContent).set(options).save();
-
-    // Genera il PDF come blob e invia al server
-    html2pdf().from(combinedContent).set(options).outputPdf('blob').then(pdfBlob => {
-        const formData = new FormData();
-        formData.append('pdf_content', pdfBlob, 'my-document.pdf');
-
-        fetch('save-pdf.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Errore durante il salvataggio del PDF: ' + response.statusText);
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log(data); 
-        })
-        .catch(error => {
-            console.error('Errore durante il salvataggio del PDF:', error);
+        // Array per memorizzare le promesse di clonazione degli iframe
+        const clonePromises = [];
+    
+        // Itera attraverso ogni iframe e avvia il processo di clonazione
+        iframes.forEach(iframe => {
+            const clonePromise = new Promise((resolve, reject) => {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    // Clona il documento dell'iframe
+                    const cloneDoc = iframeDoc.documentElement.cloneNode(true);
+    
+                    // Modifica i link nello stile all'interno dell'iframe clonato
+                    const styleLinks = cloneDoc.querySelectorAll('link[rel="stylesheet"]');
+                    styleLinks.forEach(link => {
+                        link.href = './frame-pdf/stylePdfs.css'; // Cambia il percorso dello stile
+                    });
+    
+                    // Modifica i link alle immagini all'interno dello stile dell'iframe clonato
+                    const backgroundStyles = cloneDoc.querySelectorAll('.sfondo');
+                    backgroundStyles.forEach(style => {
+                        // Otteniamo il percorso attuale dello sfondo
+                        const currentBackground = style.style.backgroundImage;
+                        // Modifichiamo il percorso rimuovendo eventuali occorrenze di ".." e sostituendole con "/frame-pdf/"
+                        const newBackground = currentBackground.replace(/\.\.\//g, './frame-pdf/');
+                        // Assegniamo il nuovo percorso dello sfondo
+                        style.style.backgroundImage = newBackground;
+                    });
+    
+                    // Impostazioni di stile per il cloneDoc
+                    cloneDoc.style.width = "216mm";
+                    cloneDoc.style.height = "303mm";
+                    cloneDoc.style.display = "flex";
+                    cloneDoc.style.justifyContent = "center";
+                    cloneDoc.style.alignItems = "center";
+                    cloneDoc.style.flexDirection = 'column';
+                    cloneDoc.style.border = 0;
+                    cloneDoc.style.margin = 0;
+                    cloneDoc.style.padding = 0;
+                    cloneDoc.style.position = "relative";
+                    cloneDoc.style.boxSizing = 'border-box'; // Assicura che non ci siano aggiustamenti di dimensioni dovuti al box model
+                    cloneDoc.style.pageBreakAfter = "always"; // Forza una nuova pagina dopo questo contenitore
+                    // Aggiungi un piccolo margine di mezzo pixel per evitare sovrapposizione
+                    cloneDoc.style.marginBottom = "0.5px";
+    
+                    // Aggiungi il contenuto dell'iframe al contenitore combinato
+                    combinedContent.appendChild(cloneDoc);
+    
+                    resolve(); // Risolve la promise una volta completato il processo di clonazione
+    
+                } catch (error) {
+                    console.error('Errore nell\'accesso al contenuto dell\'iframe:', error);
+                    reject(error); // Rigetta la promise in caso di errore
+                }
+            });
+    
+            clonePromises.push(clonePromise);
         });
-    });
+
+        let conf_download_pdf = document.getElementById('conf_download').checked;
+
+        document.getElementById('conf_download').addEventListener('change', function() {
+            conf_download_pdf = this.checked;
+            console.log('bottonePremuto:', conf_download_pdf);  // Per verificare il valore di bottonePremuto
+        });
+
+
+
+ // Impostazione iniziale della progress bar
+
+
+
+ Promise.all(clonePromises)
+ .then(() => {
+     const formData = new FormData();
+
+     if (getScelta() === "volantino_digitale") {
+         html2pdf().from(combinedContent).set(options).outputPdf('blob')
+             .then(pdfBlob => {
+                 formData.append('pdf_content', pdfBlob, 'my-document.pdf');
+                 return fetch('save-pdf.php', {
+                     method: 'POST',
+                     body: formData
+                 });
+             })
+             .then(response => {
+                 if (!response.ok) {
+                     throw new Error('Errore durante il salvataggio del PDF: ' + response.statusText);
+                 }
+                 return response.text();
+             })
+             .then(data => {
+                 console.log(data);
+             })
+             .catch(error => {
+                 console.error('Errore durante il salvataggio del PDF:', error);
+                 alertFunction('Errore durante il salvataggio del PDF: ' + error, 'error');
+             });
+
+         if (conf_download_pdf) {
+             progressBar(78);
+             alertFunction("Congratulazioni! Hai caricato il volantino e salvato nella tua pagina personale.", 'success');
+             html2pdf().from(combinedContent).set(options).save();
+             
+             setTimeout(()=> {
+                window.location.href = "https://volantino.biz/volantino-project/mm.html"
+
+             }, 4000)
+
+         } else {
+             progressBar(80);
+             alertFunction("Congratulazioni! Hai caricato il volantino sulla tua pagina personale.", 'success');
+             setTimeout(()=> {
+                window.location.href = "https://volantino.biz/volantino-project/mm.html"
+
+             }, 4000)
+         }
+
+     } else if (getScelta() === "a4") {
+         html2pdf().from(combinedContent).set(options).save();
+         progressBar(90);
+         alertFunction("Congratulazioni! I prodotti sono stati caricati correttamente.", 'success');
+         window.location.reload(true)
+     }
+ })
+ .catch(error => {
+     console.error('Errore durante la clonazione degli iframe:', error);
+     alertFunction('Errore durante la clonazione degli iframe: ' + error, 'error');
+ });
+
 }
+
+
+    function progressBar(progress) {
+         
+        const progressBarCont = document.getElementById('cont_progress_bar');
+
+        progressBarCont.style.display = 'flex';
+        
+        const loadingBar = document.getElementById('loading');
+        loadingBar.style.width = progress + '%';
+    
+
+        const interval = setInterval(() => {
+            progress += 1; 
+            loadingBar.style.width = progress + '%'; 
+    
+            if (progress >= 100) {
+                progressBarCont.style.display = 'none';
+                clearInterval(interval);
+            }
+        }, 130); 
+
+    }
+    
 
 
 
