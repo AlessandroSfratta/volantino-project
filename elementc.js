@@ -1,5 +1,5 @@
 
-import { jsonData, getScelta, alertFunction } from './app.js';
+import { jsonData, getScelta, alertFunction, navigaSezione} from './app.js';
 
 
 async function convertToDataURL(url) {
@@ -9,12 +9,25 @@ async function convertToDataURL(url) {
 }
 
 
+function progressBar(progress) {
+    const progressBarCont = document.getElementById('cont_progress_bar');
+    progressBarCont.style.display = 'flex';
+
+    const loadingBar = document.getElementById('loading');
+
+        loadingBar.style.width = progress + '%';
+
+        if (progress >= 100) {
+            setTimeout(() => {
+                progressBarCont.style.display = 'none';
+            }, 500);
+            
+    };
+}
 
 
 
-
-
-async function generaElementi() {
+async function generaElementi(updateProgress) {
     class ElementoHTML {
         constructor(prodotto) {
             this.imageData = prodotto.Immagine;
@@ -53,6 +66,9 @@ async function generaElementi() {
         const InputValidityStart = document.querySelectorAll(".inputValidityStart"); 
         const InputValidityEnd = document.querySelectorAll(".inputValidityEnd");
        
+        const totalProducts = Object.keys(prodottiJSON).length;
+
+        let loadedProducts = 0;
 
     
         for (const [key, value] of Object.entries(prodottiJSON)) {
@@ -192,6 +208,14 @@ async function generaElementi() {
                     // continue;
                 }
             }
+            
+            loadedProducts++;
+        if(totalProducts >= 1) {
+                let load = (loadedProducts / totalProducts) * 100;
+                progressBar(load);
+               console.log("Ecco il load:", load);
+            }
+
         }
     
 
@@ -212,15 +236,22 @@ async function generaElementi() {
 
                         
                         console.warn(`Contenitore della pagina trovato e aggiunto OK ${currentIframeClass}`);
+
                     } else {
                         console.error(`Contenitore della pagina non trovato nell'iframe con classe ${currentIframeClass}`);
+                        alertFunction(`Contenitore della pagina non trovato nell\'iframe con classe ${currentIframeClass}`, 'error');
                     }
+            
                 // });
             // });
         }
-          
+
+
+
             } catch (error) {
                 console.error('Errore nel caricamento dei dati JSON:', error);
+                alertFunction(`'Errore nel caricamento dei dati JSON:${error}`, 'error');
+
             }
 
             
@@ -228,14 +259,47 @@ async function generaElementi() {
 
 
 
+    // function showPreview(event) {
+    //         // Trova il form-step più vicino al bottone cliccato
+    //         const formStep = event.target.closest('.form-step');
+    //         const tutteLeSezioni = Array.from(document.querySelectorAll('.form-step'));
+    //         const dataType = formStep.dataset.type;
+    //         const sezioniFiltrate = tutteLeSezioni.filter(section => section.dataset.type === dataType);
+
+    //         // Ottieni l'indice della sezione form-step
+    //         const indiceFormStep = tutteLeSezioni.indexOf(formStep);
+
+    //         sezioniPassate[indiceFormStep];
+    //         console.log("Ecco l'indice:", sezioniPassate[indiceFormStep]);
+            
+            
+        
+    //     const ultimaSezione = sezioniFiltrate[sezioniFiltrate.length - 1];
+    //             ultimaSezione.style.display = "block"
+    //             indiceFormStep.style.display = "none"
+
+    //         // Stampa l'indice e il data-type
+    //         console.log("Indice form-step:", indiceFormStep);
+    //         console.log("Data-type:", dataType);
+        
+    //     }
 
 
-const anteprimaPdf = document.querySelectorAll(".anteprima");
-anteprimaPdf.forEach(btnAnteprima => {
-    btnAnteprima.addEventListener("click", () => { generaElementi() });
-})
+    document.querySelectorAll(".anteprima").forEach(btnAnteprima => {
+        btnAnteprima.addEventListener("click", async (event) => {
 
+if (Object.keys(jsonData).length > 0) {
+            progressBar(0);
+                await generaElementi();
+             const btnPreview = true;
 
+                navigaSezione("avanti", btnPreview);
+            } else {
+                alertFunction("Seleziona prima dei prodotti!", "error");
+            }
+    
+        });
+    });
 
 
 
@@ -263,7 +327,7 @@ const optionss = {
 
 
 const options = {
-    filename: 'my-document.pdf',
+    filename: 'PDF_Volantino.pdf',
     margin: 0,
     border: 0,
     image: { type: 'jpeg', quality: 1 },
@@ -316,8 +380,9 @@ function convertiInPDF() {
        
      
 
-        // Array per memorizzare le promesse di clonazione degli iframe
         const clonePromises = [];
+
+        let clonedIframesCount = 0;
     
         // Itera attraverso ogni iframe e avvia il processo di clonazione
         iframes.forEach(iframe => {
@@ -332,6 +397,8 @@ function convertiInPDF() {
                     styleLinks.forEach(link => {
                         link.href = './frame-pdf/stylePdfs.css'; // Cambia il percorso dello stile
                     });
+
+                    clonedIframesCount++;
     
                     // Modifica i link alle immagini all'interno dello stile dell'iframe clonato
                     const backgroundStyles = cloneDoc.querySelectorAll('.sfondo');
@@ -362,6 +429,7 @@ function convertiInPDF() {
     
                     // Aggiungi il contenuto dell'iframe al contenitore combinato
                     combinedContent.appendChild(cloneDoc);
+
     
                     resolve(); // Risolve la promise una volta completato il processo di clonazione
     
@@ -381,20 +449,30 @@ function convertiInPDF() {
             console.log('bottonePremuto:', conf_download_pdf);  // Per verificare il valore di bottonePremuto
         });
 
-
-
- // Impostazione iniziale della progress bar
-
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); 
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+        
 
 
  Promise.all(clonePromises)
  .then(() => {
      const formData = new FormData();
 
+     const today = new Date();
+     const formattedDate = formatDate(today);
+
      if (getScelta() === "volantino_digitale") {
-         html2pdf().from(combinedContent).set(options).outputPdf('blob')
-             .then(pdfBlob => {
-                 formData.append('pdf_content', pdfBlob, 'my-document.pdf');
+
+        const volantinoDigitaleOption = {...options, filename:`Volantino_digitale_${formattedDate}.pdf`}
+        
+         html2pdf().from(combinedContent).set(volantinoDigitaleOption).outputPdf('blob')
+             
+         .then(pdfBlob => {
+                 formData.append('pdf_content', pdfBlob, 'Volantino_digitale.pdf');
                  return fetch('save-pdf.php', {
                      method: 'POST',
                      body: formData
@@ -415,31 +493,46 @@ function convertiInPDF() {
              });
 
          if (conf_download_pdf) {
-             progressBar(78);
-             alertFunction("Congratulazioni! Hai caricato il volantino e salvato nella tua pagina personale.", 'success');
-             html2pdf().from(combinedContent).set(options).save();
+
+            html2pdf().from(combinedContent).set(volantinoDigitaleOption).save()
+            .then(() => {
+                alertFunction("Congratulazioni! Hai caricato il volantino e salvato nella tua pagina personale.", 'success');
+                window.open("https://volantino.biz/volantino-project/mm.html", "_blank");
+            })
+
+            .catch((error) => {
+              alertFunction('Errore durante il caricamento del PDF:', 'error');
+              
+            });
+            
+        } else {
+             alertFunction("Congratulazioni! Hai caricato il volantino sulla tua pagina personale.", 'success');
              
              setTimeout(()=> {
-                window.location.href = "https://volantino.biz/volantino-project/mm.html"
-
-             }, 4000)
-
-         } else {
-             progressBar(80);
-             alertFunction("Congratulazioni! Hai caricato il volantino sulla tua pagina personale.", 'success');
-             setTimeout(()=> {
-                window.location.href = "https://volantino.biz/volantino-project/mm.html"
-
-             }, 4000)
+                window.open("https://volantino.biz/volantino-project/mm.html", "_blank");
+            }, 4000)
          }
 
      } else if (getScelta() === "a4") {
-         html2pdf().from(combinedContent).set(options).save();
-         progressBar(90);
-         alertFunction("Congratulazioni! I prodotti sono stati caricati correttamente.", 'success');
-         window.location.reload(true)
+
+        const volantinoA4Options = {...options, filename:`Volantino_A4_${formattedDate}.pdf`}
+        
+        html2pdf().from(combinedContent).set(volantinoA4Options).save()
+        
+    .then(() => {
+
+        
+      alertFunction("Congratulazioni! I prodotti sono stati caricati correttamente.", 'success');
+
+    }).catch((error) => {
+          alertFunction('Errore durante il caricamento del PDF:', 'error');
+          console.log(`Errore durante il caricamento del pdf ${error}`)
+        });
      }
+         const progress = (clonedIframesCount / clonePromises.length) * 100;
+         progressBar(progress);
  })
+
  .catch(error => {
      console.error('Errore durante la clonazione degli iframe:', error);
      alertFunction('Errore durante la clonazione degli iframe: ' + error, 'error');
@@ -448,28 +541,7 @@ function convertiInPDF() {
 }
 
 
-    function progressBar(progress) {
-         
-        const progressBarCont = document.getElementById('cont_progress_bar');
 
-        progressBarCont.style.display = 'flex';
-        
-        const loadingBar = document.getElementById('loading');
-        loadingBar.style.width = progress + '%';
-    
-
-        const interval = setInterval(() => {
-            progress += 1; 
-            loadingBar.style.width = progress + '%'; 
-    
-            if (progress >= 100) {
-                progressBarCont.style.display = 'none';
-                clearInterval(interval);
-            }
-        }, 130); 
-
-    }
-    
 
 
 

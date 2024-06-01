@@ -56,17 +56,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let currentInputRows = target.closest(".input-rows");
                 let newInputRows = currentInputRows.cloneNode(true);
+                
                 currentInputRows.insertAdjacentElement("afterend", newInputRows);
 
                 newInputRows.querySelectorAll('input').forEach(function(input) {
                     input.value = ''; 
+                    input.style.border = ''
                 });
+
+           const modalWrap = newInputRows.querySelector('.modal');
+
+        modalWrap.classList.remove('active-modal');
+
+        newInputRows.querySelector('.switch input[type="checkbox"]').checked = false;
+  
 
                 newInputRows.querySelector('.centesimi').value = "00";
               
                 newInputRows.querySelectorAll('img').forEach(function(img) {
                     img.src = '';
+                    
                 });
+
+                newInputRows.querySelectorAll('.cont-scelta-img').forEach(function(input) {  
+                    input.style.border = '';
+                });
+
+
 
                 cmnToggleCounter++;
                 let newToggleId = 'cmn-toggle-' + cmnToggleCounter;
@@ -121,6 +137,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
+//aggiungi valore centesimi
+    document.querySelectorAll('.input-prezzo.centesimi').forEach(input => {
+        input.addEventListener('blur', function() {
+            if (!isNaN(input.value) && input.value.length === 1) {
+                input.value += '0';
+            }
+        });
+    });
     
     
     // data-pagina="primaWeb"

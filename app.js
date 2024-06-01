@@ -73,7 +73,6 @@ btnVolantinoWeb.addEventListener("click", () => {
 
 
     const btnAnteprima = document.querySelectorAll('.anteprima');
-
     
 
     function FoundDataType() {
@@ -93,8 +92,8 @@ function checkInputsInSections() {
 
     const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
 
-    let totalInputs = 2;
-    let filledInputs = 2;
+    let totalInputs = 0;
+    let filledInputs = 0;
     let allModalsActive = true;
 
 
@@ -104,13 +103,13 @@ function checkInputsInSections() {
         let inputsInSection = section.querySelectorAll('input[required]');
         let modalsInSection = section.querySelectorAll('.modal');
 
-        // totalInputs += inputsInSection.length;
+        totalInputs += inputsInSection.length;
 //decommentare totalInputs per controllo input
        
 
         inputsInSection.forEach(function(input) {
             if (input.value.trim() !== '') {
-                // filledInputs++;
+                filledInputs++;
             }
         });
 
@@ -121,12 +120,12 @@ function checkInputsInSections() {
         });
     });
 
-    // if (filledInputs === totalInputs && allModalsActive) {
-        if (filledInputs === 2) {
-        btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
-    } else {
-        btnAnteprima.forEach(btn => { btn.setAttribute('disabled', 'disabled'); });
-    }
+
+  if ( scelta === 'a4' && filledInputs === totalInputs && allModalsActive) {
+    btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
+    } 
+    
+
 }
 
     
@@ -216,66 +215,72 @@ addEventListenersToInputs();
 
 
 
-    function pagesButtonBlock () { 
+function display(subject, mode) {
+        subject.style.display = mode;
+    }
+    
+    function pagesButtonBlock() {
 
-        if (sections[1].style.display === "block") {
-            if (scelta === "a4") {  
-                document.querySelector(".tail-cont-a4").style.display = "flex";
-                document.querySelector(".tail-cont-web").style.display = "none";
-            }
-        }
-
-        if (sections[3].style.display === "block") {
-            if (scelta === "volantino_digitale") {
-                document.querySelector(".tail-cont-web").style.display = "flex";
-                document.querySelector(".tail-cont-a4").style.display = "none";
-            }
-        }
-
-
-        if (sections[11].style.display === "block") {
-            if (scelta === "a4") {
-                document.querySelector(".tail-cont-web").style.display = "none";
-                document.querySelector(".tail-cont-a4").style.display = "none";
-            }
-        }
-
-        if (sections[12].style.display === "block") {
-            if (scelta === "volantino_digitale") {
-                document.querySelector(".tail-cont-web").style.display = "none";
-                document.querySelector(".tail-cont-a4").style.display = "none";
-            }
+        const tailWeb = document.querySelector(".tail-cont-web");
+        const tailA4 = document.querySelector(".tail-cont-a4");
+    
+        if (scelta === "a4") {
+            display(tailA4, tailA4.style.display === "none" ? "flex" : "none");
+            tailWeb.style.display = "none";
+        } else if (scelta === "volantino_digitale") {
+            display(tailWeb, tailWeb.style.display === "none" ? "flex" : "none");
+            tailA4.style.display = "none";
+        } else {
+            tailWeb.style.display = "none";
+            tailA4.style.display = "none";
         }
 
     }
 
 
     
-    function navigaSezione(direzione) {
-        
+
+    export function navigaSezione(direzione, pushedPreview) {
         const tutteLeSezioni = Array.from(document.querySelectorAll('.form-step'));
         const sezioneAttualmenteVisibile = tutteLeSezioni.find(section => section.getBoundingClientRect().height > 0);
-        
+    
         const sezioniFiltrate = tutteLeSezioni.filter(section => section.dataset.type === currentDataType[0]);
         let indiceAttuale = sezioniFiltrate.indexOf(sezioneAttualmenteVisibile);
         let prossimoIndice = (indiceAttuale + 1) % sezioniFiltrate.length;
-            
+    
+        let previewStep = sezioniFiltrate[sezioniFiltrate.length - 1];
     
         if (direzione === "avanti") {
-
+            if (pushedPreview && previewStep) {
+                // Memorizza la sezione attualmente visibile prima di nasconderla
+                if (!sezioniPassate.includes(sezioneAttualmenteVisibile)) {
+                    sezioniPassate.push(sezioneAttualmenteVisibile);
+                }
     
-            
+                // Nasconde la sezione attualmente visibile
+                sezioneAttualmenteVisibile.style.display = 'none';
+                // Mostra la sezione di anteprima
+                previewStep.style.display = "block";
+                pagesButtonBlock();
+                return; // Esci dalla funzione poiché l'anteprima è stata mostrata
+            }
+    
             if (sezioniFiltrate.length === 0) {
                 console.log("Nessuna sezione è stata trovata per il data-type corrente.");
                 return;
-            } 
-     
-        if (prossimoIndice < indiceAttuale) {
-             console.log("Non ci sono altre sezioni disponibili con lo stesso data-type in avanti.");
-             return;
-         } else {
-            sezioneAttualmenteVisibile.style.display = 'none';
-         }
+            }
+    
+            if (prossimoIndice < indiceAttuale) {
+                console.log("Non ci sono altre sezioni disponibili con lo stesso data-type in avanti.");
+                return;
+            } else {
+                // Memorizza la sezione attualmente visibile prima di nasconderla
+                if (!sezioniPassate.includes(sezioneAttualmenteVisibile)) {
+                    sezioniPassate.push(sezioneAttualmenteVisibile);
+                }
+                // Nasconde la sezione attualmente visibile
+                sezioneAttualmenteVisibile.style.display = 'none';
+            }
     
             if (sezioniFiltrate[prossimoIndice]) {
                 sezioniFiltrate[prossimoIndice].style.display = 'block';
@@ -285,49 +290,54 @@ addEventListenersToInputs();
             }
     
             pagesButtonBlock();
-
-            
-            // //prima section && section anteprime
-            // if(sections[0].style.display === "block" || sections[4].style.display === "block" || sections[5].style.display === "block"  ) {
-            //     document.querySelector(".tail-cont-web").style.display = "none";
-            //     document.querySelector(".tail-cont-a4").style.display = "none";
-            // }
-     
     
-    
-    } else if (direzione === "indietro") {
+        } else if (direzione === "indietro") {
 
-   
-
-        if (indiceAttuale === 0) {
-            resetAll();
-            return;
-        }
-    
-        aggiungiDataTypeToArray(sezioneAttualmenteVisibile.dataset.type);
-    
-        if (sezioneAttualmenteVisibile ) {
-            sezioneAttualmenteVisibile.style.display = 'none';
-        }
-
-            if (sezioniPassate.length > 1) {
-                sezioniPassate.pop();
-                const sezioneDaMostrare = sezioniPassate[sezioniPassate.length - 1];
-                sezioneDaMostrare.style.display = 'block';
-            } else {
-                const sezioneIniziale = tutteLeSezioni.find(section => section.dataset.type === 'start');
-                if (sezioneIniziale) {
-                    sezioneIniziale.style.display = 'block';
-                }
-                currentDataType = ['start'];
-                sezioniPassate = [sezioneIniziale]; 
+            if (indiceAttuale === 0) {
+                resetAll();
+                return;
             }
+    
+            aggiungiDataTypeToArray(sezioneAttualmenteVisibile.dataset.type);
+    
+            if (sezioneAttualmenteVisibile) {
+                sezioneAttualmenteVisibile.style.display = 'none';
+            }
+    
+            if (pushedPreview) {
+                // Se pushedPreview è true, rimuovi l'ultima sezione aggiunta e mostra quella precedente
+                const sezioneDaMostrare = sezioniPassate.pop();
+                if (sezioneDaMostrare) {
+                    sezioneDaMostrare.style.display = 'block';
+                    console.log("Ecco la sezione da mostrare", sezioneDaMostrare);
+                }
+                pagesButtonBlock();
+                return;
 
+            } else {
+                // Se pushedPreview non è true, mostra l'ultima sezione passata
+                if (sezioniPassate.length > 1) {
+
+                    // sezioniPassate.pop(); // Rimuovi l'ultima sezione passata che è già stata nascosta
+                    const sezioneDaMostrare = sezioniPassate[sezioniPassate.length - 1];
+                    sezioneDaMostrare.style.display = 'block';
+
+                } else {
+                    const sezioneIniziale = tutteLeSezioni.find(section => section.dataset.type === 'start');
+                    
+                    if (sezioneIniziale) {
+                        sezioneIniziale.style.display = 'block';
+                    }
+                    currentDataType = ['start'];
+                    sezioniPassate = [sezioneIniziale];
+                    console.log("Sezione start");
+                }
+            }
+    
             pagesButtonBlock();
-        
         }
     }
-
+    
 
 
     function resetAll() {
@@ -375,7 +385,7 @@ document.addEventListener('input', function(event) {
 // funzione mouseleave 
 function addEventListenerMouseLeave() {
     // Seleziona tutti gli elementi .input-row
-    const inputRows = document.querySelectorAll('.input-row');
+    const inputRows = document.querySelectorAll('.product-name-cont');
     
     // Aggiungi un listener per l'evento mouseleave a tutti gli elementi .input-row
     inputRows.forEach(function(inputRow) {
@@ -446,6 +456,7 @@ function prelevaProdotto(searchText, dataType, input) {
 
 
 export function repeatLabelInteraction() {
+
     const parentElement = document; 
 
     parentElement.addEventListener("click", function(event) {
@@ -683,9 +694,9 @@ export function alertFunction(message, type) {
         document.body.appendChild(alertDiv);
 
 
-    setTimeout(function() {
-        document.body.removeChild(alertDiv);
-    }, 7000);
+    // setTimeout(function() {
+    //     document.body.removeChild(alertDiv);
+    // }, 7000);
     
 }
 

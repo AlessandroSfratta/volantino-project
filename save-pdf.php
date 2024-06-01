@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $pdf_content = file_get_contents($_FILES['pdf_content']['tmp_name']);
 
-    $save_path = 'my-document.pdf';
+    $save_path = 'Volantino_digitale.pdf';
 
     if (file_exists($save_path)) { unlink($save_path); }
 
