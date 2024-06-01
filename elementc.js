@@ -42,13 +42,13 @@ async function generaElementi(updateProgress) {
             const imageUrl = URL.createObjectURL(blob);
             return `
                 <div class="templatearticolo">
-                    <div class="np">${this.nomeProdotto}</div>
+                    <p class="np">${this.nomeProdotto}</p>
                     <div class="imgprodotto"><img src="${imageUrl}" alt="${this.nomeProdotto}"></div>
                     <div class="info">
-                        <div class="descrizione">${this.descrizione}</div>
+                        <p class="descrizione">${this.descrizione}</p>
                         <div class="contenitoreprezzo">
-                            <div class="prezzoa">${this.euro}</div>
-                            <div class="prezzob">${this.centesimi}</div>
+                            <p class="prezzoa">${this.euro}</p>
+                            <p class="prezzob"> ,${this.centesimi} <span>€</span></p>
                         </div>
                     </div>
                 </div>`;

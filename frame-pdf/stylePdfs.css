@@ -52,13 +52,19 @@ body {
 
 
 .np {
+    width: 80%;
     margin: 2mm;
     text-align: left;
     color: #00384e;
     font-size: 14px;
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
 }
 
 .imgprodotto {
+    margin-top: 14mm;
     width: auto; 
     height: 60mm;
     align-content: center;
@@ -70,21 +76,28 @@ body {
 }
 
 .info {
-    margin: 2mm;
+   position: relative;
+    margin: 0mm 2mm 0mm 2mm;
     display: flex;
-    width: auto;
+    justify-content: space-between;
+    /* align-items: center; */
+    width: 90%
 }
 
 .descrizione {
-    width: 60%;
+    width: min-content;
     font-size: 2.8mm;
     text-align: left;
+    flex: 1;
+    margin: 0;
     color: #00354f;
 }
 
 .contenitoreprezzo {
+
     display: flex;
-    width: 40%;
+    justify-content: flex-end;
+
 }
 
 .prezzoa {
@@ -96,18 +109,14 @@ body {
 }
 
 .prezzob {
-    font-size: 20;
+    line-height: 17px;
+    font-size: 20px;
     color: red;
-    width: 30%;
+   margin: 0;
 }
 
-.prezzob::after {
-    content: "€";
-    display: block;
-}
-
-.prezzob::before {
-    content: ",";
+.prezzob span {
+    font-size: 17px;
 }
 
 
@@ -149,7 +158,7 @@ body {
 
 
 /* Ombra effetto 2 */
-.templatearticolo::before,
+/* .templatearticolo::before,
 .templatearticolo::after {
     z-index: -1;
     position: absolute;
@@ -158,11 +167,11 @@ body {
     left: 10px;
     width: 50%;
     top: 80%;
-    max-width: 250px; /* Larghezza massima dell'ombra */
+    max-width: 250px; 
     background: #777;
     box-shadow: 0 15px 10px #777;
     transform-origin: bottom;
-}
+} */
 
 
 .templatearticolo::after {
@@ -174,11 +183,11 @@ body {
 }
 
 
-.templatearticolo::before {
-    transform: rotate(-3deg); /* Ruota l'ombra di 3 gradi in senso antiorario */
+/* .templatearticolo::before {
+    transform: rotate(-3deg);
     z-index: -1;
     mix-blend-mode: multiply;
-}
+} */
 
 
 
