@@ -382,6 +382,7 @@ cursor: pointer;
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: 17px;
+    z-index: 1000;
 
 }
 
