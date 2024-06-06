@@ -1,3 +1,5 @@
+import { uploadImg } from "./app.js";
+
 document.addEventListener("DOMContentLoaded", function() {
 
     let cmnToggleCounter = 15; 
@@ -63,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     input.value = ''; 
                     input.style.border = ''
                 });
+
+                uploadImg();
 
            const modalWrap = newInputRows.querySelector('.modal');
 

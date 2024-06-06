@@ -145,6 +145,7 @@ body {
     width: 62mm;
     margin: 2mm;
     background-color: white;
+    overflow: visible;
 }
 
 
@@ -154,8 +155,21 @@ body {
     width: 100%;
     margin: 2mm;
     background-color: transparent;
+    
 }
 
+.ombra {
+    position: absolute;
+    bottom: -33px;
+    left: -17px;
+    width: 100%;
+    pointer-events: none;
+    z-index: -10;
+}
+
+.ombra img {
+    width: 267px !important;
+}
 
 /* Ombra effetto 2 */
 /* .templatearticolo::before,
@@ -173,20 +187,41 @@ body {
     transform-origin: bottom;
 } */
 
-
-.templatearticolo::after {
+/* .templatearticolo::after {
     right: 10px;
     left: auto;
-    transform: rotate(3deg); /* Ruota l'ombra di 3 gradi in senso orario */
+    transform: rotate(3deg); 
     z-index: -1;
     mix-blend-mode: multiply;
 }
 
-
-/* .templatearticolo::before {
-    transform: rotate(-3deg);
+.templatearticolo::before {
+    transform: rotate(-3deg); 
     z-index: -1;
     mix-blend-mode: multiply;
+} */
+
+
+/* .ombra {
+    position: absolute;
+    bottom: 15px;
+    width: 50%;
+    max-width: 250px; 
+    height: 10px;
+    background: #777;
+    box-shadow: 0 15px 10px #777;
+    z-index: -1;
+    mix-blend-mode: multiply;
+}
+
+.ombra.sinistra {
+    left: 10px;
+    transform: rotate(-3deg); 
+}
+
+.ombra.destra {
+    right: 10px;
+    transform: rotate(3deg); 
 } */
 
 

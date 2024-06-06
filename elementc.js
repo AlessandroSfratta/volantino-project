@@ -41,17 +41,20 @@ async function generaElementi(updateProgress) {
             const blob = await convertToDataURL(this.imageData);
             const imageUrl = URL.createObjectURL(blob);
             return `
-                <div class="templatearticolo">
-                    <p class="np">${this.nomeProdotto}</p>
-                    <div class="imgprodotto"><img src="${imageUrl}" alt="${this.nomeProdotto}"></div>
-                    <div class="info">
-                        <p class="descrizione">${this.descrizione}</p>
-                        <div class="contenitoreprezzo">
-                            <p class="prezzoa">${this.euro}</p>
-                            <p class="prezzob"> ,${this.centesimi} <span>€</span></p>
-                        </div>
+            <div class="templatearticolo">
+                <p class="np">${this.nomeProdotto}</p>
+                <div class="imgprodotto"><img src="${imageUrl}" alt="${this.nomeProdotto}"></div>
+                <div class="info">
+                    <p class="descrizione">${this.descrizione}</p>
+                    <div class="contenitoreprezzo">
+                        <p class="prezzoa">${this.euro}</p>
+                        <p class="prezzob">,${this.centesimi} <span>€</span></p>
                     </div>
+                </div>
+                <div class="ombra"><img src="../immagini/ombra.png" alt="Ombra"></div>
                 </div>`;
+        
+        
         }
     }
 
@@ -335,7 +338,10 @@ const options = {
         dpi: 1200,
         scale: 2,
         useCORS: true,  
+        logging: true,
         letterRendering: true,
+        backgroundColor: null 
+
      },
 
      jsPDF: {
@@ -400,17 +406,21 @@ function convertiInPDF() {
 
                     clonedIframesCount++;
     
-                    // Modifica i link alle immagini all'interno dello stile dell'iframe clonato
+                    // Modifica i link immagini
                     const backgroundStyles = cloneDoc.querySelectorAll('.sfondo');
                     backgroundStyles.forEach(style => {
-                        // Otteniamo il percorso attuale dello sfondo
                         const currentBackground = style.style.backgroundImage;
-                        // Modifichiamo il percorso rimuovendo eventuali occorrenze di ".." e sostituendole con "/frame-pdf/"
                         const newBackground = currentBackground.replace(/\.\.\//g, './frame-pdf/');
-                        // Assegniamo il nuovo percorso dello sfondo
                         style.style.backgroundImage = newBackground;
                     });
-    
+
+                    const shadowImages = cloneDoc.querySelectorAll('.ombra img');
+                    shadowImages.forEach(img => {
+                        const currentSrc = img.src;
+                        const newSrc = currentSrc.replace(/\.\.\//g, './frame-pdf/');
+                        img.src = newSrc;
+                    });
+                        
                     // Impostazioni di stile per il cloneDoc
                     cloneDoc.style.width = "216mm";
                     cloneDoc.style.height = "303mm";
@@ -430,7 +440,6 @@ function convertiInPDF() {
                     // Aggiungi il contenuto dell'iframe al contenitore combinato
                     combinedContent.appendChild(cloneDoc);
 
-    
                     resolve(); // Risolve la promise una volta completato il processo di clonazione
     
                 } catch (error) {
@@ -455,7 +464,7 @@ function convertiInPDF() {
             const year = date.getFullYear();
             return `${day}-${month}-${year}`;
         }
-        
+
 
 
  Promise.all(clonePromises)

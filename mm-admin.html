@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>  
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script src="elementc.js" type="module"></script>
     <script src="app.js" type="module"></script>
     <script src="inputManager.js" type="module"></script>
+
     
     <link  href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="style_admin.css">
@@ -17,6 +19,7 @@
     <title>Supermercato MM admin</title>
 </head>
 <body>
+
 
     <form action="" class="form">
 
@@ -121,8 +124,16 @@
         
                 <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
         
-                <div class="cont-scelta-img" >
-                    <img src="" alt="">
+                <div class="cont-scelta-img">
+
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*">
+                    </div>
+
+                    <div class="cont-img">
+                        <img class="img" id="userImage" src="" alt="Immagine utente">
+                    </div>
+                    
                 </div>
         
                 <div class="prezzo">
@@ -179,7 +190,7 @@
                     <i class="ri-close-large-line close"></i>
                     <i class="ri-arrow-up-line up"></i>
                     <i class="ri-arrow-down-line down"></i> 
-                    <i class="ri-add-large-line add"></i>
+                    
                     </div>        
 
                 <div class="modal"></div>
@@ -268,7 +279,6 @@
                     <i class="ri-close-large-line close"></i>
                     <i class="ri-arrow-up-line up"></i>
                     <i class="ri-arrow-down-line down"></i> 
-                    <i class="ri-add-large-line add"></i>
                     </div>        
 
                 <div class="modal"></div>
@@ -338,7 +348,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+                    
                         </div>        
     
                     <div class="modal"></div>
@@ -406,7 +416,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+                
                         </div>        
     
                     <div class="modal"></div>
@@ -474,7 +484,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+               
                         </div>        
     
                     <div class="modal"></div>
@@ -542,7 +552,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+ 
                         </div>        
     
                     <div class="modal"></div>
@@ -610,7 +620,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+         
                         </div>        
     
                     <div class="modal"></div>
@@ -677,7 +687,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+             
                         </div>        
     
                     <div class="modal"></div>
@@ -745,7 +755,7 @@
                         <i class="ri-close-large-line close"></i>
                         <i class="ri-arrow-up-line up"></i>
                         <i class="ri-arrow-down-line down"></i> 
-                        <i class="ri-add-large-line add"></i>
+         
                         </div>        
     
                     <div class="modal"></div>

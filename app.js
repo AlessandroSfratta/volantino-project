@@ -700,95 +700,48 @@ export function alertFunction(message, type) {
     
 }
 
-// Esempio di utilizzo
 
-// alertFunction('Questo è un messaggio di conferma!', 'confirm');
-// alertFunction('Si è verificato un errore durante l\'operazione.', 'error');
-// alertFunction('Questo è un messaggio di default.');
+export async function uploadImg () {
 
+    let inputImg = document.querySelectorAll('.img-input');
 
+    inputImg.forEach( (input) => {
 
-// // Funzione per aggiornare il contatore
-// function updateCounter(change) {
-//     const counterElement = document.querySelectorAll('#counter');
-//     if (counterElement) {
-        
-//         counterElement.forEach((counter) => {
+        input.addEventListener('change', function() {
+           const file = this.files[0];
 
-//             let currentCount = parseInt(counter.textContent) || 0;
-//             currentCount += change;
-//             counter.textContent = currentCount.toString();
+           const parentContImg = input.closest(".cont-scelta-img");
+           const imgElement = parentContImg.querySelector(".img");
+   
+       if (file) {
+           const formData = new FormData();
+           formData.append('image', file);
+   
+           fetch('upload_image.php', {
+               method: 'POST',
+               body: formData
+           })
+           .then(response => response.json())
+           .then(data => {
+               if (data.success) {
 
-//         })
+                   const imageUrl = data.url;
+                   imgElement.src = imageUrl
+                   console.log(`Data ritorno: ${imageUrl}`)
+                   
+               } else {
+                   alert('Errore durante il caricamento dell\'immagine.');
+               }
+           })
+           .catch(error => {
+               console.error('Errore:', error);
+               alert('Errore durante il caricamento dell\'immagine.');
+           });
+       }
+   });
+        })
 
- 
-//     }
-// }
-
-
-
-// // Seleziona entrambi gli elementi di input per la ricerca
-// const searchInputs = document.querySelectorAll('.search-input');
-
-// // Aggiungi un listener per gestire gli eventi di input della ricerca per ciascun input
-// searchInputs.forEach(searchInput => {
-//     searchInput.addEventListener('input', handleSearch);
-// });
-
-
-
-
-// // Funzione per gestire la ricerca degli elementi
-// function handleSearch(event) {
-//     const searchText = event.target.value.toLowerCase(); // Ottieni il testo digitato e convertilo in minuscolo
-//     const rows = document.querySelectorAll('.row-container'); // Seleziona tutte le righe
-
-//     rows.forEach(row => {
-//         // Ottieni il testo contenuto in ogni riga e convertilo in minuscolo
-//         const rowText = row.textContent.toLowerCase();
-
-//         // Verifica se il testo della riga contiene il testo digitato nella ricerca
-//         if (rowText.includes(searchText)) {
-//             // Se la riga corrisponde al testo di ricerca, mostra la riga
-//             row.style.display = '';
-//         } else {
-//             // Altrimenti, nascondi la riga
-//             row.style.display = 'none';
-//         }
-//     });
-// }
+}
+document.addEventListener('DOMContentLoaded', uploadImg);
 
 
-
-
-// // Seleziona tutte le righe
-// const rows = document.querySelectorAll('.row-container');
-
-// // Aggiungi un listener a ciascuna riga
-// rows.forEach((row, index) => {
-//     // Imposta il numero del prodotto come attributo del dataset
-//     row.dataset.prodottoNumero = index + 1;
-
-//     row.addEventListener('click', () => {
-//         // Verifica se la riga ha già la classe 'active'
-//         const isActive = row.classList.contains('active');
-
-//         if (isActive) {
-//             // Rimuovi la classe 'active' dalla riga
-//             row.classList.remove('active');
-
-//             // Rimuovi l'elemento corrispondente dal JSON
-//             removeRowFromJson(row);
-//         } else {
-
-//         // Verifica se è possibile selezionare l'elemento
-// if (Object.keys(jsonData).length <= 15) {
-//     // Aggiungi la classe 'active' al contenitore solo se è possibile selezionarlo
-//     row.classList.add('active');
-// }
-
-//             // Aggiungi l'elemento corrispondente al JSON
-//             addRowToJson(row);
-//         }
-//     });
-// });
