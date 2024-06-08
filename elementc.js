@@ -51,7 +51,7 @@ async function generaElementi(updateProgress) {
                         <p class="prezzob">,${this.centesimi} <span>€</span></p>
                     </div>
                 </div>
-                <div class="ombra"><img src="../immagini/ombra.png" alt="Ombra"></div>
+                <div class="ombra"> </div>
                 </div>`;
         
         
@@ -306,25 +306,7 @@ if (Object.keys(jsonData).length > 0) {
 
 
 
-const optionss = {
-    filename: 'Test.pdf',
-    margin: 1,
-    image: { type: 'jpeg', quality: 0.98 },
 
-    html2canvas:  { 
-        dpi: 300,
-        scale: 2, // Aumenta il valore di scale per una maggiore risoluzione
-        useCORS: true, // Abilita l'uso di CORS per il caricamento delle immagini esterne 
-        letterRendering: true,
-     },
-
-    jsPDF: { unit: '', format: 'letter', orientation: 'portrait' },
-    pagebreak:    { mode: ['avoid-all', 'css'] },
-    enableLinks: true,
-
-    background: true,
-    autoPaging: true // Imposta autoPaging su false per evitare la suddivisione del contenuto su più pagine
-};
 
 
 
@@ -333,7 +315,7 @@ const options = {
     filename: 'PDF_Volantino.pdf',
     margin: 0,
     border: 0,
-    image: { type: 'jpeg', quality: 1 },
+    image: { type: 'png', quality: 1 },
     html2canvas:  { 
         dpi: 1200,
         scale: 2,
@@ -346,11 +328,11 @@ const options = {
 
      jsPDF: {
         unit: 'mm', 
-        format: [216, 303], // Larghezza e altezza personalizzate
+        format: [216, 303], 
         orientation: 'portrait'
     },
-     // Genera una nuova pagina per ogni iframe
-    avoidPageSplit: true, // Impedisce a un iframe di essere suddiviso su più pagine
+   
+    avoidPageSplit: true, 
     pagebreak: { mode: 'always' },
     enableLinks: true,
     background: false,
@@ -360,16 +342,17 @@ const options = {
 
 
 
+
 document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", convertiInPDF); });
 
 
 
 function convertiInPDF() {
 
-        // Seleziona tutti gli iframe con la classe 'block' nel documento
+        
         const iframes = document.querySelectorAll('iframe.block');
     
-        // Crea un contenitore per tutti i frame combinati
+        
         const combinedContent = document.createElement('div');
 
 
@@ -379,10 +362,10 @@ function convertiInPDF() {
        
         combinedContent.style.alignItems = 'center';
         combinedContent.style.justifyContent = 'center';
-        combinedContent.style.margin = '0'; // Rimuovi margini
-        combinedContent.style.padding = '0'; // Rimuovi padding
-        combinedContent.style.border = '0'; // Rimuovi padding
-        combinedContent.style.boxSizing = 'border-box'; // Assicura che non ci siano aggiustamenti di dimensioni dovuti al box model
+        combinedContent.style.margin = '0';
+        combinedContent.style.padding = '0'; 
+        combinedContent.style.border = '0'; 
+        combinedContent.style.boxSizing = 'border-box'; 
        
      
 
@@ -390,18 +373,18 @@ function convertiInPDF() {
 
         let clonedIframesCount = 0;
     
-        // Itera attraverso ogni iframe e avvia il processo di clonazione
+        
         iframes.forEach(iframe => {
             const clonePromise = new Promise((resolve, reject) => {
+               
                 try {
                     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    // Clona il documento dell'iframe
+                    
                     const cloneDoc = iframeDoc.documentElement.cloneNode(true);
     
-                    // Modifica i link nello stile all'interno dell'iframe clonato
                     const styleLinks = cloneDoc.querySelectorAll('link[rel="stylesheet"]');
                     styleLinks.forEach(link => {
-                        link.href = './frame-pdf/stylePdfs.css'; // Cambia il percorso dello stile
+                        link.href = './frame-pdf/stylePdfs.css'; 
                     });
 
                     clonedIframesCount++;
@@ -413,17 +396,10 @@ function convertiInPDF() {
                         const newBackground = currentBackground.replace(/\.\.\//g, './frame-pdf/');
                         style.style.backgroundImage = newBackground;
                     });
+                    
 
-                    const shadowImages = cloneDoc.querySelectorAll('.ombra img');
-                    shadowImages.forEach(img => {
-                        const currentSrc = img.src;
-                        const newSrc = currentSrc.replace(/\.\.\//g, './frame-pdf/');
-                        img.src = newSrc;
-                    });
-                        
                     // Impostazioni di stile per il cloneDoc
-                    cloneDoc.style.width = "216mm";
-                    cloneDoc.style.height = "303mm";
+                  
                     cloneDoc.style.display = "flex";
                     cloneDoc.style.justifyContent = "center";
                     cloneDoc.style.alignItems = "center";
@@ -432,19 +408,28 @@ function convertiInPDF() {
                     cloneDoc.style.margin = 0;
                     cloneDoc.style.padding = 0;
                     cloneDoc.style.position = "relative";
-                    cloneDoc.style.boxSizing = 'border-box'; // Assicura che non ci siano aggiustamenti di dimensioni dovuti al box model
-                    cloneDoc.style.pageBreakAfter = "always"; // Forza una nuova pagina dopo questo contenitore
-                    // Aggiungi un piccolo margine di mezzo pixel per evitare sovrapposizione
+                    cloneDoc.style.boxSizing = 'border-box';
+                    cloneDoc.style.pageBreakAfter = "always"; 
                     cloneDoc.style.marginBottom = "0.5px";
+
+                    if (getScelta() === "a4" || getScelta() === "volantino_digitale") {
+                        cloneDoc.style.width = "216mm";
+                        cloneDoc.style.height = "303mm";
+                    } else if (getScelta() === "cartellini") {
+                        cloneDoc.style.width = "156mm";
+                        cloneDoc.style.height = "106mm";
+                    }
+
+                   
     
-                    // Aggiungi il contenuto dell'iframe al contenitore combinato
+                    
                     combinedContent.appendChild(cloneDoc);
 
-                    resolve(); // Risolve la promise una volta completato il processo di clonazione
+                    resolve();
     
                 } catch (error) {
                     console.error('Errore nell\'accesso al contenuto dell\'iframe:', error);
-                    reject(error); // Rigetta la promise in caso di errore
+                    reject(error); 
                 }
             });
     
@@ -455,7 +440,7 @@ function convertiInPDF() {
 
         document.getElementById('conf_download').addEventListener('change', function() {
             conf_download_pdf = this.checked;
-            console.log('bottonePremuto:', conf_download_pdf);  // Per verificare il valore di bottonePremuto
+            console.log('bottonePremuto:', conf_download_pdf); 
         });
 
         function formatDate(date) {
@@ -537,7 +522,44 @@ function convertiInPDF() {
           alertFunction('Errore durante il caricamento del PDF:', 'error');
           console.log(`Errore durante il caricamento del pdf ${error}`)
         });
+     } else if (getScelta() === "cartellini") {
+
+        const optionsCartellini = {
+            // filename: 'Cartelli.pdf',
+            margin: 0,
+            border: 0,
+            image: { type: 'png', quality: 1 },
+            html2canvas:  { 
+                dpi: 1200,
+                scale: 1,
+                useCORS: true,  
+                logging: true,
+                letterRendering: true,
+                backgroundColor: null 
+        
+             },
+        
+             jsPDF: {
+                unit: 'mm', 
+                format: [156, 106], 
+                orientation: 'landscape'
+            },
+             
+             avoidPageSplit: true,
+             pagebreak: { mode: 'always' },
+            enableLinks: true,
+            background: false,
+            autoPaging: true
+        
+        };
+
+        const cartelliniOptions = {...optionsCartellini, filename:`Cartellini_${formattedDate}.pdf`}
+        
+        html2pdf().from(combinedContent).set(cartelliniOptions).save()
+         
      }
+
+
          const progress = (clonedIframesCount / clonePromises.length) * 100;
          progressBar(progress);
  })

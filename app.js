@@ -2,6 +2,7 @@
 
     const btnVolantinoA4 = document.getElementById("volantinoA4");
     const btnVolantinoWeb = document.getElementById("volantinoWeb");
+    const btnCartellino = document.getElementById("cartellino");
     const sections = document.querySelectorAll('.form-step');
 
     export let jsonData = {};
@@ -18,6 +19,7 @@ btnVolantinoA4.addEventListener("click", () => {
     aggiungiDataTypeToArray(btnVolantinoA4.dataset.type);
     btnVolantinoA4.classList.add("active");
     btnVolantinoWeb.classList.remove("active");
+    btnCartellino.classList.remove("active");
     console.log("Ecco la scelta", getScelta());
 });
 
@@ -25,6 +27,16 @@ btnVolantinoWeb.addEventListener("click", () => {
     setScelta("volantino_digitale");
     aggiungiDataTypeToArray(btnVolantinoWeb.dataset.type);
     btnVolantinoWeb.classList.add("active");
+    btnVolantinoA4.classList.remove("active");
+    btnCartellino.classList.remove("active");
+    console.log("Ecco la scelta", getScelta());
+});
+
+btnCartellino.addEventListener("click", () => {
+    setScelta("cartellini");
+    aggiungiDataTypeToArray(btnCartellino.dataset.type);
+    btnCartellino.classList.add("active");
+    btnVolantinoWeb.classList.remove("active");
     btnVolantinoA4.classList.remove("active");
     console.log("Ecco la scelta", getScelta());
 });
@@ -341,11 +353,11 @@ function display(subject, mode) {
 
 
     function resetAll() {
-        // Rimuovi la classe 'active' da tutti i pulsanti
+        
         btnVolantinoA4.classList.remove("active");
         btnVolantinoWeb.classList.remove("active");
     
-        // Resetta gli array e il JSON
+       
         sezioniPassate = [];
         currentDataType = [];
         jsonData = {};
@@ -353,7 +365,7 @@ function display(subject, mode) {
         document.querySelector(".tail-cont-web").style.display = "none";
         document.querySelector(".tail-cont-a4").style.display = "none";
     
-        // Mostra solo la prima sezione
+        
         const tutteLeSezioni = Array.from(document.querySelectorAll('.form-step'));
         tutteLeSezioni.forEach(sezione => {
             if (sezione.dataset.type === 'start') {
@@ -383,11 +395,10 @@ document.addEventListener('input', function(event) {
 
 
 // funzione mouseleave 
-function addEventListenerMouseLeave() {
-    // Seleziona tutti gli elementi .input-row
-    const inputRows = document.querySelectorAll('.product-name-cont');
+export function addEventListenerMouseLeave() {
     
-    // Aggiungi un listener per l'evento mouseleave a tutti gli elementi .input-row
+    let inputRows = document.querySelectorAll('.product-name-cont');
+   
     inputRows.forEach(function(inputRow) {
         inputRow.addEventListener('mouseleave', function() {
             const productList = this.querySelectorAll(".suggerimenti-nome-prodotto select");

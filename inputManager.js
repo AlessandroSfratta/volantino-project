@@ -1,4 +1,4 @@
-import { uploadImg } from "./app.js";
+import { uploadImg,addEventListenerMouseLeave } from "./app.js";
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 uploadImg();
+                addEventListenerMouseLeave();
 
            const modalWrap = newInputRows.querySelector('.modal');
 

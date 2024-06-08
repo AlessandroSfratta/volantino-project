@@ -160,16 +160,17 @@ body {
 
 .ombra {
     position: absolute;
-    bottom: -33px;
-    left: -17px;
+    bottom: -25px;
+    left: 0px;
+    z-index: -1;
     width: 100%;
+    height: 52px;
     pointer-events: none;
-    z-index: -10;
+    background-image: url(../frame-pdf/immagini/ombra.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-.ombra img {
-    width: 267px !important;
-}
 
 /* Ombra effetto 2 */
 /* .templatearticolo::before,

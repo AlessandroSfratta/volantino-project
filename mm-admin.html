@@ -62,6 +62,12 @@
                         <p>Volantino Digitale</p>
                         <button type="button" class="btn btn-show-form" id="volantinoWeb" data-next-type="volantinoWeb" data-type="volantinoWeb">Scegli</button>
                     </div>
+                    <!-- cartellini -->
+                    <div>
+                        <p>Cartellini</p>
+                        <button type="button" class="btn btn-show-form" id="cartellino" data-next-type="cartellini" data-type="cartellini">Scegli</button>
+                    </div>
+
                 </div>
                 <div class="btns-group">        
                     <button type="button" class="btn btn-next">Avanti</button>
@@ -203,8 +209,16 @@
         
                 <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
         
-                <div class="cont-scelta-img" >
-                    <img src="" alt="">
+                <div class="cont-scelta-img">
+
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*">
+                    </div>
+
+                    <div class="cont-img">
+                        <img class="img" id="userImage" src="" alt="Immagine utente">
+                    </div>
+                    
                 </div>
         
               <div class="prezzo">
@@ -238,7 +252,84 @@
 
 
 
+<div class="form-step sec3 btn-cont-tail" data-type="cartellini" data-pagina="cartellini" style="display: none;">
 
+    <div class="title-center">
+        <h2>Cartellini</h2>
+    </div>
+
+
+    
+    <div class="cont-input">
+
+        <div class="counter-cont">
+            <p class="counter-p">Elementi creati: <span class="counter">1</span></p>
+        </div>
+
+
+        <div class="input-rows">
+
+            <div class="input-row">
+
+                <div class="cont-manegament">
+                    <i class="ri-close-large-line close"></i>
+                    <i class="ri-arrow-up-line up"></i>
+                    <i class="ri-arrow-down-line down"></i> 
+                
+                    </div>        
+
+                <div class="modal"></div>
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                    </div>
+                </div>
+        
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+        
+                <div class="cont-scelta-img">
+
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*">
+                    </div>
+
+                    <div class="cont-img">
+                        <img class="img" id="userImage" src="" alt="Immagine utente">
+                    </div>
+                    
+                </div>
+        
+                <div class="prezzo">
+
+                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                <span>,</span>
+                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                
+            </div>
+
+                <div class="switch">
+                    <input id="cmn-toggle-33" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-33"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+            </div>
+
+        </div>
+        
+
+
+    </div>
+    
+
+    <div class="btns-group">        
+        <button type="button" class="btn btn-pre home">Home</button>
+        <button type="button" class="btn  anteprima" >Anteprima</button>
+    </div>
+</div>
 
 
 
@@ -291,8 +382,16 @@
         
                 <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
         
-                <div class="cont-scelta-img" >
-                    <img src="" alt="">
+                <div class="cont-scelta-img">
+
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*">
+                    </div>
+
+                    <div class="cont-img">
+                        <img class="img" id="userImage" src="" alt="Immagine utente">
+                    </div>
+                    
                 </div>
         
                 <div class="prezzo">
@@ -361,8 +460,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                  <div class="prezzo">
@@ -429,8 +536,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                     <div class="prezzo">
@@ -497,8 +612,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                  <div class="prezzo">
@@ -565,8 +688,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                  <div class="prezzo">
@@ -633,8 +764,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                  <div class="prezzo">
@@ -700,8 +839,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                  <div class="prezzo">
@@ -768,8 +915,16 @@
             
                     <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
             
-                    <div class="cont-scelta-img" >
-                        <img src="" alt="">
+                    <div class="cont-scelta-img">
+
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img" id="userImage" src="" alt="Immagine utente">
+                        </div>
+                        
                     </div>
             
                  <div class="prezzo">
@@ -838,8 +993,35 @@
 </div>
 
 
+
+<!-- Sezione Anteprima Cartellini -->
+<div class="form-step sec12" data-type="cartellini" style="display: none;">
+
+
+    <div class="pdf-content3">
+
+    <h2>Anteprima Cartellini</h2>
+        
+        <div class="pagina_cartellini">
+            <iframe class="none" src="frame-pdf/cartellini/cartellini.html" data-max-elements="1" frameborder="0"></iframe>
+            <iframe class="none" src="frame-pdf/cartellini/cartellini.html" data-max-elements="1" frameborder="0"></iframe>
+    </div>
+    
+
+    </div>
+
+
+
+    <div class="btns-group">        
+        <button type="button" class="btn btn-pre">Indietro</button>
+        <button type="button" class="btn btn-confirm" id="confirmButton">Conferma</button>
+    </div>
+
+</div>
+
+
 <!-- Sezione Anteprima Volantino Web -->
-<div class="form-step sec12" data-type="volantinoWeb" style="display: none;">
+<div class="form-step sec13" data-type="volantinoWeb" style="display: none;">
 
     <div class="pdf-content2">
     

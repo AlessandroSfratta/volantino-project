@@ -291,7 +291,7 @@ h1, h2 {
 }
 
 
-.pdf-content1, .pdf-content2 {
+.pdf-content1, .pdf-content2, .pdf-content3 {
 
     width: auto;
     display: flex;
@@ -300,7 +300,7 @@ h1, h2 {
     flex-direction: column;
 }
 
-.pdf-content1 h2, .pdf-content2 h2 {
+.pdf-content1 h2, .pdf-content2 h2, .pdf-content3 h2{
     margin-top: 2rem;
     text-align: center;
     /* display: flex; */
@@ -314,6 +314,13 @@ h1, h2 {
     height: 303mm; 
     margin: 0;
     border: 0;
+}
+
+.pdf-content3 iframe {
+    margin: 0;
+    padding: 0;
+    width: 156mm;
+    height: 106mm;
 }
 
 .cont-manegament {
