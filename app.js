@@ -91,6 +91,7 @@ btnCartellino.addEventListener("click", () => {
         let dataType;
         if (scelta.includes('a4')) { dataType = 'volantinoA4'; } 
         else if (scelta.includes('volantino_digitale')) { dataType = 'volantinoWeb'; } 
+        else if (scelta.includes('cartellini')) { dataType = 'cartellini'; } 
         else { dataType = 'defaultType'; }
         return dataType;
     }
