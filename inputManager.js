@@ -1,4 +1,4 @@
-import { uploadImg,addEventListenerMouseLeave } from "./app.js";
+import { uploadImg,addEventListenerMouseLeave } from "./form-wizard.js";
 
 document.addEventListener("DOMContentLoaded", function() {
 

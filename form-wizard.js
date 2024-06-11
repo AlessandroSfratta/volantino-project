@@ -74,13 +74,7 @@ btnCartellino.addEventListener("click", () => {
 
 
 
-// button reparti 
-    const sectionHeaders = document.querySelectorAll('.tail-cont-a4 h2, .tail-cont-web h2');
-    sectionHeaders.forEach(function(section) {
-        section.addEventListener('click', function() {
-            toggleSection(this.id);
-        });
-    });
+
 
 
 
@@ -153,56 +147,68 @@ function addEventListenersToInputs() {
 addEventListenersToInputs();
 
 
+// button reparti 
+const sectionHeaders = document.querySelectorAll('.tail-cont-a4 h2, .tail-cont-web h2');
+sectionHeaders.forEach(function(section) {
+    section.addEventListener('click', function() {
+        let contSee = document.querySelector('.form-step[style="display: block;"]');
+     
+        togglePage(this.id,contSee);
+
+        validateInputsAndModals(contSee, section);
+
+    });
+});
 
 
-    function toggleSection(sectionId) {
+export function togglePage(sectionId, currentSection) {
 
-        const currentSection = document.querySelector('.form-step[style="display: block;"]');
-    
-        if (currentSection) {
+    if (currentSection) {
+        currentSection.style.display = 'none';
+        const secClass = Array.from(currentSection.classList).find(className => className.startsWith('sec'));
 
-            currentSection.style.display = 'none';
-    
-            const secClass = Array.from(currentSection.classList).find(className => className.startsWith('sec'));
-    
-            if (secClass) {
-
-                const button = document.getElementById(secClass);
-    
-                const requiredInputs = currentSection.querySelectorAll('input[required]');
-                    const modals = currentSection.querySelectorAll('.modal');
-                    
-                    let allInputsValid = true;
-                    let allModalsActive = true;
-                    
-                    requiredInputs.forEach(function(input) {
-                        if (!input.value.trim()) {
-                            allInputsValid = false;
-                        }
-                    });
-                    
-                    modals.forEach(function(modal) {
-                        if (!modal.classList.contains('active-modal')) {
-                            allModalsActive = false;
-                        }
-                    });
-                    
-                    if (!allInputsValid || !allModalsActive) {
-                        button.style.backgroundColor = '#FF8C00'; // Arancione se gli input non sono validi o i modali non sono attivi
-                    } else {
-                        button.style.backgroundColor = '#7cfc00'; // Verde se tutti gli input sono validi e i modali sono attivi
-                    }
-                    
-            }
-        }
-    
-        // Mostra la sezione target
-        const targetSection = document.querySelector(`.${sectionId}`);
-        if (targetSection) {
-            targetSection.style.display = 'block';
+        if (secClass) {
+            const button = document.getElementById(secClass);
+          
         }
     }
+
+    // Mostra la sezione target
+    const targetSection = document.querySelector(`.${sectionId}`);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
+
+}
+
+
+export function validateInputsAndModals(currentSection, button) {
+
+    const requiredInputs = currentSection.querySelectorAll('input[required]');
+    const modals = currentSection.querySelectorAll('.modal');
     
+    let allInputsValid = true;
+    let allModalsActive = true;
+    
+    requiredInputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            allInputsValid = false;
+        }
+    });
+    
+    modals.forEach(function(modal) {
+        if (!modal.classList.contains('active-modal')) {
+            allModalsActive = false;
+        }
+    });
+    
+    if (!allInputsValid || !allModalsActive) {
+        button.style.backgroundColor = '#FF8C00'; // Arancione se gli input non sono validi o i modali non sono attivi
+    } else {
+        button.style.backgroundColor = '#7cfc00'; // Verde se tutti gli input sono validi e i modali sono attivi
+    }
+}
+
     
     
     

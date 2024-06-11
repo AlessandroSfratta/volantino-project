@@ -7,19 +7,65 @@
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <script src="elementc.js" type="module"></script>
-    <script src="app.js" type="module"></script>
+    <script src="pdf-creation.js" type="module"></script>
+    <script src="form-wizard.js" type="module"></script>
     <script src="inputManager.js" type="module"></script>
+    <script src="menu-navigation.js" type="module"></script>
 
     
     <link  href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="style_admin.css">
+    <link rel="stylesheet" href="style_form_wizard.css">
+    <link rel="stylesheet" href="style_home.css">
     <link rel="stylesheet" href="button.css">
+    
 
     <title>Supermercato MM admin</title>
 </head>
 <body>
 
+    <nav class="navbar">
+
+        <div class="button-menu"><span><i class="ri-arrow-left-circle-fill"></i></span></div>
+
+        <div class="navbar-title"><h2>Volantino</h2></div>
+
+        <div class="navbar-menu">
+
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page1">
+                    <span><i class="ri-add-box-fill"></i>Crea Nuovo</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page2">
+                    <span><i class="ri-time-fill"></i>Storico</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page3">
+                    <span><i class="ri-service-fill"></i>Servizi</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page4">
+                    <span><i class="ri-shopping-bag-4-fill"></i>Ordini</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page5">
+                    <span><i class="ri-image-fill"></i>Media</span>
+                </div>
+            </div>
+        </div>
+        
+    </nav>
+
+
+<div class="cont-page page1" style="display: block;">
 
     <form action="" class="form">
 
@@ -1085,7 +1131,33 @@
 
 
 </form>
+</div>
 
+<div class="cont-page page2">
+
+<h2>Storico</h2>
+
+</div>
+
+<div class="cont-page page3">
+
+    <h2>Servizi</h2>
+
+</div>
+
+
+<div class="cont-page page4">
+
+    <h2>Ordini</h2>
+
+</div>
+
+
+<div class="cont-page page5">
+
+    <h2>Media</h2>
+
+</div>
 
 
     

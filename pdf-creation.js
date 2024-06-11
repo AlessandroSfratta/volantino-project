@@ -1,5 +1,5 @@
 
-import { jsonData, getScelta, alertFunction, navigaSezione} from './app.js';
+import { jsonData, getScelta, alertFunction, navigaSezione} from './form-wizard.js';
 
 
 async function convertToDataURL(url) {
