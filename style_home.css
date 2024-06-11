@@ -38,7 +38,16 @@ body {
     top: 0;
     left: 0;
     background-color: #a05f90;
+    transition: transform 0.7s ease-in-out;
 
+}
+
+.toggle {
+    transform: translateX(-190px);
+}
+
+.activeBtn {
+    background-color: #8b537e;
 }
 
 .navbar-title {
@@ -53,7 +62,7 @@ body {
 .button-menu {
     position: absolute;
     top: 20px;
-    right: -40px;
+    right: -44px;
     height: 50px;
     width: 44px;
     background-color: #8b537e;
@@ -63,11 +72,18 @@ body {
     align-items: center;
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 102%);
-    z-index: -2;
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 102%); */
+    cursor: pointer;
+    z-index: 0;
+    transition: background-color 0.3s ease;
 }
 
-.button-menu::before {
+.button-menu:hover {
+    background-color: #a05f90;
+}
+
+
+/* .button-menu::before {
     content: '';
     position: absolute;
     top: 0;
@@ -78,10 +94,19 @@ body {
     border-bottom: 50px solid transparent;
     border-right: 20px solid #8b537e; 
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); 
-}  
+}   */
+
+.button-menu span {
+    transition: transform 0.7s ease-in;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
 
 .button-menu span i {
     font-size: 1.7rem;
+    cursor: pointer;
 }
 
 .navbar-menu {
