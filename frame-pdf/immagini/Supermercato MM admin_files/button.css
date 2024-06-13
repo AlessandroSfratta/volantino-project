@@ -1,0 +1,96 @@
+.switch {
+  z-index: 10;
+}
+
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
+
+  .cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+  
+  input.cmn-toggle-round + label {
+    width: 80px;
+    height: 22px;
+    background-color: #dddddd;
+  }
+
+  
+  input.cmn-toggle-round + label:before,
+  input.cmn-toggle-round + label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
+  }
+
+  
+  input.cmn-toggle-round + label:before {
+    right: 1px;
+    background-color: red;
+    transition: background 0.4s;
+  }
+
+  
+  input.cmn-toggle-round + label:after {
+    height: 20px;
+    width: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: margin 0.4s;
+
+  }
+
+
+  input.cmn-toggle-round:checked + label:before {
+    background-color: #8ce196;
+  }
+  
+  input.cmn-toggle-round:checked + label:after {
+    margin-left: 48px;
+  }
+
+
+
+
+.btn-step-tail {
+
+  background-color: #f8f9fa;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: #ffff;
+  width: 140px;
+  height: 58px;
+
+}
+
+
+.btn-step-tail h2 {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 22px;
+
+}
+
+.tail-cont-a4, .tail-cont-web {
+  top: 1px;
+  align-content: start;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  align-items: start;
+  position: relative;
+  gap: 10px;
+}
+

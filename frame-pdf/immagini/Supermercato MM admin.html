@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0048)http://localhost/volantino-project/mm-admin.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>  
-    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="./Supermercato MM admin_files/papaparse.min.js"></script>  
+    <script src="./Supermercato MM admin_files/html2pdf.bundle.js"></script>
+    <script src="./Supermercato MM admin_files/jspdf.umd.min.js"></script>
 
-    <script src="pdf-creation.js" type="module"></script>
-    <script src="form-wizard.js" type="module"></script>
-    <script src="inputManager.js" type="module"></script>
-    <script src="menu-navigation.js" type="module"></script>
+    <script src="./Supermercato MM admin_files/pdf-creation.js" type="module"></script>
+    <script src="./Supermercato MM admin_files/form-wizard.js" type="module"></script>
+    <script src="./Supermercato MM admin_files/inputManager.js" type="module"></script>
+    <script src="./Supermercato MM admin_files/menu-navigation.js" type="module"></script>
 
     
-    <link  href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="style_form_wizard.css">
-    <link rel="stylesheet" href="style_home.css">
-    <link rel="stylesheet" href="button.css">
+    <link href="./Supermercato MM admin_files/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Supermercato MM admin_files/style_form_wizard.css">
+    <link rel="stylesheet" href="./Supermercato MM admin_files/style_home.css">
+    <link rel="stylesheet" href="./Supermercato MM admin_files/button.css">
     
 
     <title>Supermercato MM admin</title>
-</head>
+<style>@font-face {
+              font-family: 'Open Sans Regular';
+              font-style: normal;
+              font-weight: 400;
+              src: url('chrome-extension://gkkdmjjodidppndkbkhhknakbeflbomf/fonts/open_sans/open-sans-v18-latin-regular.woff');
+          }</style><style>@font-face {
+              font-family: 'Open Sans Bold';
+              font-style: normal;
+              font-weight: 800;
+              src: url('chrome-extension://gkkdmjjodidppndkbkhhknakbeflbomf/fonts/open_sans/OpenSans-Bold.woff');
+          }</style><style>@font-face {
+              font-family: 'Open Sans ExtraBold';
+              font-style: normal;
+              font-weight: 800;
+              src: url('chrome-extension://gkkdmjjodidppndkbkhhknakbeflbomf/fonts/open_sans/open-sans-v18-latin-800.woff');
+          }</style></head>
 <body>
 
     <nav class="navbar">
@@ -33,44 +48,40 @@
             <div class="rounded down"></div>
           </div> -->
 
-          <div class="cont-intern-nav">
+        <div class="navbar-title"><h2>Volantino</h2></div>
 
-            <div class="navbar-title"><h2>Volantino</h2></div>
+        <div class="navbar-menu">
 
-            <div class="navbar-menu">
-    
-                <div class="cont-navbar-item activeBtn">
-                    <div class="navbar-item" id="page1">
-                        <span><i class="ri-add-box-fill"></i>Crea Nuovo</span>
-                    </div>
-                </div>
-            
-                <div class="cont-navbar-item">
-                    <div class="navbar-item" id="page2">
-                        <span><i class="ri-time-fill"></i>Storico</span>
-                    </div>
-                </div>
-            
-                <div class="cont-navbar-item">
-                    <div class="navbar-item" id="page3">
-                        <span><i class="ri-service-fill"></i>Servizi</span>
-                    </div>
-                </div>
-            
-                <div class="cont-navbar-item">
-                    <div class="navbar-item" id="page4">
-                        <span><i class="ri-shopping-bag-4-fill"></i>Ordini</span>
-                    </div>
-                </div>
-            
-                <div class="cont-navbar-item">
-                    <div class="navbar-item" id="page5">
-                        <span><i class="ri-image-fill"></i>Media</span>
-                    </div>
+            <div class="cont-navbar-item activeBtn">
+                <div class="navbar-item" id="page1">
+                    <span><i class="ri-add-box-fill"></i>Crea Nuovo</span>
                 </div>
             </div>
-
-          </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page2">
+                    <span><i class="ri-time-fill"></i>Storico</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page3">
+                    <span><i class="ri-service-fill"></i>Servizi</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page4">
+                    <span><i class="ri-shopping-bag-4-fill"></i>Ordini</span>
+                </div>
+            </div>
+        
+            <div class="cont-navbar-item">
+                <div class="navbar-item" id="page5">
+                    <span><i class="ri-image-fill"></i>Media</span>
+                </div>
+            </div>
+        </div>
         
     </nav>
 
@@ -79,9 +90,17 @@
 
     <div class="cont-user">
    
-        <div class="cont-user-tail">
+        <div class="cont-user-tail" style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+">
     
-            <div class="cont-user-logo">
+            <div class="cont-user-logo" style="
+    border-radius: 50%;
+    background-color: #8b537e;
+">
                 <i class="ri-user-fill"></i>
             </div>
 
@@ -91,7 +110,7 @@
     
     <div class="cont-user-info">
         <div class="info-sec-user">
-            <span><i class="ri-logout-box-line"></i>Logout</span>
+            <p><i class="ri-logout-box-line"></i>Logout</p>
         </div>
     </div>
     
@@ -99,7 +118,7 @@
 
     <div class="cont-page page1" style="display: flex;">
 
-        <form action="" class="form">
+        <form action="http://localhost/volantino-project/mm-admin.html" class="form">
     
             <div id="cont_progress_bar">
                 <p id="load">Caricamento...</p>
@@ -129,26 +148,24 @@
     
             <div class="form-step sec0" data-type="start" style="display: block;">
                 <div class="input-group">
-
-                    <h1 class="text-center"><i class="ri-add-box-fill"></i>Cosa vuoi creare?</h1>
+                    <h1 class="text-center">Scelta Tipo Volantino</h1>
                     
-                    <div class="cont-btn">
-
-                        <div class="cont-intern-btn">
-                            <button type="button" class="btn btn-show-form" id="volantinoWeb" data-next-type="volantinoWeb" data-type="volantinoWeb"><img src="./icons/digital-icon.png"></img><p>Volantino digitale</p></button>
+                    <div class="cont-btn"> 
+                        <div>
+                            <p>Volantino A4</p>
+                            <button type="button" class="btn btn-show-form" id="volantinoA4" data-next-type="volantinoA4" data-type="volantinoA4">Scegli</button>
                         </div>
-
-                        <div class="cont-intern-btn">
-                            <button type="button" class="btn btn-show-form" id="volantinoA4" data-next-type="volantinoA4" data-type="volantinoA4"><img src="./icons/da-stampare-icon.png"></img><p>Volantino digitale <br> <span class="span-service-description">A4</span></p></button>
+                        <div>
+                            <p>Volantino Digitale</p>
+                            <button type="button" class="btn btn-show-form" id="volantinoWeb" data-next-type="volantinoWeb" data-type="volantinoWeb">Scegli</button>
                         </div>
-
-                   
-                        <div class="cont-intern-btn">
-                            <button type="button" class="btn btn-show-form" id="cartellino" data-next-type="cartellini" data-type="cartellini"><img src="./icons/cartellini.png"></img><p>Cartelini</p></button>
+                        <!-- cartellini -->
+                        <div>
+                            <p>Cartellini</p>
+                            <button type="button" class="btn btn-show-form" id="cartellino" data-next-type="cartellini" data-type="cartellini">Scegli</button>
                         </div>
     
                     </div>
-
                     <div class="btns-group">        
                         <button type="button" class="btn btn-next">Avanti</button>
                     </div>
@@ -176,16 +193,16 @@
     <div class="cont-validity">
     
         <label for="data-inizio1">Data inizio validità:</label>
-        <input type="date" class="inputValidityStart data-input" id="inizio-a4" name="data-inizio1" required>
+        <input type="date" class="inputValidityStart data-input" id="inizio-a4" name="data-inizio1" required="">
     
         <label for="data-fine1">Data fine validità:</label>
-        <input type="date" class="inputValidityEnd" id="fine-a4" name="data-fine1" required>
+        <input type="date" class="inputValidityEnd" id="fine-a4" name="data-fine1" required="">
     
     </div>
     
     <div class="cont_description">
         <label for="descrizione1">Descrizione footer volantino A4:</label>
-        <input type="text" class="descrizione_start" id="descrizione1" name="descrizione1" value="si accettano buoni pasto - si effettuano consegne a domicilio" required>
+        <input type="text" class="descrizione_start" id="descrizione1" name="descrizione1" value="si accettano buoni pasto - si effettuano consegne a domicilio" required="">
     </div>
     
     
@@ -202,13 +219,13 @@
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                         <div class="suggerimenti-nome-prodotto">
                             <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                         </div>
                     </div>
             
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                    <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
             
                     <div class="cont-scelta-img">
     
@@ -224,9 +241,9 @@
             
                     <div class="prezzo">
     
-                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                     <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                     
                 </div>
     
@@ -281,13 +298,13 @@
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                         <div class="suggerimenti-nome-prodotto">
                             <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                         </div>
                     </div>
             
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                    <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
             
                     <div class="cont-scelta-img">
     
@@ -296,16 +313,16 @@
                         </div>
     
                         <div class="cont-img">
-                            <img class="img userImage" >
+                            <img class="img userImage">
                         </div>
                         
                     </div>
             
                   <div class="prezzo">
             
-                    <input type="number" class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                     <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                     
                 </div>
                     <div class="switch">
@@ -326,7 +343,7 @@
         
     
         <div class="btns-group">
-            <button type="button" class="btn  anteprima" disabled>Anteprima</button>
+            <button type="button" class="btn  anteprima" disabled="">Anteprima</button>
         </div>
     </div>
     
@@ -360,13 +377,13 @@
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                         <div class="suggerimenti-nome-prodotto">
                             <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                         </div>
                     </div>
             
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                    <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
             
                     <div class="cont-scelta-img">
     
@@ -375,16 +392,16 @@
                         </div>
     
                         <div class="cont-img">
-                            <img class="img userImage" >
+                            <img class="img userImage">
                         </div>
                         
                     </div>
             
                     <div class="prezzo">
     
-                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                     <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                     
                 </div>
     
@@ -407,7 +424,7 @@
     
         <div class="btns-group">        
             <button type="button" class="btn btn-pre home">Home</button>
-            <button type="button" class="btn  anteprima" >Anteprima</button>
+            <button type="button" class="btn  anteprima">Anteprima</button>
         </div>
     </div>
     
@@ -430,16 +447,16 @@
     <div class="cont-validity">
     
         <label for="data-inizio2">Data inizio validità:</label>
-        <input type="date" class="inputValidityStart data-input" id="inizio-web" name="data-inizio2" required>
+        <input type="date" class="inputValidityStart data-input" id="inizio-web" name="data-inizio2" required="">
     
         <label for="data-fine2">Data fine validità:</label>
-        <input type="date" class="inputValidityEnd data-input" id="fine-web" name="data-fine2" required>
+        <input type="date" class="inputValidityEnd data-input" id="fine-web" name="data-fine2" required="">
     
     </div>
     
     <div class="cont_description">
         <label for="descrizione2">Descrizione footer volantino Web:</label>
-        <input type="text" class="descrizione_start" id="descrizione2" name="descrizione2" value="si accettano buoni pasto - si effettuano consegne a domicilio" required>
+        <input type="text" class="descrizione_start" id="descrizione2" name="descrizione2" value="si accettano buoni pasto - si effettuano consegne a domicilio" required="">
     </div>
     
             <div class="input-rows">
@@ -454,13 +471,13 @@
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                         <div class="suggerimenti-nome-prodotto">
                             <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                         </div>
                     </div>
             
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                    <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
             
                     <div class="cont-scelta-img">
     
@@ -469,16 +486,16 @@
                         </div>
     
                         <div class="cont-img">
-                            <img class="img userImage" >
+                            <img class="img userImage">
                         </div>
                         
                     </div>
             
                     <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>
     
@@ -501,7 +518,7 @@
         <!-- Pulsanti Avanti e Indietro -->
         <div class="btns-group">        
             <button type="button" class="btn btn-pre home">Home</button>
-            <button type="button" class="btn  anteprima" >Anteprima</button>
+            <button type="button" class="btn  anteprima">Anteprima</button>
                                          <!-- btn-next -->
         </div>
     
@@ -532,13 +549,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -547,16 +564,16 @@
                             </div>
         
                             <div class="cont-img">
-                                <img class="img userImage" >
+                                <img class="img userImage">
                             </div>
                             
                         </div>
                 
                      <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>  
     
@@ -577,14 +594,14 @@
             </div>
     
             <div class="btns-group">        
-                <button type="button" class="btn  anteprima" >Anteprima</button>
+                <button type="button" class="btn  anteprima">Anteprima</button>
             </div>
     
     </div>
     
     
     
-    <div class="form-step sec5" data-type="volantinoWeb" data-pagina="freschi"  style="display: none;">
+    <div class="form-step sec5" data-type="volantinoWeb" data-pagina="freschi" style="display: none;">
         <div class="title-center">
             <h2>Freschi</h2>
         </div>
@@ -608,13 +625,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -623,16 +640,16 @@
                             </div>
         
                             <div class="cont-img">
-                                <img class="img userImage" >
+                                <img class="img userImage">
                             </div>
                             
                         </div>
                 
                         <div class="prezzo">
     
-                            <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                            <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                             <span>,</span>
-                            <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                             
                         </div>
     
@@ -653,7 +670,7 @@
             </div>
     
             <div class="btns-group">        
-                <button type="button" class="btn  anteprima" >Anteprima</button>
+                <button type="button" class="btn  anteprima">Anteprima</button>
             </div>
     
     </div>
@@ -684,13 +701,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -699,16 +716,16 @@
                             </div>
         
                             <div class="cont-img">
-                                <img class="img userImage" >
+                                <img class="img userImage">
                             </div>
                             
                         </div>
                 
                      <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>  
     
@@ -729,7 +746,7 @@
             </div>
     
             <div class="btns-group">        
-                <button type="button" class="btn  anteprima" >Anteprima</button>
+                <button type="button" class="btn  anteprima">Anteprima</button>
             </div>
     
     </div>
@@ -760,13 +777,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -775,16 +792,16 @@
                             </div>
         
                             <div class="cont-img">
-                                <img class="img userImage" >
+                                <img class="img userImage">
                             </div>
                             
                         </div>
                 
                      <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>  
     
@@ -805,7 +822,7 @@
             </div>
     
             <div class="btns-group">        
-                <button type="button" class="btn  anteprima" >Anteprima</button>
+                <button type="button" class="btn  anteprima">Anteprima</button>
             </div>
     
     </div>
@@ -836,13 +853,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -851,16 +868,16 @@
                             </div>
         
                             <div class="cont-img">
-                                <img class="img userImage" >
+                                <img class="img userImage">
                             </div>
                             
                         </div>
                 
                      <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>  
     
@@ -881,7 +898,7 @@
             </div>
     
             <div class="btns-group">        
-                <button type="button" class="btn  anteprima" >Anteprima</button>
+                <button type="button" class="btn  anteprima">Anteprima</button>
             </div>
     
     </div>
@@ -911,13 +928,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -926,16 +943,16 @@
                             </div>
         
                             <div class="cont-img">
-                                <img class="img userImage" >
+                                <img class="img userImage">
                             </div>
                             
                         </div>
                 
                      <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>  
     
@@ -956,7 +973,7 @@
             </div>
     
             <div class="btns-group">        
-                <button type="button" class="btn  anteprima" >Anteprima</button>
+                <button type="button" class="btn  anteprima">Anteprima</button>
             </div>
     
     </div>
@@ -987,13 +1004,13 @@
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required=""> <!-- Aggiunto required -->
                             <div class="suggerimenti-nome-prodotto">
                                 <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                             </div>
                         </div>
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+                        <input type="text" class="input-descrizione" placeholder="Descrizione" required=""> <!-- Aggiunto required -->
                 
                         <div class="cont-scelta-img">
     
@@ -1009,9 +1026,9 @@
                 
                      <div class="prezzo">
     
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                        <input type="number" class="input-prezzo euro" placeholder="Euro" required="" step="any">
                         <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                        <input type="number" class="input-prezzo centesimi" placeholder="Centesimi" required="" step="any" value="00">
                         
                     </div>  
     
@@ -1034,7 +1051,7 @@
     
         <!-- Pulsanti Avanti e Indietro -->
         <div class="btns-group">        
-            <button type="button" class="btn  anteprima" >Anteprima</button>
+            <button type="button" class="btn  anteprima">Anteprima</button>
         </div>
     
     
@@ -1054,11 +1071,11 @@
         <h2>Anteprima Volantino A4</h2>
             
             <div class="pagina_primaA4">
-                <iframe class="none" src="frame-pdf/A4/prima_pagina.html" data-max-elements="6" frameborder="0"></iframe>
+                <iframe class="none" src="./Supermercato MM admin_files/prima_pagina.html" data-max-elements="6" frameborder="0"></iframe>
             </div>
         
             <div class="pagina_secondaA4">
-                <iframe class="none"  src="frame-pdf/A4/seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+                <iframe class="none" src="./Supermercato MM admin_files/seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
             </div>
     
         </div>
@@ -1083,8 +1100,8 @@
         <h2>Anteprima Cartellini</h2>
             
             <div class="pagina_cartellini">
-                <iframe class="none" src="frame-pdf/cartellini/cartellini.html" data-max-elements="1" frameborder="0"></iframe>
-                <iframe class="none" src="frame-pdf/cartellini/cartellini.html" data-max-elements="1" frameborder="0"></iframe>
+                <iframe class="none" src="./Supermercato MM admin_files/cartellini.html" data-max-elements="1" frameborder="0"></iframe>
+                <iframe class="none" src="./Supermercato MM admin_files/cartellini(1).html" data-max-elements="1" frameborder="0"></iframe>
         </div>
         
     
@@ -1108,42 +1125,42 @@
             <h2>Anteprima Volantino Web</h2>
     
      <div class="pagina_prima">
-        <iframe class="none" src="frame-pdf/Web/prima_pagina_web.html" data-max-elements="6" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/prima_pagina_web.html" data-max-elements="6" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_salumeria">
-        <iframe class="none" src="frame-pdf/Web/salumeria_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/salumeria_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/salumeria_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/salumeria_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_freschi">
-        <iframe class="none" src="frame-pdf/Web/freschi_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/freschi_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/freschi_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/freschi_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_surgelati">
-        <iframe class="none" src="frame-pdf/Web/surgelati_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/surgelati_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/surgelati_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/surgelati_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_dispensa">
-        <iframe class="none" src="frame-pdf/Web/dispensa_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/dispensa_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/dispensa_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/dispensa_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_bevande">
-        <iframe class="none" src="frame-pdf/Web/bevande_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/bevande_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/bevande_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/bevande_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_igiene">
-        <iframe class="none" src="frame-pdf/Web/igiene_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/igiene_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/igiene_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/igiene_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     <div class="pagina_puliziacasa">
-        <iframe class="none" src="frame-pdf/Web/puliziacasa_prima_pagina.html"  data-max-elements="8" frameborder="0"></iframe>
-        <iframe class="none" src="frame-pdf/Web/puliziacasa_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/puliziacasa_prima_pagina.html" data-max-elements="8" frameborder="0"></iframe>
+        <iframe class="none" src="./Supermercato MM admin_files/puliziacasa_seconda_pagina.html" data-max-elements="9" frameborder="0"></iframe>
     </div>
     
     
@@ -1200,5 +1217,6 @@
 
 
     
-</body>
-</html>
+
+
+</body></html>

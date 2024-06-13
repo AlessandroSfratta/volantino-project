@@ -22,24 +22,10 @@
 
 .cont-btn {
     display: flex;
-    width: 100%;
     justify-content: center;
-    align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
-
-.cont-btn button {
-    height: 300px;
-    width: 200px;
-    display: flex;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 
 h1, h2 {
@@ -47,35 +33,19 @@ h1, h2 {
     margin-bottom: 20px;
 }
 
-.text-center {
-    font-family: 'Oleo Script';
-    font-size: 2.4rem;
-}
-
-.text-center i {
-    margin-right: 5px;
-    color: #a05f90;
-    font-size: 1.9rem;
-}
 
 
 .form {
- width: 100%;
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- flex-wrap: wrap;
+
 }
 
 
 
 .btns-group {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-    }
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 
 
 
@@ -99,7 +69,7 @@ h1, h2 {
 .form-step {
     display: none;
     padding: 20px;
-  width: 100%;
+    border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
 

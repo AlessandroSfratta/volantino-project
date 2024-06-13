@@ -1,0 +1,292 @@
+
+
+body {
+    display: flex;
+    font-family: 'Gotham Rounded Bold', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border: 0;
+}
+
+
+@font-face {
+    font-family: 'Gotham Rounded Bold';
+    src: url('fonts/Gotham Rounded Bold.otf') format('truetype'); 
+}
+
+
+
+.sfondop1 {   
+    width: 216mm; 
+    height: 303mm; 
+    background-image: url('immagini/sfondo1.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
+
+.sfondo {
+    width: 216mm; 
+    height: 303mm; 
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
+
+.sfondop2 { 
+    padding-top: 18mm;
+}
+
+/* .paginaContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 210mm;
+    margin-top: 23rem;
+} */
+
+
+.np {
+    width: 80%;
+    margin: 2mm;
+    text-align: left;
+    color: #00384e;
+    font-size: 14px;
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+}
+
+.imgprodotto {
+    margin-top: 14mm;
+    width: auto; 
+    height: 60mm;
+    align-content: center;
+}
+
+
+    .imgprodotto img {
+        width: 95%;
+    max-width: 160px;
+    max-height: 180px;
+  }
+
+
+.info {
+   position: relative;
+    margin: 0mm 2mm 0mm 2mm;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    width: 90%
+}
+
+.descrizione {
+    width: min-content;
+    font-size: 2.8mm;
+    text-align: left;
+    flex: 1;
+    margin: 0;
+    color: #00354f;
+}
+
+.contenitoreprezzo {
+
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.prezzoa {
+    font-size: 12mm;
+    color: red;
+    margin-top: -2.5mm;
+    width: 70%;
+    text-align: right;
+}
+
+.prezzob {
+    line-height: 17px;
+    font-size: 20px;
+    color: red;
+   margin: 0;
+}
+
+.prezzob span {
+    font-size: 17px;
+}
+
+
+/* pagina 2*/
+
+
+
+
+.pagina2container {
+    width: 210mm;
+    margin-top: 2mm;
+}
+
+
+.infoClientePag2 {
+    color: #00384e;
+    margin-top: 9mm;
+    margin-bottom: 7mm;
+}
+
+
+/*TEMPLATE ARTICOLO*/
+.templatearticolo {
+    position: relative;
+    height: 85mm;
+    width: 62mm;
+    margin: 2mm;
+    background-color: white;
+    overflow: visible;
+}
+
+
+.templatearticolovuoto {
+    position: relative;
+    height: 85mm;
+    width: 100%;
+    margin: 2mm;
+    background-color: transparent;
+    
+}
+
+.ombra {
+    position: absolute;
+    bottom: -25px;
+    left: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 52px;
+    pointer-events: none;
+    background-image: url(../frame-pdf/immagini/ombra.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* Ombra effetto 2 */
+/* .templatearticolo::before,
+.templatearticolo::after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width: 250px; 
+    background: #777;
+    box-shadow: 0 15px 10px #777;
+    transform-origin: bottom;
+} */
+
+/* .templatearticolo::after {
+    right: 10px;
+    left: auto;
+    transform: rotate(3deg); 
+    z-index: -1;
+    mix-blend-mode: multiply;
+}
+
+.templatearticolo::before {
+    transform: rotate(-3deg); 
+    z-index: -1;
+    mix-blend-mode: multiply;
+} */
+
+
+/* .ombra {
+    position: absolute;
+    bottom: 15px;
+    width: 50%;
+    max-width: 250px; 
+    height: 10px;
+    background: #777;
+    box-shadow: 0 15px 10px #777;
+    z-index: -1;
+    mix-blend-mode: multiply;
+}
+
+.ombra.sinistra {
+    left: 10px;
+    transform: rotate(-3deg); 
+}
+
+.ombra.destra {
+    right: 10px;
+    transform: rotate(3deg); 
+} */
+
+
+
+
+/* DIGITALE */
+
+.sfondo { 
+    /* position: absolute;   */
+    width: 216mm; 
+    height: 303mm; 
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-align: -webkit-center;
+    z-index: -2;
+}
+
+.pagina_container { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 210mm;
+    margin-top: 10mm;
+}
+
+.pagina_container > * { 
+    justify-content: flex-start;
+}
+
+
+.validity_cont {
+    color: white;
+    margin-top: 6mm;
+    margin-bottom: 83mm;
+}
+
+
+.infoCliente {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* gap: 3px; */
+    bottom: 8mm;
+    right: 0;
+    position: absolute;
+    color: white;
+    align-items: center;
+    margin-top: 4mm;
+    flex-direction: column;
+}
+ 
+.contact_info {
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.descrizione_Volantino {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
