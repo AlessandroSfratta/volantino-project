@@ -118,11 +118,13 @@ async function generaElementi(updateProgress) {
 
                     if(currentDescription) {
                         console.log("Current description esiste");
-                        InputDescrizione.forEach( (input) => {
+                        InputDescrizione.forEach( (textArea) => {
 
-                            if(input.value) {
-                                currentDescription.textContent = input.value
-                                console.log("description=", input.value);
+                            if (textArea.textContent.trim() !== '') {
+                                currentDescription.innerHTML = textArea.textContent;
+                                console.log("description=", textArea.textContent);
+                            } else {
+                                console.log("Il textarea è vuoto nel DOM");
                             }
              
                         })

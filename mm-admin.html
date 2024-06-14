@@ -14,6 +14,7 @@
 
     
     <link  href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style_form_wizard.css">
     <link rel="stylesheet" href="style_home.css">
     <link rel="stylesheet" href="button.css">
@@ -111,42 +112,74 @@
         
     
             <div class="tail-cont-a4" style="display: none;">
-                <div class="btn-step1 btn-step-tail"><h2 id="sec1">Prima pagina</h2></div>
-                <div class="btn-step2 btn-step-tail"><h2 id="sec2">Seconda pagina</h2></div>
+                <div class="btn-step1 btn-step-tail open">
+                    <h2 id="sec1" class="tail-text open">Prima pagina</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step2 btn-step-tail">
+                    <h2 id="sec2" class="tail-text">Seconda pagina</h2>
+                    <span class="circle-tail"></span>
+                </div>
             </div>
             
             <div class="tail-cont-web" style="display: none;">
-                <div class="btn-step1 btn-step-tail"><h2 id="sec3">Prima pagina web</h2></div>
-                <div class="btn-step2 btn-step-tail"><h2 id="sec4">Salumeria</h2></div>
-                <div class="btn-step3 btn-step-tail"><h2 id="sec5">Freschi</h2></div>
-                <div class="btn-step4 btn-step-tail"><h2 id="sec6">Surgelati</h2></div>
-                <div class="btn-step5 btn-step-tail"><h2 id="sec7">Dispensa</h2></div>
-                <div class="btn-step6 btn-step-tail"><h2 id="sec8">Bevande</h2></div>
-                <div class="btn-step7 btn-step-tail"><h2 id="sec9">Igiene</h2></div>
-                <div class="btn-step8 btn-step-tail"><h2 id="sec10">Pulizia casa</h2></div>
+                <div class="btn-step1 btn-step-tail open"> <h2 id="sec3" class="tail-text open">Prima pagina</h2>
+                    <span class="circle-tail"></span>
+                </div>
+
+                <div class="btn-step2 btn-step-tail"> <h2 id="sec4" class="tail-text">Salumeria</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step3 btn-step-tail"> <h2 id="sec5" class="tail-text">Freschi</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step4 btn-step-tail"> <h2 id="sec6" class="tail-text">Surgelati</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step5 btn-step-tail"> <h2 id="sec7" class="tail-text">Dispensa</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step6 btn-step-tail"> <h2 id="sec8" class="tail-text">Bevande</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step7 btn-step-tail"> <h2 id="sec9" class="tail-text">Igiene</h2>
+                    <span class="circle-tail"></span>
+                </div>
+                <div class="btn-step8 btn-step-tail"> <h2 id="sec10" class="tail-text">Pulizia casa</h2>
+                    <span class="circle-tail"></span>
+                </div>
             </div>
-    
-    
+            
             <div class="form-step sec0" data-type="start" style="display: block;">
+               
                 <div class="input-group">
 
                     <h1 class="text-center"><i class="ri-add-box-fill"></i>Cosa vuoi creare?</h1>
                     
                     <div class="cont-btn">
 
-                        <div class="cont-intern-btn">
-                            <button type="button" class="btn btn-show-form" id="volantinoWeb" data-next-type="volantinoWeb" data-type="volantinoWeb"><img src="./icons/digital-icon.png"></img><p>Volantino digitale</p></button>
+                        <div class="cont-intern-btn" id="volantinoWeb" data-next-type="volantinoWeb" data-type="volantinoWeb">
+                            <div class="btn-container">
+                                <i class="fa-regular fa-paper-plane"></i>
+                                <p>Volantino digitale</p>
+                            </div>
                         </div>
-
-                        <div class="cont-intern-btn">
-                            <button type="button" class="btn btn-show-form" id="volantinoA4" data-next-type="volantinoA4" data-type="volantinoA4"><img src="./icons/da-stampare-icon.png"></img><p>Volantino digitale <br> <span class="span-service-description">A4</span></p></button>
+                        
+                        <div class="cont-intern-btn" id="volantinoA4" data-next-type="volantinoA4" data-type="volantinoA4">
+                            <div class="btn-container">
+                                <i class="fa-regular fa-file-pdf"></i>
+                                <p>Volantino da stampare<br></p>
+                                <span class="span-service-description">A4</span>
+                            </div>
                         </div>
-
-                   
-                        <div class="cont-intern-btn">
-                            <button type="button" class="btn btn-show-form" id="cartellino" data-next-type="cartellini" data-type="cartellini"><img src="./icons/cartellini.png"></img><p>Cartelini</p></button>
+                        
+                        <div class="cont-intern-btn" id="cartellino" data-next-type="cartellini" data-type="cartellini">
+                            <div class="btn-container">
+                                <i class="fa-regular fa-note-sticky"></i>
+                                <p>Cartellini</p>
+                            </div>
                         </div>
-    
+                        
                     </div>
 
                     <div class="btns-group">        
@@ -160,35 +193,47 @@
     <!-- Sezione Volantino A4 -->
     <div class="form-step sec1 btn-cont-tail" data-type="volantinoA4" data-pagina="primaA4" style="display: none;">
     
-        <div class="title-center">
-            <h2>Prima pagina</h2>
-        </div>
-    
-    
-        
+
+
         <div class="cont-input">
+
+            <h1 class="text-center"><i class="fa-regular fa-file-pdf"></i>Volantino da stampare<span class="span-service-description">A4</span></h1>
+
+
+    <div class="cont-head-cont">
+
+        <div class="cont-validity">
+
+            <p>Validità</p>
     
-        <div class="counter-cont">
-        <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6)</p>
-    </div>
-    
-    
-    <div class="cont-validity">
-    
-        <label for="data-inizio1">Data inizio validità:</label>
+<div class="cont-all-input-validity">
+
+    <div class="cont-input-validaty">
+        <label for="data-inizio1">dal:</label>
         <input type="date" class="inputValidityStart data-input" id="inizio-a4" name="data-inizio1" required>
-    
-        <label for="data-fine1">Data fine validità:</label>
+    </div>
+
+    <div class="cont-input-validaty">
+        <label for="data-fine1">al:</label>
         <input type="date" class="inputValidityEnd" id="fine-a4" name="data-fine1" required>
     
     </div>
-    
-    <div class="cont_description">
-        <label for="descrizione1">Descrizione footer volantino A4:</label>
-        <input type="text" class="descrizione_start" id="descrizione1" name="descrizione1" value="si accettano buoni pasto - si effettuano consegne a domicilio" required>
+
+</div>
+
+
+     
+        </div>
+        
+        <div class="cont_description">
+            <label for="descrizione1">Descrizione piè di pagina (max 70 caratteri):</label>
+            <textarea class="descrizione_start" id="descrizione1" placeholder="Descrizione..." name="descrizione1" maxlength="70" required>si accettano buoni pasto - si effettuano consegne a domicilio</textarea>
+        </div>
+        
+
     </div>
     
-    
+
             <div class="input-rows">
     
                 <div class="input-row">
@@ -241,6 +286,10 @@
                 </div>
     
             </div>
+
+            <div class="counter-cont">
+                <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6)</p>
+            </div>
             
     
     
@@ -257,16 +306,11 @@
     <!-- Sezione Volantino A4 -->
     <div class="form-step sec2 btn-cont-tail" data-type="volantinoA4" data-pagina="secondaA4" style="display: none;">
     
-    
-        <div class="title-center">
-            <h2>Seconda pagina</h2>
-        </div>
-    
+
         <div class="cont-input">
     
-            <div class="counter-cont">
-                <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 9)</p>
-            </div>
+            <h1 class="text-center"><i class="ri-add-box-fill"></i>Volantino da stampare<span class="span-service-description">A4</span></h1>
+
     
             <div class="input-rows">
     
@@ -319,6 +363,10 @@
                 </div>
     
             </div>
+
+            <div class="counter-cont">
+                <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 9)</p>
+            </div>
             
     
     
@@ -332,99 +380,14 @@
     
     
     
-    <div class="form-step sec3 btn-cont-tail" data-type="cartellini" data-pagina="cartellini" style="display: none;">
-    
-        <div class="title-center">
-            <h2>Cartellini</h2>
-        </div>
-    
-    
-        
-        <div class="cont-input">
-    
-            <div class="counter-cont">
-                <p class="counter-p">Elementi creati: <span class="counter">1</span></p>
-            </div>
-    
-    
-            <div class="input-rows">
-    
-                <div class="input-row">
-    
-                    <div class="cont-manegament">
-                        <i class="ri-close-large-line close"></i>
-                        <i class="ri-arrow-up-line up"></i>
-                        <i class="ri-arrow-down-line down"></i> 
-                    
-                        </div>        
-    
-                    <div class="modal"></div>
-                    <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                        <div class="suggerimenti-nome-prodotto">
-                            <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                        </div>
-                    </div>
-            
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-            
-                    <div class="cont-scelta-img">
-    
-                        <div class="cont-upload">
-                            <input type="file" class="img-input" accept="image/*">
-                        </div>
-    
-                        <div class="cont-img">
-                            <img class="img userImage" >
-                        </div>
-                        
-                    </div>
-            
-                    <div class="prezzo">
-    
-                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                    <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                    
-                </div>
-    
-                    <div class="switch">
-                        <input id="cmn-toggle-33" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                        <label for="cmn-toggle-33"></label>
-                    </div>
-    
-    
-                    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-                    
-                </div>
-    
-            </div>
-            
-    
-    
-        </div>
-        
-    
-        <div class="btns-group">        
-            <button type="button" class="btn btn-pre home">Home</button>
-            <button type="button" class="btn  anteprima" >Anteprima</button>
-        </div>
-    </div>
-    
-    
-    
+
     <!-- Sezione Volantino Web -->
     <div class="form-step sec3" data-type="volantinoWeb" data-pagina="prima" style="display: none;">
     
-        <div class="title-center">
-            <h2>Prima pagina</h2>
-        </div>
-    
+
         <div class="cont-input">
-    
-        <div class="counter-cont">
-        <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-    </div>
+
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
     
     <div class="cont-validity">
@@ -493,6 +456,10 @@
                 </div>
     
             </div>
+
+            <div class="counter-cont">
+                <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+            </div>
             
     
     
@@ -509,15 +476,13 @@
     </div>
     
     <div class="form-step sec4" data-type="volantinoWeb" data-pagina="salumeria" style="display: none;">
-        <div class="title-center">
-            <h2>Salumeria</h2>
-        </div>
+
+
     
         <div class="cont-input">
-    
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-        </div>
+        
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
+
         
                 <div class="input-rows">
         
@@ -571,6 +536,10 @@
                     </div>
         
                 </div>
+
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+                </div>
                 
         
         
@@ -585,15 +554,12 @@
     
     
     <div class="form-step sec5" data-type="volantinoWeb" data-pagina="freschi"  style="display: none;">
-        <div class="title-center">
-            <h2>Freschi</h2>
-        </div>
+        
     
         <div class="cont-input">
+        
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-        </div>
         
                 <div class="input-rows">
         
@@ -647,6 +613,10 @@
                     </div>
         
                 </div>
+
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+                </div>
                 
         
         
@@ -661,15 +631,13 @@
     
     
     <div class="form-step sec6" data-type="volantinoWeb" data-pagina="surgelati" style="display: none;">
-        <div class="title-center">
-            <h2>Surgelati</h2>
-        </div>
+        
+
     
         <div class="cont-input">
     
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-        </div>
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
+
         
                 <div class="input-rows">
         
@@ -723,7 +691,10 @@
                     </div>
         
                 </div>
-                
+            
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+                </div>
         
         
             </div>
@@ -737,16 +708,14 @@
     
     
     <div class="form-step sec7" data-type="volantinoWeb" data-pagina="dispensa" style="display: none;">
-        <div class="title-center">
-            <h2>Dispensa</h2>
-        </div>
+       
+
     
         <div class="cont-input">
+
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-        </div>
-        
+
                 <div class="input-rows">
         
                     <div class="input-row">
@@ -800,6 +769,10 @@
         
                 </div>
                 
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+                </div>
+                
         
         
             </div>
@@ -813,15 +786,12 @@
     
     
     <div class="form-step sec8" data-type="volantinoWeb" data-pagina="bevande" style="display: none;">
-        <div class="title-center">
-            <h2>Bevande</h2>
-        </div>
-    
+       
+
         <div class="cont-input">
+
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-        </div>
         
                 <div class="input-rows">
         
@@ -876,6 +846,9 @@
         
                 </div>
                 
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+                </div>
         
         
             </div>
@@ -888,15 +861,12 @@
     
     
     <div class="form-step sec9" data-type="volantinoWeb" data-pagina="igiene" style="display: none;">
-        <div class="title-center">
-            <h2>Igiene</h2>
-        </div>
+       
+
     
         <div class="cont-input">
     
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
-        </div>
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
         
                 <div class="input-rows">
         
@@ -951,6 +921,9 @@
         
                 </div>
                 
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
+                </div>
         
         
             </div>
@@ -964,15 +937,13 @@
     
     
     <div class="form-step sec10" data-type="volantinoWeb" data-pagina="puliziacasa" style="display: none;">
-        <div class="title-center">
-            <h2>Pulizia casa</h2>
-        </div>
+      
+
     
         <div class="cont-input">
     
-            <div class="counter-cont">
-            <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 9 per pagina)</p>
-        </div>
+
+            <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
         
                 <div class="input-rows">
         
@@ -1027,6 +998,9 @@
         
                 </div>
                 
+                <div class="counter-cont">
+                    <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 9 per pagina)</p>
+                </div>
         
         
             </div>
@@ -1041,17 +1015,93 @@
     </div>
     
     
+    <div class="form-step sec11 btn-cont-tail" data-type="cartellini" data-pagina="cartellini" style="display: none;">
     
+    
+        
+        <div class="cont-input">
+    
+
+            <h1 class="text-center"><i class="fa-regular fa-note-sticky"></i>Cartellini</h1>
+
+    
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
+                        <i class="ri-close-large-line close"></i>
+                        <i class="ri-arrow-up-line up"></i>
+                        <i class="ri-arrow-down-line down"></i> 
+                    
+                        </div>        
+    
+                    <div class="modal"></div>
+                    <div class="product-name-cont">
+                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                        <div class="suggerimenti-nome-prodotto">
+                            <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                        </div>
+                    </div>
+            
+                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
+            
+                    <div class="cont-scelta-img">
+    
+                        <div class="cont-upload">
+                            <input type="file" class="img-input" accept="image/*">
+                        </div>
+    
+                        <div class="cont-img">
+                            <img class="img userImage" >
+                        </div>
+                        
+                    </div>
+            
+                    <div class="prezzo">
+    
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                    
+                </div>
+    
+                    <div class="switch">
+                        <input id="cmn-toggle-33" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                        <label for="cmn-toggle-33"></label>
+                    </div>
+    
+    
+                    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                    
+                </div>
+    
+            </div>
+
+            <div class="counter-cont">
+                <p class="counter-p">Elementi creati: <span class="counter">1</span></p>
+            </div>
+            
+    
+    
+        </div>
+        
+    
+        <div class="btns-group">        
+            <button type="button" class="btn btn-pre home">Home</button>
+            <button type="button" class="btn  anteprima" >Anteprima</button>
+        </div>
+    </div>
     
     
     
     <!-- Sezione Anteprima A4 -->
-    <div class="form-step sec11" data-type="volantinoA4" style="display: none;">
+    <div class="form-step sec12" data-type="volantinoA4" style="display: none;">
     
     
         <div class="pdf-content1">
     
-        <h2>Anteprima Volantino A4</h2>
+            <h1 class="text-center"><i class="ri-add-box-fill"></i>Anteprima</h1>
             
             <div class="pagina_primaA4">
                 <iframe class="none" src="frame-pdf/A4/prima_pagina.html" data-max-elements="6" frameborder="0"></iframe>
@@ -1075,7 +1125,7 @@
     
     
     <!-- Sezione Anteprima Cartellini -->
-    <div class="form-step sec12" data-type="cartellini" style="display: none;">
+    <div class="form-step sec13" data-type="cartellini" style="display: none;">
     
     
         <div class="pdf-content3">

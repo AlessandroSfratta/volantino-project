@@ -64,33 +64,100 @@
 
 .btn-step-tail {
 
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
   background-color: #f8f9fa;
-  border-top: 1px solid #000;
+  /* border-top: 1px solid #000;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
-  border-bottom: #ffff;
-  width: 140px;
-  height: 58px;
+   */
+  border-radius: 17px 17px 0px 0px;
 
+  border-bottom: #ffff;
+ width: 80px;
+  height: 40px;
+  overflow: hidden;
+  margin-right: -13px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.2), 4px 1px 3px rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 
-.btn-step-tail h2 {
+.btn-step-tail:hover {
+  width: 120px;
+}
+
+.tail-text {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  font-size: 0.9rem;
+  width: 4ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.btn-step-tail:hover .tail-text {
+  width: 20ch;
+}
+
+
+.btn-step-tail.open {
+  width: 125px;
+  background-color: #8b537e;
+}
+
+.tail-text.open {
+  width: 20ch;
+}
+
+
+.circle-tail {
+  position: absolute;
+  height: 7px;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  background-color: #eeebebee;
+  /* border: 1px solid #000; */
+  border-radius: 50%;
+}
+
+/* .tail-text.collapsed {
+ width: 4ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+} */
+
+
+/* .btn-step-tail h2 {
   text-align: center;
   font-size: 1rem;
   margin-top: 22px;
 
-}
+} */
 
 .tail-cont-a4, .tail-cont-web {
   top: 1px;
   align-content: start;
-  width: 100%;
+  /* width: 100%; */
+  width: min-content;
   display: flex;
   justify-content: start;
   flex-direction: row;
   align-items: start;
   position: relative;
-  gap: 10px;
+  margin-left: 2rem;
+  cursor: pointer;
+  z-index: -1;
+  /* gap: 10px; */
 }
-

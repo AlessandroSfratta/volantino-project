@@ -147,30 +147,53 @@ function addEventListenersToInputs() {
 addEventListenersToInputs();
 
 
-// button reparti 
-const sectionHeaders = document.querySelectorAll('.tail-cont-a4 h2, .tail-cont-web h2');
-sectionHeaders.forEach(function(section) {
-    section.addEventListener('click', function() {
+const tailTexts = document.querySelectorAll('.tail-text');
+
+tailTexts.forEach(function(tailText) {
+    tailText.addEventListener('click', function() {
+
+        this.classList.add('open');
+        
+        tailTexts.forEach(function(otherTailText) {
+            if (otherTailText !== tailText) {
+                otherTailText.classList.remove('open');
+
+                otherTailText.parentNode.classList.remove('open');
+            }
+        });
+
+        this.parentNode.classList.add('open');
+
         let contSee = document.querySelector('.form-step[style="display: block;"]');
-     
-        togglePage(this.id,contSee,"block");
 
-        validateInputsAndModals(contSee, section);
-
+        togglePage(this.id, contSee, "block");
     });
 });
 
+const btns = document.querySelectorAll('.btn-step-tail');
+
+    btns.forEach((btn, index) => {
+        btn.style.zIndex = 20 - index; 
+
+    });
+
+
+
 
 export function togglePage(sectionId, currentSection,state) {
+
 
     if (currentSection) {
         currentSection.style.display = 'none';
         const secClass = Array.from(currentSection.classList).find(className => className.startsWith('sec'));
 
-        if (secClass) {
-            const button = document.getElementById(secClass);
-          
+        const buttonId = secClass;
+        const button = document.getElementById(buttonId);
+
+        if(button) {
+            validateInputsAndModals(currentSection, button); 
         }
+
     }
 
     // Mostra la sezione target
@@ -180,6 +203,22 @@ export function togglePage(sectionId, currentSection,state) {
     }
 
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    let textAreas = document.querySelectorAll('.descrizione_start');
+
+    // Aggiungi un listener per l'evento 'input' su ciascun textarea
+    textAreas.forEach((textArea) => {
+        textArea.addEventListener('input', (event) => {
+            // Aggiorna il testo visibile nel textarea
+            textArea.textContent = event.target.value;
+            console.log("description=", textArea.textContent);
+
+            // Aggiorna anche il valore del textarea
+            textArea.value = event.target.value;
+        });
+    });
+});
 
 
 export function validateInputsAndModals(currentSection, button) {
@@ -202,12 +241,18 @@ export function validateInputsAndModals(currentSection, button) {
         }
     });
     
-    if (!allInputsValid || !allModalsActive) {
-        button.style.backgroundColor = '#FF8C00'; // Arancione se gli input non sono validi o i modali non sono attivi
-    } else {
-        button.style.backgroundColor = '#7cfc00'; // Verde se tutti gli input sono validi e i modali sono attivi
-    }
+    const padreButton = button.closest('.btn-step-tail');
+
+        const buttonCircle = padreButton.querySelector(".circle-tail"); 
+
+            if (!allInputsValid || !allModalsActive) {
+                buttonCircle.style.backgroundColor = '#FF8C00';
+            } else {
+                buttonCircle.style.backgroundColor = '#7cfc00';
+            }
 }
+
+
 
     
     

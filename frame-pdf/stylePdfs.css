@@ -1,8 +1,10 @@
 
+* {
+    font-family: 'Gotham Rounded Bold', sans-serif;
+}
 
 body {
     display: flex;
-    font-family: 'Gotham Rounded Bold', sans-serif;
     justify-content: center;
     align-items: center;
     margin: 0;

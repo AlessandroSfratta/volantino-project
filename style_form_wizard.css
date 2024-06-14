@@ -1,22 +1,29 @@
 
 
 .btn {
-
+    color: #ffff;
+    background-color: #e26656;
+    border-radius: 7px;
     padding: 10px 20px;
     font-size: 16px;
-    border: none;
-    border-radius: 5px;
+    font-weight: 600;
+    width: 130px;
+    border: 3px solid #e26656 ;
+    /* border-radius: 5px; */
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: 0.2s all ease-in;
+}
 
+.btn:hover {
+    color: #e26656;
+    background-color: #ffff;
 }
 
 
-
-.active {
+/* .active {
     background-color: #007bff;
     color: #fff;
-}
+} */
 
 
 
@@ -26,12 +33,69 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+    padding-bottom: 1rem;
+}
+
+.cont-intern-btn {
+    height: 222px; 
+    width: 154px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    box-shadow: 0 7px 5px rgba(0, 0, 0, 0.3);
+    transition: 0.3s transform ease-in-out;
+    transition: 0.3s border ease;
+}
+
+.cont-intern-btn:hover {
+    transform: translateY(-7px); 
+    border-top: 7px solid #e26656;
+    border-bottom: 7px solid #e26656;
+}
+
+.btn-container {
+    height: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    cursor: pointer;
+}
+
+.btn-container i {
+        font-size: 3rem;
+        color: #a05f90;
 }
 
 
+
+.btn-container p {
+    text-align: center;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+
+.btn-container span {
+    color: #a05f90;
+    font-weight: 700;
+}
+
+
+
+
+/* 
 .cont-btn button {
-    height: 300px;
-    width: 200px;
+    height: 222px;
+    width: 154px;
     display: flex;
     border-radius: 20px;
     justify-content: center;
@@ -41,39 +105,141 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.cont-btn button p {
+    margin: 0;
+}
+
+.cont-btn button img {
+    width: 50px;
+    height: 50px;
+} */
 
 h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
+
 .text-center {
     font-family: 'Oleo Script';
     font-size: 2.4rem;
+    position: absolute;
+    top: -10rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
 }
 
 .text-center i {
-    margin-right: 5px;
+    margin-right: 0.4rem;
     color: #a05f90;
     font-size: 1.9rem;
 }
 
-
-.form {
- width: 100%;
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- flex-wrap: wrap;
+.text-center .span-service-description {
+    margin-left: 10px;
+    font-family: 'Oleo Script';
+    font-size: 2.4rem;
+    color: #a05f90;
 }
 
+
+.cont-head-cont {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    height: 100px;
+}
+
+.cont-all-input-validity {
+    height: 100px;
+   
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+
+}
+
+.cont-validity {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    height: 100px;
+}
+
+.cont-validity p {
+    margin: 0;
+    color: #a05f90;
+    font-weight: 600;
+}
+
+.cont-input-validaty{
+    width: 100%;
+    text-align: end;
+}
+
+.cont-input-validaty label {
+    font-weight: 600;
+}
+
+.cont-input-validaty input{
+    border-radius: 11px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #a05f90;
+}
+
+
+.cont_description  {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    width: 70%;
+    gap: 14px;
+}
+
+.cont_description label {
+    margin-left: 4px;
+    font-weight: 600;
+    color: #a05f90;
+}
+
+.cont_description textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #a05f90;
+    border-radius: 17px;
+    box-sizing: border-box;
+    padding: 10px; 
+    resize: none; 
+    overflow-y: auto; 
+    font-size: 0.9rem;
+}
+
+.form {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 10rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 .btns-group {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         margin-top: 20px;
     }
 
@@ -95,31 +261,32 @@ h1, h2 {
 }
 
 
+.sec0{
+    display: block;
+    background-color: #eeee !important;
+}
+
 
 .form-step {
     display: none;
-    padding: 20px;
-  width: 100%;
+    width: 100%;
     border-radius: 5px;
     margin-bottom: 20px;
-
     max-height: 90vh;
-  height: auto;
-  overflow-y: auto; /* Aggiungi overflow-y: auto per consentire lo scrolling verticale se necessario */
+    padding: 1rem;
+    border-radius: 22px;
+    background-color: #ffff;
+    height: auto;
+    position: relative;
 }
 
 
 
-.form-step:first-child {
-    display: block;
-}
-
-
-
+/* 
 .active {
     background-color: #007bff;
     color: #fff;
-}
+} */
 
 
 
@@ -206,13 +373,12 @@ h1, h2 {
 
 
 
-/* Stile per la riga selezionata */
 .active {
-    background-color: #ffa500; /* Sfondo arancione */
-    border: 2px solid #ffa500; /* Bordo arancione */
-    border-radius: 5px; /* Bordi arrotondati */
-    cursor: pointer; /* Cambia il cursore quando si passa sopra la riga */
+    /* background-color: #a05f90; */
+    border: 7px solid #e26656;
+    cursor: pointer;
 }
+
 
 .search-container {
     margin-bottom: 20px;
@@ -379,7 +545,7 @@ cursor: pointer;
 }
 
 
-.sec11, .sec12 {
+.sec12, .sec13 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -387,6 +553,7 @@ cursor: pointer;
     gap: 30px;
     width: 90vw;
     padding: 10px 15px 10px 15px;
+    background-color: #eee;
 }
 
 
