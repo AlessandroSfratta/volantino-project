@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // $imageUrl = "http://$domain/$dest_path";
 
                 //test
-                $imageUrl = "http://$domain/volantino-project/$dest_path";
+                $imageUrl = "https://$domain/volantino-project/$dest_path";
 
 
                 

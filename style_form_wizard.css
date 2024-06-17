@@ -90,6 +90,15 @@
 }
 
 
+.conf_cont_btn { 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    gap: 5px;
+}
+
 
 
 /* 
@@ -230,20 +239,21 @@ h1, h2 {
     flex-direction: column;
     flex-wrap: wrap;
     margin-top: 10rem;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    /* overflow: auto; */
 }
 
 
 .btns-group {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 60px;
+}
 
 
 .upload-section {
@@ -258,7 +268,7 @@ h1, h2 {
 
 .btn-confirm {
     display: block;
-    margin: 20px auto;
+    /* margin: 20px auto; */
 }
 
 
@@ -273,12 +283,13 @@ h1, h2 {
     width: 100%;
     border-radius: 5px;
     margin-bottom: 20px;
-    max-height: 90vh;
+    /* max-height: 90vh; */
     padding: 1rem;
     border-radius: 22px;
     background-color: #ffff;
     height: auto;
     position: relative;
+ 
 }
 
 
@@ -325,6 +336,13 @@ h1, h2 {
     height: 200px; /* Altezza immagine */
     display: block; /* Mostra l'immagine su una riga separata */
 
+}
+
+
+.counter-cont {
+        text-align: center;
+        width: 100%;
+        
 }
 
 
@@ -417,6 +435,7 @@ h1, h2 {
 
 .cont-input {
     margin-top: 4rem;
+    /* overflow: auto; */
 }
 
 

@@ -158,6 +158,6 @@
   position: relative;
   margin-left: 2rem;
   cursor: pointer;
-  z-index: -1;
+  z-index: 0;
   /* gap: 10px; */
 }
