@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function addEventListenersToNewElements() {
 
         let managementIcons = document.querySelectorAll(".cont-manegament");
+        let uploadIcon = document.querySelectorAll(".cloud-upload-cont");
 
         managementIcons.forEach(function(icon) {
             icon.removeEventListener("click", clickHandler);
@@ -17,6 +18,19 @@ document.addEventListener("DOMContentLoaded", function() {
             icon.addEventListener("click", clickHandler);
         });
 
+        uploadIcon.forEach(function(icon) {
+
+            icon.removeEventListener('click', clickHandler);
+
+        })
+
+        uploadIcon.forEach(function(icon) {
+
+            icon.addEventListener('click', clickHandler);
+
+        })
+        
+
 
     }
 
@@ -24,6 +38,18 @@ document.addEventListener("DOMContentLoaded", function() {
     function clickHandler(event) {
 
      let target = event.target;
+
+     
+        document.querySelectorAll(".cloud-upload-cont").forEach(uploadIcon => {
+            let contUpload = uploadIcon.closest(".cont-scelta-img");
+            
+            let input = contUpload.querySelector(".img-input");
+            
+            uploadIcon.addEventListener("click", function() {
+                input.click();
+            });
+        });
+
 
 
         if (target.classList.contains("close")) {
@@ -109,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             addEventListenersToNewElements();
+
         } else if (target.classList.contains("up")) {
 
             var currentRow = target.closest(".input-rows");

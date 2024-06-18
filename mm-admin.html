@@ -24,6 +24,13 @@
 </head>
 <body>
 
+    <div id="cont_progress_bar">
+        <p id="load">Caricamento...</p>
+        <div id="progressbar">
+            <span id="loading"></span>
+          </div>
+    </div>
+
     <nav class="navbar">
 
         <div class="button-menu"><span><i class="ri-arrow-left-circle-fill"></i></span></div>
@@ -101,16 +108,7 @@
     <div class="cont-page page1" style="display: flex;">
 
         <form action="" class="form">
-    
-            <div id="cont_progress_bar">
-                <p id="load">Caricamento...</p>
-                <div id="progressbar">
-                    <span id="loading"></span>
-                  </div>
-            </div>
       
-        
-    
             <div class="tail-cont-a4" style="display: none;">
                 <div class="btn-step1 btn-step-tail open">
                     <h2 id="sec1" class="tail-text open">Prima pagina</h2>
@@ -238,44 +236,62 @@
     
                     <div class="cont-manegament">
 
-                        <i class="ri-arrow-up-line up"></i>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
 
-                        <i class="ri-close-large-line close"></i>
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
+                
+                <div class="cont-scelta-img">
+    
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
+                    </div>
 
-                        <i class="ri-arrow-down-line down"></i> 
-                        
-                        </div>         
-    
-                    <div class="modal"></div>
-                    <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                        <div class="suggerimenti-nome-prodotto">
-                            <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                        </div>
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
                     </div>
-            
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-            
-                    <div class="cont-scelta-img">
-    
-                        <div class="cont-upload">
-                            <input type="file" class="img-input" accept="image/*">
-                        </div>
-    
-                        <div class="cont-img">
-                            <img class="img userImage">
-                        </div>
-                        
-                    </div>
-            
-                    <div class="prezzo">
-    
-                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                    <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
                     
                 </div>
     
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="product-name-cont">
+                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                            <div class="suggerimenti-nome-prodotto">
+                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                            </div>
+                        </div>
+
+                        <div class="prezzo">
+                            <span class="euro-span">€</span>
+                            <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                            <span>,</span>
+                            <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+                    </div>
+
+
+            
+            
+
                     <div class="switch">
                         <input id="cmn-toggle-11" class="cmn-toggle cmn-toggle-round" type="checkbox">
                         <label for="cmn-toggle-11"></label>
@@ -284,6 +300,7 @@
     
                     <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
                     
+
                 </div>
     
             </div>
@@ -319,13 +336,16 @@
     
                     <div class="cont-manegament">
 
-                        <i class="ri-arrow-up-line up"></i>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
 
-                        <i class="ri-close-large-line close"></i>
-
-                        <i class="ri-arrow-down-line down"></i> 
-                        
-                        </div>           
+                     <div class="cont-icon-manegement">
+                         <i class="ri-close-large-line close"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>           
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
@@ -421,13 +441,16 @@
     
                     <div class="cont-manegament">
 
-                        <i class="ri-arrow-up-line up"></i>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
 
-                        <i class="ri-close-large-line close"></i>
-
-                        <i class="ri-arrow-down-line down"></i> 
-                        
-                        </div>        
+                     <div class="cont-icon-manegement">
+                         <i class="ri-close-large-line close"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>    
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
@@ -504,13 +527,16 @@
         
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>        
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>      
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -584,13 +610,16 @@
         
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>         
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>       
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -665,13 +694,16 @@
         
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>          
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>          
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -745,13 +777,16 @@
         
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>    
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>    
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -825,13 +860,16 @@
         
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>       
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>        
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -903,13 +941,16 @@
         
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>             
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>             
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -980,16 +1021,19 @@
                 <div class="input-rows">
         
                     <div class="input-row">
-        
+
                         <div class="cont-manegament">
 
-                            <i class="ri-arrow-up-line up"></i>
+                            <div class="cont-icon-manegement">
+                                <i class="ri-arrow-up-line up"></i> </div>
     
-                            <i class="ri-close-large-line close"></i>
-    
-                            <i class="ri-arrow-down-line down"></i> 
-                            
-                            </div>         
+                         <div class="cont-icon-manegement">
+                             <i class="ri-close-large-line close"></i> </div>
+                         
+                         <div class="cont-icon-manegement">
+                            <i class="ri-arrow-down-line down"></i>  </div>
+                          
+                    </div>  
         
                         <div class="modal"></div>
                         <div class="product-name-cont">
@@ -1066,13 +1110,16 @@
     
                     <div class="cont-manegament">
 
-                        <i class="ri-arrow-up-line up"></i>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
 
-                        <i class="ri-close-large-line close"></i>
-
-                        <i class="ri-arrow-down-line down"></i> 
-                        
-                        </div>         
+                     <div class="cont-icon-manegement">
+                         <i class="ri-close-large-line close"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>         
     
                     <div class="modal"></div>
                     <div class="product-name-cont">
