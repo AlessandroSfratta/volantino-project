@@ -143,11 +143,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentRow.parentNode.insertBefore(nextRow, currentRow);
             }
             
-        } else if (target.classList.contains("cloud-upload-cont")) {
+        } else if (target.classList.contains("upload")) {
+
             let contUpload = target.closest(".cont-scelta-img");
+
             let input = contUpload.querySelector(".img-input");
             console.log("input cliccato");
             input.click();
+            
         }
     }
 
