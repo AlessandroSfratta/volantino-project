@@ -8,27 +8,20 @@ document.addEventListener("DOMContentLoaded", function() {
     function addEventListenersToNewElements() {
 
         let managementIcons = document.querySelectorAll(".cont-manegament");
-        let uploadIcon = document.querySelectorAll(".cloud-upload-cont");
+        let uploadIcon = document.querySelectorAll(".ri-upload-cloud-line");
 
         managementIcons.forEach(function(icon) {
             icon.removeEventListener("click", clickHandler);
-        });
-
-        managementIcons.forEach(function(icon) {
             icon.addEventListener("click", clickHandler);
         });
 
         uploadIcon.forEach(function(icon) {
-
             icon.removeEventListener('click', clickHandler);
-
-        })
-
-        uploadIcon.forEach(function(icon) {
-
             icon.addEventListener('click', clickHandler);
 
         })
+
+       
         
 
 
@@ -39,19 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
      let target = event.target;
 
-     
-        document.querySelectorAll(".cloud-upload-cont").forEach(uploadIcon => {
-            let contUpload = uploadIcon.closest(".cont-scelta-img");
-            
-            let input = contUpload.querySelector(".img-input");
-            
-            uploadIcon.addEventListener("click", function() {
-                input.click();
-            });
-        });
 
 
-
+    
         if (target.classList.contains("close")) {
 
             let contInput = target.closest('.cont-input');
@@ -137,21 +120,34 @@ document.addEventListener("DOMContentLoaded", function() {
             addEventListenersToNewElements();
 
         } else if (target.classList.contains("up")) {
+            let currentRow = target.closest(".input-rows");
+            let previousRow = currentRow.previousElementSibling;
 
-            var currentRow = target.closest(".input-rows");
-            var formStepContainer = currentRow.closest('.form-step');
-            var previousRow = currentRow.previousElementSibling;
+            while (previousRow && !previousRow.classList.contains("input-rows")) {
+                previousRow = previousRow.previousElementSibling;
+            }
+
             if (previousRow) {
                 currentRow.parentNode.insertBefore(currentRow, previousRow);
-             }
+            }
 
-            } else if (target.classList.contains("down")) {
+        } else if (target.classList.contains("down")) {
+            let currentRow = target.closest(".input-rows");
+            let nextRow = currentRow.nextElementSibling;
 
-            var currentRow = target.closest(".input-rows");
-            var nextRow = currentRow.nextElementSibling;
+            while (nextRow && !nextRow.classList.contains("input-rows")) {
+                nextRow = nextRow.nextElementSibling;
+            }
+
             if (nextRow) {
                 currentRow.parentNode.insertBefore(nextRow, currentRow);
-            } 
+            }
+            
+        } else if (target.classList.contains("cloud-upload-cont")) {
+            let contUpload = target.closest(".cont-scelta-img");
+            let input = contUpload.querySelector(".img-input");
+            console.log("input cliccato");
+            input.click();
         }
     }
 

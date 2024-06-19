@@ -771,6 +771,7 @@ export async function uploadImg () {
     inputImg.forEach( (input) => {
 
         input.addEventListener('change', function() {
+            
            const file = this.files[0];
 
            const parentContImg = input.closest(".cont-scelta-img");
