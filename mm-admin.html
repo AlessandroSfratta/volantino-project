@@ -267,46 +267,52 @@
 
                     <div class="cont-input-info">
 
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="con-nameEprice">
 
-                        <div class="prezzo">
-                            <span class="euro-span">€</span>
-                            <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                            <span>,</span>
-                            <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                            
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
                         </div>
 
                         <div class="cont-descrizione-input">
                             <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
                         </div>
 
+
                     </div>
 
 
             
-            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-11" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-11"></label>
+                </div>
 
-                    <div class="switch">
-                        <input id="cmn-toggle-11" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                        <label for="cmn-toggle-11"></label>
-                    </div>
-    
-    
-                    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-                    
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
 
                 </div>
     
             </div>
 
             <div class="counter-cont">
-                <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6)</p>
+                <p class="counter-p">Elementi creati: <span class="counter">1</span><span>/6</span></p>
             </div>
             
     
@@ -340,50 +346,73 @@
                             <i class="ri-arrow-up-line up"></i> </div>
 
                      <div class="cont-icon-manegement">
-                         <i class="ri-close-large-line close"></i> </div>
+                        <i class="ri-delete-bin-line"></i> </div>
                      
                      <div class="cont-icon-manegement">
                         <i class="ri-arrow-down-line down"></i>  </div>
                       
-                </div>           
+                </div>     
+                
+                <div class="cont-scelta-img">
     
-                    <div class="modal"></div>
-                    <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                        <div class="suggerimenti-nome-prodotto">
-                            <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                        </div>
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-            
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-            
-                    <div class="cont-scelta-img">
-    
-                        <div class="cont-upload">
-                            <input type="file" class="img-input" accept="image/*">
-                        </div>
-    
-                        <div class="cont-img">
-                            <img class="img userImage" >
-                        </div>
-                        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
                     </div>
-            
-                  <div class="prezzo">
-            
-                    <input type="number" class="input-prezzo euro" placeholder="Euro" required step="any">
-                    <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
                     
                 </div>
-                    <div class="switch">
-                        <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                        <label for="cmn-toggle-2"></label>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
                     </div>
-    
-                    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-                    
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-10" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-10"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
                 </div>
     
             </div>
@@ -435,65 +464,86 @@
     </div>
 </div>
     
-            <div class="input-rows">
+<div class="input-rows">
     
-                <div class="input-row">
-    
-                    <div class="cont-manegament">
+    <div class="input-row">
 
-                        <div class="cont-icon-manegement">
-                            <i class="ri-arrow-up-line up"></i> </div>
+        <div class="cont-manegament">
 
-                     <div class="cont-icon-manegement">
-                         <i class="ri-close-large-line close"></i> </div>
-                     
-                     <div class="cont-icon-manegement">
-                        <i class="ri-arrow-down-line down"></i>  </div>
-                      
-                </div>    
+            <div class="cont-icon-manegement">
+                <i class="ri-arrow-up-line up"></i> </div>
+
+         <div class="cont-icon-manegement">
+            <i class="ri-delete-bin-line"></i> </div>
+         
+         <div class="cont-icon-manegement">
+            <i class="ri-arrow-down-line down"></i>  </div>
+          
+    </div>     
     
-                    <div class="modal"></div>
-                    <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                        <div class="suggerimenti-nome-prodotto">
-                            <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                        </div>
+    <div class="cont-scelta-img">
+
+        <div class="cont-upload">
+            <input type="file" class="img-input" accept="image/*" style="display: none">
+        </div>
+
+        <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+        <div class="cont-img">
+            <img class="img userImage">
+        </div>
+        
+    </div>
+
+        <div class="modal"></div>
+
+
+
+        <div class="cont-input-info">
+
+            <div class="con-nameEprice">
+
+                <div class="product-name-cont">
+                    <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                    <div class="suggerimenti-nome-prodotto">
+                        <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
                     </div>
-            
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-            
-                    <div class="cont-scelta-img">
-    
-                        <div class="cont-upload">
-                            <input type="file" class="img-input" accept="image/*">
-                        </div>
-    
-                        <div class="cont-img">
-                            <img class="img userImage" >
-                        </div>
-                        
-                    </div>
-            
-                    <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>
-    
-                    <div class="switch">
-                        <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                        <label for="cmn-toggle-3"></label>
-                    </div>
-    
-                    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-                    
                 </div>
-    
+
+                <div class="prezzo">
+                    <span class="euro-span">€</span>
+                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                    <span>,</span>
+                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                </div>
+
             </div>
 
+            <div class="cont-descrizione-input">
+                <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+            </div>
+
+
+        </div>
+
+
+
+<div class="cont-input-checkEadd">
+    <div class="switch">
+        <input id="cmn-toggle-9" class="cmn-toggle cmn-toggle-round" type="checkbox">
+        <label for="cmn-toggle-9"></label>
+    </div>
+
+
+    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+    
+
+</div>
+
+
+    </div>
+
+</div>
             <div class="counter-cont">
                 <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
             </div>
@@ -521,64 +571,86 @@
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
 
         
-                <div class="input-rows">
-        
-                    <div class="input-row">
-        
-                        <div class="cont-manegament">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>      
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
+
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage" >
-                            </div>
-                            
-                        </div>
-                
-                     <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>  
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-4"></label>
-                        </div>
-    
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-                        
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-8" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-8"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
 
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
@@ -604,64 +676,86 @@
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
         
-                <div class="input-rows">
-        
-                    <div class="input-row">
-        
-                        <div class="cont-manegament">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>       
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
+
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage" >
-                            </div>
-                            
-                        </div>
-                
-                        <div class="prezzo">
-    
-                            <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                            <span>,</span>
-                            <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                            
-                        </div>
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-5"></label>
-                        </div>
-    
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-                        
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-7"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
 
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
@@ -688,64 +782,86 @@
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
 
         
-                <div class="input-rows">
-        
-                    <div class="input-row">
-        
-                        <div class="cont-manegament">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>          
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
+
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage" >
-                            </div>
-                            
-                        </div>
-                
-                     <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>  
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-6"></label>
-                        </div>
-                        
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-    
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-6" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-6"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
             
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
@@ -771,64 +887,86 @@
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
 
-                <div class="input-rows">
-        
-                    <div class="input-row">
-        
-                        <div class="cont-manegament">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>    
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
+
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage" >
-                            </div>
-                            
-                        </div>
-                
-                     <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>  
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-7"></label>
-                        </div>
-                        
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-    
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-5" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-5"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
                 
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
@@ -854,64 +992,86 @@
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
     
         
-                <div class="input-rows">
-        
-                    <div class="input-row">
-        
-                        <div class="cont-manegament">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>        
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
+
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage" >
-                            </div>
-                            
-                        </div>
-                
-                     <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>  
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-8" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-8"></label>
-                        </div>
-                        
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-    
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-4"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
                 
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
@@ -935,64 +1095,86 @@
     
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
         
-                <div class="input-rows">
-        
-                    <div class="input-row">
-        
-                        <div class="cont-manegament">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>             
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
+
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage" >
-                            </div>
-                            
-                        </div>
-                
-                     <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>  
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-9" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-9"></label>
-                        </div>
-    
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-                        
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-3" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-3"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
                 
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 6 per pagina)</p>
@@ -1018,64 +1200,86 @@
 
             <h1 class="text-center"><i class="fa-regular fa-paper-plane"></i>Volantino digitale</h1>
         
-                <div class="input-rows">
-        
-                    <div class="input-row">
+            <div class="input-rows">
+    
+                <div class="input-row">
+    
+                    <div class="cont-manegament">
 
-                        <div class="cont-manegament">
+                        <div class="cont-icon-manegement">
+                            <i class="ri-arrow-up-line up"></i> </div>
 
-                            <div class="cont-icon-manegement">
-                                <i class="ri-arrow-up-line up"></i> </div>
-    
-                         <div class="cont-icon-manegement">
-                             <i class="ri-close-large-line close"></i> </div>
-                         
-                         <div class="cont-icon-manegement">
-                            <i class="ri-arrow-down-line down"></i>  </div>
-                          
-                    </div>  
-        
-                        <div class="modal"></div>
-                        <div class="product-name-cont">
-                            <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                            <div class="suggerimenti-nome-prodotto">
-                                <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                            </div>
-                        </div>
+                     <div class="cont-icon-manegement">
+                        <i class="ri-delete-bin-line"></i> </div>
+                     
+                     <div class="cont-icon-manegement">
+                        <i class="ri-arrow-down-line down"></i>  </div>
+                      
+                </div>     
                 
-                        <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-                
-                        <div class="cont-scelta-img">
+                <div class="cont-scelta-img">
     
-                            <div class="cont-upload">
-                                <input type="file" class="img-input" accept="image/*">
-                            </div>
-        
-                            <div class="cont-img">
-                                <img class="img userImage">
-                            </div>
-                            
-                        </div>
-                
-                     <div class="prezzo">
-    
-                        <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                        <span>,</span>
-                        <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
-                        
-                    </div>  
-    
-                        <div class="switch">
-                            <input id="cmn-toggle-10" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                            <label for="cmn-toggle-10"></label>
-                        </div>
-    
-                        <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-    
-                        
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
+                    </div>
+                    
                 </div>
+    
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
+                    </div>
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-2"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
+                </div>
+    
+            </div>
                 
                 <div class="counter-cont">
                     <p class="counter-p">Elementi creati: <span class="counter">1</span> (massimo 9 per pagina)</p>
@@ -1114,51 +1318,73 @@
                             <i class="ri-arrow-up-line up"></i> </div>
 
                      <div class="cont-icon-manegement">
-                         <i class="ri-close-large-line close"></i> </div>
+                        <i class="ri-delete-bin-line"></i> </div>
                      
                      <div class="cont-icon-manegement">
                         <i class="ri-arrow-down-line down"></i>  </div>
                       
-                </div>         
+                </div>     
+                
+                <div class="cont-scelta-img">
     
-                    <div class="modal"></div>
-                    <div class="product-name-cont">
-                        <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
-                        <div class="suggerimenti-nome-prodotto">
-                            <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
-                        </div>
+                    <div class="cont-upload">
+                        <input type="file" class="img-input" accept="image/*" style="display: none">
                     </div>
-            
-                    <input type="text" class="input-descrizione" placeholder="Descrizione" required> <!-- Aggiunto required -->
-            
-                    <div class="cont-scelta-img">
-    
-                        <div class="cont-upload">
-                            <input type="file" class="img-input" accept="image/*">
-                        </div>
-    
-                        <div class="cont-img">
-                            <img class="img userImage" >
-                        </div>
-                        
+
+                    <div class="cloud-upload-cont"><i class="ri-upload-cloud-line"></i></div>
+
+                    <div class="cont-img">
+                        <img class="img userImage">
                     </div>
-            
-                    <div class="prezzo">
-    
-                    <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
-                    <span>,</span>
-                    <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
                     
                 </div>
     
-                    <div class="switch">
-                        <input id="cmn-toggle-33" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                        <label for="cmn-toggle-33"></label>
+                    <div class="modal"></div>
+
+
+
+                    <div class="cont-input-info">
+
+                        <div class="con-nameEprice">
+
+                            <div class="product-name-cont">
+                                <input type="text" class="input-nome-prodotto" data-type="1" placeholder="Nome Prodotto" required> <!-- Aggiunto required -->
+                                <div class="suggerimenti-nome-prodotto">
+                                    <select id="prodottiList" size="5" data-type="1" style="display: none;"></select>
+                                </div>
+                            </div>
+    
+                            <div class="prezzo">
+                                <span class="euro-span">€</span>
+                                <input type="number"  class="input-prezzo euro" placeholder="Euro" required step="any">
+                                <span>,</span>
+                                <input type="number"  class="input-prezzo centesimi" placeholder="Centesimi" required step="any" value="00">
+                            </div>
+
+                        </div>
+
+                        <div class="cont-descrizione-input">
+                            <input type="text" class="input-descrizione" placeholder="Descrizione" required> 
+                        </div>
+
+
                     </div>
-    
-    
-                    <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
-                    
+
+
+            
+            <div class="cont-input-checkEadd">
+                <div class="switch">
+                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-1"></label>
+                </div>
+
+
+                <div class="cont_add cont-manegament"><i class="ri-add-large-line add"></i></div>
+                
+
+            </div>
+
+
                 </div>
     
             </div>

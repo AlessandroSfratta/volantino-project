@@ -1,4 +1,5 @@
 .switch {
+  margin-bottom: 5px;
   z-index: 10;
 }
 
@@ -18,8 +19,8 @@
   
   input.cmn-toggle-round + label {
     width: 80px;
-    height: 22px;
-    background-color: #dddddd;
+    height: 35px;
+    /* background-color: #ffff; */
   }
 
   
@@ -31,28 +32,31 @@
     left: 1px;
     bottom: 1px;
     content: "";
+    border-radius: 7px;
   }
 
   
   input.cmn-toggle-round + label:before {
     right: 1px;
-    background-color: red;
+    background-color: #e26656;
     transition: background 0.4s;
+
   }
 
   
   input.cmn-toggle-round + label:after {
-    height: 20px;
-    width: 30px;
+    height: 33px;
+    width: 40%;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     transition: margin 0.4s;
+    border-radius: 5px;
 
   }
 
 
   input.cmn-toggle-round:checked + label:before {
-    background-color: #8ce196;
+    background-color: #809e74;
   }
   
   input.cmn-toggle-round:checked + label:after {
