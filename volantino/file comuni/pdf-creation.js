@@ -1,6 +1,6 @@
 
 import { jsonData, getScelta, alertFunction, navigaSezione} from './form-wizard.js';
-
+import { checkAndAddProducts } from './csvControl.js';
 
 async function convertToDataURL(url) {
     const response = await fetch(url);
@@ -345,7 +345,10 @@ const options = {
 
 
 
-document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", convertiInPDF); });
+document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", function(){
+    convertiInPDF();
+    checkAndAddProducts();
+}); });
 
 
 
@@ -493,7 +496,7 @@ function convertiInPDF() {
             html2pdf().from(combinedContent).set(volantinoDigitaleOption).save()
             .then(() => {
                 alertFunction("Congratulazioni! Hai caricato il volantino e salvato nella tua pagina personale.", 'success');
-                window.open("https://volantino.biz/volantino-project/mm.html", "_blank");
+                window.open("https://volantino.biz/volantino/mm-supermercati/Volantino_digitale.pdf", "_blank");
             })
 
             .catch((error) => {
@@ -505,7 +508,7 @@ function convertiInPDF() {
              alertFunction("Congratulazioni! Hai caricato il volantino sulla tua pagina personale.", 'success');
              
              setTimeout(()=> {
-                window.open("https://volantino.biz/volantino-project/mm.html", "_blank");
+                window.open("https://volantino.biz/volantino/mm-supermercati/Volantino_digitale.pdf", "_blank");
             }, 4000)
          }
 

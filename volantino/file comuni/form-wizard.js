@@ -1,4 +1,7 @@
 
+import { prelevaProdotto } from "./csvControl.js";
+
+
 
     const btnVolantinoA4 = document.getElementById("volantinoA4");
     const btnVolantinoWeb = document.getElementById("volantinoWeb");
@@ -446,7 +449,6 @@ document.addEventListener('input', function(event) {
 });
 
 
-
 // funzione mouseleave 
 export function addEventListenerMouseLeave() {
     
@@ -467,54 +469,6 @@ addEventListenerMouseLeave();
 
 
 
-function prelevaProdotto(searchText, dataType, input) {
-
-    const filePath = '../file comuni/archivio generale.csv';
-
-    Papa.parse(filePath, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            const productListContainer = input.parentElement.querySelector('.suggerimenti-nome-prodotto select');
-            productListContainer.innerHTML = '';
-            
-            console.log("Test click")
-
-            let hasMatches = false;
-
-            results.data.forEach(row => {
-
-                const prodotto = row["Nome prodotto"];
-
-                if (prodotto.toLowerCase().includes(searchText)) {
-
-                    const option = document.createElement('option');
-                    option.value = prodotto;
-                    option.textContent = prodotto;
-                    productListContainer.appendChild(option);
-                    hasMatches = true;
-
-                    option.addEventListener('click', function() {
-                        input.value = this.value;
-                        productListContainer.style.display = "none";
-                        const immagine = input.closest('.input-row').querySelector('.cont-scelta-img img');
-                        if (immagine) {
-                            const linkImmagine = row["immagine"];
-                            immagine.src = linkImmagine;
-                        } else {
-                            console.error('Elemento immagine non trovato.');
-                        }
-                    });
-                }
-            });
-
-            productListContainer.style.display = dataType === input.dataset.type && hasMatches ? 'block' : 'none';
-        },
-        error: function(error) {
-            console.error('Errore durante il recupero del file:', error);
-        }
-    });
-}
 
 
 
