@@ -1,6 +1,5 @@
 
-import { prelevaProdotto } from "./csvControl.js";
-
+import { prelevaProdotto, checkAndAddProducts } from './csvControl.js';
 
 
     const btnVolantinoA4 = document.getElementById("volantinoA4");
@@ -535,6 +534,7 @@ export function repeatLabelInteraction() {
                     }, 500);
                 } else {
                     addToJson(container, pagina);
+                    checkAndAddProducts()
                 }
 
             } else {

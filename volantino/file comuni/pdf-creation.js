@@ -1,6 +1,8 @@
 
 import { jsonData, getScelta, alertFunction, navigaSezione} from './form-wizard.js';
 import { checkAndAddProducts } from './csvControl.js';
+import { filePaths, loadCsv } from './csvControl.js';
+
 
 async function convertToDataURL(url) {
     const response = await fetch(url);
@@ -347,7 +349,7 @@ const options = {
 
 document.querySelectorAll(".btn-confirm").forEach(button => { button.addEventListener("click", function(){
     convertiInPDF();
-    checkAndAddProducts();
+    
 }); });
 
 
@@ -356,7 +358,9 @@ function convertiInPDF() {
 
         
         const iframes = document.querySelectorAll('iframe.block');
-    
+
+
+const redirectUrl = document.querySelector(".redirect").getAttribute("value");
         
         const combinedContent = document.createElement('div');
 
@@ -458,8 +462,9 @@ function convertiInPDF() {
 
 
  Promise.all(clonePromises)
- .then(() => {
-     const formData = new FormData();
+ .then( async function () {
+    
+    const formData = new FormData();
 
      const today = new Date();
      const formattedDate = formatDate(today);
@@ -496,7 +501,7 @@ function convertiInPDF() {
             html2pdf().from(combinedContent).set(volantinoDigitaleOption).save()
             .then(() => {
                 alertFunction("Congratulazioni! Hai caricato il volantino e salvato nella tua pagina personale.", 'success');
-                window.open("https://volantino.biz/volantino/mm-supermercati/Volantino_digitale.pdf", "_blank");
+                window.open(redirectUrl, "_blank");
             })
 
             .catch((error) => {
@@ -508,7 +513,7 @@ function convertiInPDF() {
              alertFunction("Congratulazioni! Hai caricato il volantino sulla tua pagina personale.", 'success');
              
              setTimeout(()=> {
-                window.open("https://volantino.biz/volantino/mm-supermercati/Volantino_digitale.pdf", "_blank");
+                window.open(redirectUrl, "_blank");
             }, 4000)
          }
 
@@ -564,9 +569,15 @@ function convertiInPDF() {
          
      }
 
-
          const progress = (clonedIframesCount / clonePromises.length) * 100;
-         progressBar(progress);
+
+ progressBar(progress);
+
+ setTimeout(() => {
+    clearBrowserCache()
+}, 10000);
+
+
  })
 
  .catch(error => {
@@ -577,7 +588,23 @@ function convertiInPDF() {
 }
 
 
+function clearBrowserCache() {
 
+    if ('caches' in window) {
+     
+        caches.keys().then(function(cacheNames) {
+            cacheNames.forEach(function(cacheName) {
+                caches.delete(cacheName);
+            });
+            
+        }).then(function() {
+            console.log('Cache del browser eliminata con successo.');
+        }).catch(function(error) {
+            console.error('Errore durante l\'eliminazione della cache del browser:', error);
+        });
 
+    } else {
+        console.warn('API Cache non supportata dal browser.');
+    }
 
-
+}

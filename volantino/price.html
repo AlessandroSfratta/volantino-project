@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="change-price.js" defer></script>
+    <title>Test Prezzo Abbonamento</title>
+    <style>
+        .prezzoAbbonamento, .prezzoAbbonamento.plus, .prezzoAbbonamento2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .toggle-container {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Prezzo Abbonamento</h1>
+    
+    <p class="prezzoDinamico">10</p>
+    <p class="prezzoDinamico">15</p>
+    <p class="prezzoDinamico">20</p>
+
+    <div class="toggle-container">
+        <label for="interruttore-toggle-1">Mensile/Annuale</label>
+        <input type="checkbox" id="interruttore-toggle-1">
+    </div>
+
+    <div class="toggle-container">
+        <label for="interruttore-toggle-2">IVA Inclusa/Esclusa</label>
+        <input type="checkbox" id="interruttore-toggle-2">
+    </div>
+
+
+</body>
+</html>

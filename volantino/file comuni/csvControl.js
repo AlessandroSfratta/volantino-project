@@ -2,7 +2,7 @@ import { jsonData } from "./form-wizard.js";
 
 
 
-let filePaths = ['../file comuni/archivio generale.csv', './archivio personale.csv'];
+export let filePaths = ['../file comuni/archivio generale.csv', './archivio personale.csv'];
 
 export function prelevaProdotto(searchText, dataType, input) {
 
@@ -65,7 +65,9 @@ export function prelevaProdotto(searchText, dataType, input) {
 
 
 
-async function loadCsv(filePath) {
+export async function loadCsv(filePath) {
+
+    console.log(`Csv caricato con successo ${filePath}`)
 
     return new Promise((resolve, reject) => {
         Papa.parse(filePath, {
@@ -75,7 +77,6 @@ async function loadCsv(filePath) {
             error: (error) => reject(error)
         });
     });
-
 
 }
 
@@ -116,6 +117,7 @@ async function checkProducts(jsonData) {
 async function sendNewProductsToServer(newProducts) {
 
     try {
+
         const response = await fetch('./check_edit_csv.php', {
             method: 'POST',
             headers: {
@@ -127,6 +129,10 @@ async function sendNewProductsToServer(newProducts) {
         const result = await response.json(); // Supponendo che il server restituisca una risposta JSON
 
         console.log('Risposta dal server:', result);
+
+       
+          await reloadCsvAndView();
+
     } catch (error) {
         console.error('Errore durante l\'invio dei nuovi prodotti:', error);
     }
@@ -155,4 +161,22 @@ export async function checkAndAddProducts() {
         console.error('Errore durante il controllo e l\'aggiunta dei prodotti:', error);
     }
 
+}
+
+
+async function reloadCsvAndView() {
+
+    try {
+
+        const archiveGeneral = await loadCsv(filePaths[0]);
+        const archivePersonal = await loadCsv(filePaths[1]);
+
+        console.log('Dati da archiveGeneral:', archiveGeneral);
+        console.log('Dati da archivePersonal:', archivePersonal);
+
+        console.log('CSV ricaricato con successo dopo l\'aggiornamento.');
+
+    } catch (error) {
+        console.error('Errore durante il ricaricamento del CSV:', error);
+    }
 }
