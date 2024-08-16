@@ -157,9 +157,22 @@ h1, h2 {
     display: flex;
     justify-content: space-around;
     align-items: end;
+    flex-wrap: wrap;
     flex-direction: row;
     height: 100px;
     margin-bottom: 2rem;
+    height: auto;
+    gap: 1rem;
+}
+
+.inputValidityStart, .inputValidityEnd  {
+    position: relative;
+
+}
+
+.inputValidityStart.modal.active-modal::before,
+.inputValidityEnd.modal.active-modal::before {
+    border-radius: 9px;
 }
 
 .cont-all-input-validity {
@@ -231,6 +244,75 @@ h1, h2 {
     overflow-y: auto; 
     font-size: 0.9rem;
 }
+
+.cont_promo, .cont_contacts {
+    width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 14px;
+        position: relative;
+
+}
+
+.cont_promo label , .cont_contacts label {
+    margin-left: 4px;
+    font-weight: 600;
+    color: #a05f90;
+}
+
+
+.cont_contacts textarea, .cont_promo input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #a05f90;
+    border-radius: 17px;
+    box-sizing: border-box;
+    padding: 10px; /* Padding generale */
+    resize: none;
+    overflow-y: auto;
+    font-size: 0.8rem;
+    text-align: start;
+    line-height: 1.5;
+}
+
+.cont_contacts textarea::after {
+    content: ''; /* Crea uno spazio vuoto */
+    display: block;
+    width: 20px; /* Spazio extra a destra */
+    height: 100%; /* Altezza della textarea */
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #f1f1f1; /* Colore di sfondo per fare spazio alla scrollbar */
+    z-index: 1; /* Porta il pseudo-elemento sopra */
+}
+
+.cont_contacts textarea::-webkit-scrollbar {
+    width: 7px;
+}
+
+.cont_contacts textarea::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 9px;
+}
+
+.cont_contacts textarea::-webkit-scrollbar-thumb {
+    background: #a05f90;
+    border-radius: 7px;
+}
+
+.cont_contacts textarea::-webkit-scrollbar-thumb:hover {
+    background: #6e4062;
+}
+
+.cont_contacts textarea::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+}
+
+
 
 .form {
     width: 90%;
@@ -476,7 +558,7 @@ h1, h2 {
 
 
 
-.input-row .modal.active-modal::before {
+.modal.active-modal::before {
     content: "";
     position: absolute;
     top: 0;

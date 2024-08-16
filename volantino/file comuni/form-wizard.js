@@ -98,23 +98,23 @@ btnCartellino.addEventListener("click", () => {
 function checkInputsInSections() {
 
     const dataType = FoundDataType();
-
     const sections = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
 
     let totalInputs = 0;
     let filledInputs = 0;
     let allModalsActive = true;
 
-
-
-
     sections.forEach(function(section) {
         let inputsInSection = section.querySelectorAll('input[required]');
         let modalsInSection = section.querySelectorAll('.modal');
 
+        // Filtra gli input per escludere quelli con le classi specificate
+        inputsInSection = Array.from(inputsInSection).filter(input => 
+            !input.classList.contains('inputValidityStart') && 
+            !input.classList.contains('inputValidityEnd')
+        );
+
         totalInputs += inputsInSection.length;
-//decommentare totalInputs per controllo input
-       
 
         inputsInSection.forEach(function(input) {
             if (input.value.trim() !== '') {
@@ -129,12 +129,9 @@ function checkInputsInSections() {
         });
     });
 
-
-  if ( scelta === 'a4' && filledInputs === totalInputs && allModalsActive) {
-    btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
-    } 
-    
-
+    if (scelta === 'a4' && filledInputs === totalInputs && allModalsActive) {
+        btnAnteprima.forEach(btn => { btn.removeAttribute('disabled'); });
+    }
 }
 
     
@@ -874,3 +871,27 @@ loginCont.forEach( (login) => {
         }
     }
     
+
+    // input logica input text promozione
+    const inputsPromotion = document.querySelectorAll(".input-promozionale");
+
+    inputsPromotion.forEach(input => {
+        input.addEventListener("input", function () {
+       
+            if (input.value.trim().length > 0) {
+                const dataInputs = document.querySelectorAll(".data-input");
+    
+                dataInputs.forEach(dataInput => {
+                    dataInput.classList.add("active-modal");
+                });
+                
+            } else {
+              
+                const dataInputs = document.querySelectorAll(".data-input");
+    
+                dataInputs.forEach(dataInput => {
+                    dataInput.classList.remove("active-modal");
+                });
+            }
+        });
+    });

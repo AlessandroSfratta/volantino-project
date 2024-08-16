@@ -29,7 +29,8 @@ function progressBar(progress) {
 
 
 
-async function generaElementi(updateProgress) {
+async function generaElementi(btnClicked) {
+
     class ElementoHTML {
         constructor(prodotto) {
             this.imageData = prodotto.Immagine;
@@ -55,214 +56,183 @@ async function generaElementi(updateProgress) {
                 </div>
                 <div class="ombra"> </div>
                 </div>`;
-        
-        
         }
     }
 
     try {
-
         const prodottiJSON = jsonData;
         let htmlContentFrames = {};
         let elementsInserted = {};
 
-        const InputDescrizione = document.querySelectorAll(".descrizione_start");
-        
-        const InputValidityStart = document.querySelectorAll(".inputValidityStart"); 
-        const InputValidityEnd = document.querySelectorAll(".inputValidityEnd");
        
-        const totalProducts = Object.keys(prodottiJSON).length;
+        const formStepContainer = btnClicked.closest('.form-step');
+      
+        const dataType = formStepContainer.getAttribute('data-type');
+        const containersWithSameType = document.querySelectorAll(`.form-step[data-type="${dataType}"]`);
 
+        const InputDescrizione = [];
+        const InputValidityStart = [];
+        const InputValidityEnd = [];
+        const InputPromoText = [];
+        const InputContact = [];
+
+        containersWithSameType.forEach(container => {
+            InputDescrizione.push(...container.querySelectorAll(".descrizione_start"));
+            InputValidityStart.push(...container.querySelectorAll(".inputValidityStart"));
+            InputValidityEnd.push(...container.querySelectorAll(".inputValidityEnd"));
+            InputPromoText.push(...container.querySelectorAll(".input-promozionale"));
+            InputContact.push(...container.querySelectorAll(".input-contatti"));
+        });
+
+        const totalProducts = Object.keys(prodottiJSON).length;
         let loadedProducts = 0;
 
-    
         for (const [key, value] of Object.entries(prodottiJSON)) {
-           
             const elemento = new ElementoHTML(value);
             const elementoHTML = await elemento.getHTML();
     
             let iframeClass = `.pagina_${value.Pagina} iframe`;
-           
             let i = 1;
             let inserted = false;
-    
-        
-        while (!inserted) {
 
+            while (!inserted) {
                 let currentIframeClass = `${iframeClass}:nth-of-type(${i})`;
-    
-                console.log("Ecco i:", i);
-    
+
                 if (!elementsInserted[currentIframeClass]) {
                     elementsInserted[currentIframeClass] = 0;
                 }
-    
+
                 if (!htmlContentFrames[currentIframeClass]) {
                     htmlContentFrames[currentIframeClass] = '';
                 }
 
-    
                 let currentIframe = document.querySelector(currentIframeClass);
-             
                 let maxElementsPerPage = currentIframe ? parseInt(currentIframe.getAttribute('data-max-elements')) : 0;
-    
-                if (currentIframe) {
-                    console.log("Numero massimo elemento per", currentIframeClass, ":", maxElementsPerPage);
-    
 
+                if (currentIframe) {
                     const CurrentDocument = currentIframe.contentDocument || currentIframe.contentWindow.document;
 
+                    const currentValidityTextCont = CurrentDocument.querySelector('.validity-text');
                     const CurrentValidityStart = CurrentDocument.querySelector('.validità-da');
                     const CurrentValidityEnd = CurrentDocument.querySelector('.validità-a');
-
+                    const CurrentTextPromotional = CurrentDocument.querySelector('.promo-text');
+                    const currentContactInfoCont = CurrentDocument.querySelector('.contact_info');
                     const currentDescription = CurrentDocument.querySelector('.descrizione_Volantino');
 
-
-                    if(currentDescription) {
-                        console.log("Current description esiste");
-                        InputDescrizione.forEach( (textArea) => {
-
+                    if (currentDescription) {
+                        InputDescrizione.forEach(textArea => {
                             if (textArea.textContent.trim() !== '') {
                                 currentDescription.innerHTML = textArea.textContent;
-                                console.log("description=", textArea.textContent);
-                            } else {
-                                console.log("Il textarea è vuoto nel DOM");
                             }
-             
-                        })
-                        console.log("fine ciclo description");
+                        });
                     }
-                    
-      if(CurrentValidityStart && CurrentValidityEnd) {
 
+                    if (CurrentValidityStart && CurrentValidityEnd && InputPromoText[0].value.trim().length < 1) {
                         const ChangeFormateDate = function(date) {
-                          
                             if (date instanceof Date) {
                                 return date.toLocaleDateString("it-IT");
                             }
                             return null;
                         };
 
+                        const iterOnStart = function () {
+                            for (let input of InputValidityStart) {
+                                if(input.value) { return  ChangeFormateDate(input.valueAsDate); }
+                            }
+                            return null;
+                        };
 
-                     const iterOnStart = function () {
-                        for (let input of InputValidityStart) {
-                    if(input.value) { return  ChangeFormateDate(input.valueAsDate) } }
-                return null;
-
-                     }
-
-                     const iterOnEnd = function () {
-                        for (let input of InputValidityEnd) {
-                    if(input.value) { return ChangeFormateDate(input.valueAsDate) } }
-                return null;
-
-                     }
+                        const iterOnEnd = function () {
+                            for (let input of InputValidityEnd) {
+                                if(input.value) { return ChangeFormateDate(input.valueAsDate); }
+                            }
+                            return null;
+                        };
 
                         CurrentValidityStart.innerHTML = iterOnStart();
-                        CurrentValidityEnd.innerHTML =   iterOnEnd();
+                        CurrentValidityEnd.innerHTML = iterOnEnd();
 
+                        currentValidityTextCont.style.display = 'inline';
+                        CurrentTextPromotional.style.display = 'none';
+
+                    } else if (CurrentTextPromotional && InputPromoText[0].value.trim().length > 0) {
+                        currentValidityTextCont.style.display = 'none';
+                        CurrentTextPromotional.style.display = 'inline';
+                        CurrentTextPromotional.textContent = InputPromoText[0].value;
+                    } else if ((CurrentTextPromotional && InputPromoText[0].value.trim().length === 0) && 
+                               (startDatesEmpty && endDatesEmpty)) {
+                        currentValidityTextCont.style.display = 'none';
+                        CurrentTextPromotional.style.display = 'none';
+                        alertFunction("Elemento validità/testo promo non compilato", "error");
                     }
 
-                    // currentIframe.classList.remove("none");
-                    // currentIframe.classList.add("block");
-    
+                    const startDatesEmpty = Array.from(InputValidityStart).every(input => !input.value.trim());
+                    const endDatesEmpty = Array.from(InputValidityEnd).every(input => !input.value.trim());
+
+                    if (currentContactInfoCont) {
+                        currentContactInfoCont.innerHTML = InputContact[0].value;
+                    }
+
                     if (elementsInserted[currentIframeClass] < maxElementsPerPage) {
                         htmlContentFrames[currentIframeClass] += elementoHTML;
                         elementsInserted[currentIframeClass]++;
-                        
-                        console.log(`Inserito elemento in ${currentIframeClass}, totale elementi: ${elementsInserted[currentIframeClass]}`);
                         inserted = true;
-                        
                     } else {
                         i++;
                     }
 
                 } else {
-
                     const lastFrame = document.querySelector(`${iframeClass}:nth-of-type(${i - 1})`);
                     let clonedIframe = lastFrame.cloneNode(true);
-    
+
                     lastFrame.parentNode.appendChild(clonedIframe);
 
                     await new Promise((resolve) => { 
-    
-                    clonedIframe.addEventListener("load", function () {
-                        
-                        const clonedDocument = clonedIframe.contentDocument || clonedIframe.contentWindow.document;
-                       
-                        const containerDocumentIframeCloned = clonedDocument.querySelector('.pagina_container');
-    
-                        maxElementsPerPage = parseInt(clonedIframe.getAttribute('data-max-elements'));
-    
-                        containerDocumentIframeCloned.innerHTML = "";
+                        clonedIframe.addEventListener("load", function () {
+                            const clonedDocument = clonedIframe.contentDocument || clonedIframe.contentWindow.document;
+                            const containerDocumentIframeCloned = clonedDocument.querySelector('.pagina_container');
 
-                        console.log(`Ecco il container clonato: ${containerDocumentIframeCloned}`);
+                            maxElementsPerPage = parseInt(clonedIframe.getAttribute('data-max-elements'));
+                            containerDocumentIframeCloned.innerHTML = "";
 
-                            
-                        htmlContentFrames[currentIframeClass] += elementoHTML;
-                        elementsInserted[currentIframeClass]++;
-        
-                            console.log(`Inserito elemento in ${currentIframeClass}, totale elementi: ${elementsInserted[currentIframeClass]}`);
-                  
+                            htmlContentFrames[currentIframeClass] += elementoHTML;
+                            elementsInserted[currentIframeClass]++;
 
-                        console.log("Creato nuovo iframe con maxElementsPerPage:", maxElementsPerPage);
-                        console.log(`Inserito elemento in ${currentIframeClass}, totale elementi: ${elementsInserted[currentIframeClass]}`);
-                        
                             resolve();
                         });
                     });
                     inserted = true;
-                    // continue;
                 }
             }
             
             loadedProducts++;
-        if(totalProducts >= 1) {
+            if(totalProducts >= 1) {
                 let load = (loadedProducts / totalProducts) * 100;
                 progressBar(load);
-               console.log("Ecco il load:", load);
             }
-
         }
-    
 
-    
-    for (const currentIframeClass of Object.keys(htmlContentFrames)) {
+        for (const currentIframeClass of Object.keys(htmlContentFrames)) {
             const iframe = document.querySelector(currentIframeClass);
-        
-            // iframe.addEventListener('load', () => {
-                const iframeDocument = iframe.contentWindow.document;
-        
-                // iframeDocument.addEventListener('DOMContentLoaded', () => {
-                    const contentContainer = iframeDocument.querySelector('.pagina_container');
-        
-                    if (contentContainer) {
-                        contentContainer.innerHTML = htmlContentFrames[currentIframeClass];
-                        iframe.classList.remove('none');
-                        iframe.classList.add('block');
+            const iframeDocument = iframe.contentWindow.document;
+            const contentContainer = iframeDocument.querySelector('.pagina_container');
 
-                        
-                        console.warn(`Contenitore della pagina trovato e aggiunto OK ${currentIframeClass}`);
-
-                    } else {
-                        console.error(`Contenitore della pagina non trovato nell'iframe con classe ${currentIframeClass}`);
-                        alertFunction(`Contenitore della pagina non trovato nell\'iframe con classe ${currentIframeClass}`, 'error');
-                    }
-            
-                // });
-            // });
-        }
-
-
-
-            } catch (error) {
-                console.error('Errore nel caricamento dei dati JSON:', error);
-                alertFunction(`'Errore nel caricamento dei dati JSON:${error}`, 'error');
-
+            if (contentContainer) {
+                contentContainer.innerHTML = htmlContentFrames[currentIframeClass];
+                iframe.classList.remove('none');
+                iframe.classList.add('block');
+            } else {
+                console.error(`Contenitore della pagina non trovato nell'iframe con classe ${currentIframeClass}`);
+                alertFunction(`Contenitore della pagina non trovato nell'iframe con classe ${currentIframeClass}`, 'error');
             }
-
-            
         }
+
+    } catch (error) {
+        console.error('Errore nel caricamento dei dati JSON:', error);
+        alertFunction(`Errore nel caricamento dei dati JSON: ${error}`, 'error');
+    }
+}
+
 
 
 
@@ -297,7 +267,9 @@ async function generaElementi(updateProgress) {
 
 if (Object.keys(jsonData).length > 0) {
             progressBar(0);
-                await generaElementi();
+
+                await generaElementi(btnAnteprima);
+
              const btnPreview = true;
 
                 navigaSezione("avanti", btnPreview);
