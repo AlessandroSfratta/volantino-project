@@ -1,5 +1,6 @@
 
 import { prelevaProdotto, checkAndAddProducts } from './csvControl.js';
+import { inviaStoricoAlServer } from './logicData/sendData.js';
 
 
     const btnVolantinoA4 = document.getElementById("volantinoA4");
@@ -532,6 +533,7 @@ export function repeatLabelInteraction() {
                 } else {
                     addToJson(container, pagina);
                     checkAndAddProducts()
+                    inviaStoricoAlServer(jsonData);
                 }
 
             } else {
@@ -895,3 +897,5 @@ loginCont.forEach( (login) => {
             }
         });
     });
+
+
